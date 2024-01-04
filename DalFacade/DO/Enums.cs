@@ -1,5 +1,6 @@
 ﻿namespace DO;
 
-internal class Enums
+public enum Engineerlevel
 {
+    Beginner, AdvancedBeginner, Intermediate, Advanced, Expert
 }

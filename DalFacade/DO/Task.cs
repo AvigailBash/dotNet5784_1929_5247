@@ -9,19 +9,17 @@ public record Task
     DateTime? schedualedDate = null,
     TimeSpan? requiredEffortTime = null,
     DateTime? deadlineDate = null,
+    DateTime? createdAtDate = null,
+    DateTime? startDate = null,    
+    DateTime? completeDate = null,
     string? deliverables = null,
     string? remarks = null,
-    int? ingineerId = null
-//DO.e
+    int? ingineerId = null,
+    DO.Engineerlevel? coplexity=null,
+    bool isActive=false
+
 )
 {
-    public DateTime createdAtDate => DateTime.Now;
-    public DateTime startDate => DateTime.Now;
-    public DateTime comleteDate => DateTime.Now;
     public Task() : this(0) { }
-    //public Task(int i)
-    //{
-    //    this.id = i;
-    //}
-
+    
 }
