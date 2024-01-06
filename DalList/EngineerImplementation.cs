@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class EngineerImplementation : IEngineer
 {
+    // Creates a new engineer and gives it an ID
     public int Create(Engineer item)
     {
         if (Read(item.id) is not null)
@@ -13,6 +14,7 @@ public class EngineerImplementation : IEngineer
         return item.id;
     }
 
+    // Gets an ID and deletes the engineer
     public void Delete(int id)
     {
         Engineer? temp = Read(id);
@@ -26,17 +28,19 @@ public class EngineerImplementation : IEngineer
 
     }
 
-
+    // Gets an ID and prints the engineer if it exists and is active
     public Engineer? Read(int id)
     {
         return DataSource.Engineers?.Find(t=>(t!=null&&t.id == id&&t.isActive==true));
     }
 
+    // Prints the active engineers
     public List<Engineer> ReadAll()
     {
-        return new List<Engineer>(DataSource.Engineers);
+        return DataSource.Engineers!.FindAll(d => d.isActive == true);
     }
 
+    // Receives details of a engineer and updates it
     public void Update(Engineer item)
     {
 
