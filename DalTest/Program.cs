@@ -50,7 +50,7 @@ namespace DalTest
             s_dalTask!.Create(t);
         }
 
-        // Receiving data and sending it to a method that creates a new engineer
+        // Receiving data and sending it to a method that creates a new engineerr
         public static void creatEngineer()
         {
             Console.WriteLine("Enter the details:");
