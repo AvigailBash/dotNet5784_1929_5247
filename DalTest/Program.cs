@@ -13,6 +13,74 @@ namespace DalTest
         private static ITask? s_dalTask = new TaskImplementation();
         private static IEngineer? s_dalEngineer = new EngineerImplementation();
         private static IDependency? s_dalDependency = new DependencyImplementation();
+
+        // Receiving data and sending it to a method that creates a new task
+        public static void creatTask()
+        {
+            string? alias, description, deliverables, remarks;
+            DateTime? schedualedDate, deadlineDate, createdAtDate, startDate, completeDate;
+            TimeSpan? requiredEffortTime;
+            DO.Engineerlevel level;
+            Console.WriteLine("Enter the details:");
+            Console.WriteLine("Press an alias");
+            alias = Console.ReadLine();
+            Console.WriteLine("Press a description");
+            description = Console.ReadLine();
+            Console.WriteLine("Press a deliverable");
+            deliverables = Console.ReadLine();
+            Console.WriteLine("Press a remarks");
+            remarks = Console.ReadLine();
+            Console.WriteLine("Press a schedualed Date");
+            schedualedDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Press a deadline Date");
+            deadlineDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Press a created At Date");
+            createdAtDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Press a start Date");
+            startDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Press a complete Date");
+            completeDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Press a required Effort Time");
+            requiredEffortTime = TimeSpan.Parse(Console.ReadLine());
+            Console.WriteLine("Press if it active true or false");
+            bool isActive = bool.Parse(Console.ReadLine());
+            Console.WriteLine("Press if there is a milestone true or false");
+            bool isMileStone = bool.Parse(Console.ReadLine());
+            DO.Task t = new DO.Task(0, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
+            s_dalTask!.Create(t);
+        }
+
+        // Receiving data and sending it to a method that creates a new engineer
+        public static void creatEngineer()
+        {
+            Console.WriteLine("Enter the details:");
+            Console.WriteLine("Press a id");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Press a name");
+            string name = Console.ReadLine();
+            Console.WriteLine("Press an email");
+            string email = Console.ReadLine();
+            Console.WriteLine("Press how much he paid");
+            double cost = double.Parse(Console.ReadLine());
+            Console.WriteLine("Press if it active true or false");
+            bool isActive = bool.Parse(Console.ReadLine());
+            DO.Engineer engineer = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
+            s_dalEngineer!.Create(engineer);
+        }
+
+        // Receiving data and sending it to a method that creates a new dependency
+        public static void creatDependency()
+        {
+            Console.WriteLine("Enter the details");
+            Console.WriteLine("Press which task is dependent");
+            int dependentTask = int.Parse(Console.ReadLine());
+            Console.WriteLine("Press on which task");
+            int dependsOnTask = int.Parse(Console.ReadLine());
+            Console.WriteLine("Press if it active true or false");
+            bool isActive = bool.Parse(Console.ReadLine());
+            DO.Dependency d = new DO.Dependency(0, dependentTask, dependsOnTask, isActive);
+            s_dalDependency!.Create(d);
+        }
         enum mainMenu { Exit, Task, Engineer, Dependency };
         enum options { Exit, Create, Read, ReadAll, Update, Delete };
         static void Main(string[] args)
@@ -38,37 +106,7 @@ namespace DalTest
                                 {
                                     // Receiving data and sending it to a method that creates a new task
                                     case options.Create:
-                                        string?  alias, description, deliverables, remarks;
-                                        DateTime? schedualedDate, deadlineDate, createdAtDate, startDate, completeDate;
-                                        TimeSpan? requiredEffortTime;
-                                        DO.Engineerlevel level;
-                                        Console.WriteLine("Enter the details:");
-                                        Console.WriteLine("Press an alias");
-                                        alias = Console.ReadLine();
-                                        Console.WriteLine("Press a description");
-                                        description = Console.ReadLine();
-                                        Console.WriteLine("Press a deliverable");
-                                        deliverables = Console.ReadLine();
-                                        Console.WriteLine("Press a remarks");
-                                        remarks = Console.ReadLine();
-                                        Console.WriteLine("Press a schedualed Date");
-                                        schedualedDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a deadline Date");
-                                        deadlineDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a created At Date");
-                                        createdAtDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a start Date");
-                                        startDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a complete Date");
-                                        completeDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a required Effort Time");
-                                        requiredEffortTime = TimeSpan.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        bool isActive = bool.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if there is a milestone true or false");
-                                        bool isMileStone = bool.Parse(Console.ReadLine());
-                                        DO.Task t = new DO.Task(0, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
-                                        s_dalTask!.Create(t);
+                                        creatTask();
                                         break;
 
                                     // Inserting an ID and printing the task if it exists and is active
@@ -128,39 +166,7 @@ namespace DalTest
 
                                     // Receiving data and updating the received task
                                     case options.Update:
-                                        // Handle update option
-                                        Console.WriteLine("Enter the details:");
-                                        Console.WriteLine("Press a id");
-                                        id = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Enter the details:");
-                                        Console.WriteLine("Press an ID:");
-                                        id = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press an alias");
-                                        alias = Console.ReadLine();
-                                        Console.WriteLine("Press a description");
-                                        description = Console.ReadLine();
-                                        Console.WriteLine("Press a deliverable");
-                                        deliverables = Console.ReadLine();
-                                        Console.WriteLine("Press a remarks");
-                                        remarks = Console.ReadLine();
-                                        Console.WriteLine("Press a schedualed Date");
-                                        schedualedDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a deadline Date");
-                                        deadlineDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a created At Date");
-                                        createdAtDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a start Date");
-                                        startDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a complete Date");
-                                        completeDate = DateTime.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a required Effort Time");
-                                        requiredEffortTime = TimeSpan.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        isActive = bool.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if there is a milestone true or false");
-                                        isMileStone = bool.Parse(Console.ReadLine());
-                                        DO.Task tas = new DO.Task(id, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced ,isActive);
-                                        s_dalTask!.Update(tas);
+                                        creatTask();
                                         break;
 
                                     // Getting an ID and deleting the task
@@ -190,27 +196,14 @@ namespace DalTest
                                 {
                                     // Receiving data and sending it to a method that creates a new engineer
                                     case options.Create:
-                                        // Handle create option for Engineer
-                                        Console.WriteLine("Enter the details:");
-                                        Console.WriteLine("Press a id");
-                                        int id = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a name");
-                                        string name = Console.ReadLine();
-                                        Console.WriteLine("Press an email");
-                                        string email = Console.ReadLine();
-                                        Console.WriteLine("Press how much he paid");
-                                        double cost = double.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        bool isActive = bool.Parse(Console.ReadLine());
-                                        DO.Engineer engineer = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
-                                        s_dalEngineer!.Create(engineer);
+                                        creatEngineer();
                                         break;
 
                                     // Inserting an ID and printing the engineer if it exists and is active
                                     case options.Read:
                                         // Handle read option for Engineer
                                         Console.WriteLine("Press a id");
-                                        id = int.Parse(Console.ReadLine());
+                                        int id = int.Parse(Console.ReadLine());
                                         DO.Engineer eng = s_dalEngineer!.Read(id);
                                         Console.WriteLine($"ID: {eng.id}");
                                         Console.WriteLine($"Name: {eng.name}");
@@ -245,20 +238,7 @@ namespace DalTest
 
                                     // Receiving data and updating the received engineer
                                     case options.Update:
-                                        // Handle update option for Engineer
-                                        Console.WriteLine("Enter the details:");
-                                        Console.WriteLine("Press a id");
-                                        id = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press a name");
-                                        name = Console.ReadLine();
-                                        Console.WriteLine("Press an email");
-                                        email = Console.ReadLine();
-                                        Console.WriteLine("Press how much he paid");
-                                        cost = double.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        isActive = bool.Parse(Console.ReadLine());
-                                        DO.Engineer e = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
-                                        s_dalEngineer!.Update(e);
+                                        creatEngineer();
                                         break;
 
                                     // Getting an ID and deleting the engineer
@@ -289,16 +269,7 @@ namespace DalTest
                                 {
                                     // Receiving data and sending it to a method that creates a new dependency
                                     case options.Create:
-                                        // Handle create option for Dependency
-                                        Console.WriteLine("Enter the details");
-                                        Console.WriteLine("Press which task is dependent");
-                                        int dependentTask = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press on which task");
-                                        int dependsOnTask = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        bool isActive = bool.Parse(Console.ReadLine());
-                                        DO.Dependency d = new DO.Dependency(0, dependentTask, dependsOnTask, isActive);
-                                        s_dalDependency!.Create(d);
+                                        creatDependency();
                                         break;
 
                                     // Inserting an ID and printing the dependency if it exists and is active
@@ -335,18 +306,7 @@ namespace DalTest
 
                                     // Receiving data and updating the received dependency
                                     case options.Update:
-                                        // Handle update option for Dependency
-                                        Console.WriteLine("Enter the details");
-                                        Console.WriteLine("Press the id");
-                                        id = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press which task is dependent");
-                                        dependentTask = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press on which task");
-                                        dependsOnTask = int.Parse(Console.ReadLine());
-                                        Console.WriteLine("Press if it active true or false");
-                                        isActive = bool.Parse(Console.ReadLine());
-                                        DO.Dependency dependency = new DO.Dependency(id, dependentTask, dependsOnTask, isActive);
-                                        s_dalDependency!.Update(dependency);
+                                        creatDependency();
                                         break;
 
                                     // Getting an ID and deleting the dependency
