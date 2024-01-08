@@ -3,13 +3,15 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
-public class EngineerImplementation : IEngineer
+internal class EngineerImplementation : IEngineer
 {
     // Creates a new engineer and gives it an ID
     public int Create(Engineer item)
     {
         if (Read(item.id) is not null)
-            throw new Exception($"Engineer with ID={item.id} already exists");
+        {
+            throw new DalAlreadyExistsException($"Student with ID={item.id} already exists");
+        }           
         DataSource.Engineers?.Add(item);
         return item.id;
     }
@@ -20,7 +22,7 @@ public class EngineerImplementation : IEngineer
         Engineer? temp = Read(id);
         if (temp == null)
         {
-            throw new Exception($"Engineer with ID={id} not exists");
+            throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
         DataSource.Engineers?.Remove(temp);
         temp = temp with { isActive = false };
@@ -37,8 +39,20 @@ public class EngineerImplementation : IEngineer
     // Prints the active engineers
     public List<Engineer> ReadAll()
     {
-        return DataSource.Engineers!.FindAll(d => d.isActive == true);
+        return DataSource.Engineers!.FindAll(t => t.isActive == true);
     }
+    //public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) //stage 2
+    //{
+    //    if (filter != null)
+    //    {
+    //        return from item in DataSource.Engineers
+    //               where filter(item)
+    //               select item;
+    //    }
+    //    return from item in DataSource.Engineers
+    //           select item;
+    //}
+
 
     // Receives details of a engineer and updates it
     public void Update(Engineer item)
@@ -46,7 +60,7 @@ public class EngineerImplementation : IEngineer
 
         if (Read(item.id) is null)
         {
-            throw new Exception($"Engineer with ID={item.id} not exists");
+            throw new DalDoesNotExistException($"Engineer with ID={item.id} not exists");
         }
         Delete(item.id);
         DataSource.Engineers?.Add(item);

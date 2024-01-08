@@ -7,9 +7,10 @@ using System.Data.Common;
 
 public static class Initialization
 {
-    public static ITask? s_dalTask;
-    public static IEngineer? s_dalEngineer;
-    public static IDependency? s_dalDependency;
+    private static IDal? s_dal;
+    //public static ITask? s_dalTask;
+    //public static IEngineer? s_dalEngineer;
+    //public static IDependency? s_dalDependency;
     private static readonly Random s_rand = new();
 
     //Creates new tasks
@@ -118,7 +119,7 @@ public static class Initialization
            
             bool _isActive = true;
             Task newTask = new(0, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _createdAtDate, _startDate, _completeDate, null, null, null, null, true);
-            s_dalTask!.Create(newTask);
+            s_dal!.Task.Create(newTask);
 
         }
 
@@ -139,13 +140,13 @@ public static class Initialization
             int maxValue = 400000000;
             do
                 _id = new Random().Next(minValue, maxValue);
-            while (s_dalEngineer!.Read(_id) != null);
+            while (s_dal!.Engineer.Read(_id) != null);
 
             //level
             double _cost = new Random().Next(10000, 20000);
             bool _isActive = true;//לעשות מיל לפי שם
             Engineer newEngineer = new Engineer(_id, name, "engineer12@gmail.com", DO.Engineerlevel.Intermediate, _cost, _isActive);
-            s_dalEngineer.Create(newEngineer);
+            s_dal!.Engineer.Create(newEngineer);
         }
     }
 
@@ -164,18 +165,19 @@ public static class Initialization
 
             } while (_dependsOnTask == _dependentTask);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
-            s_dalDependency?.Create(newDependency);
+            s_dal!.dependency.Create(newDependency);
         }
     }
 
-    public static void Do(ITask? dalTask,IEngineer? dalEngineer,IDependency? dalDependency)
+    public static void Do(IDal dal)
     {
-        s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        createTasks();
-        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        createEngineer();
-        s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        createDependency();
+        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        //createTasks();
+        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        //createEngineer();
+        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
+        //createDependency();
+        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
     }
 
 }

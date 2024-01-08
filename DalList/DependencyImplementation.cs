@@ -3,7 +3,7 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
-public class DependencyImplementation : IDependency
+internal class DependencyImplementation : IDependency
 {
     // Creates a new dependency and gives it an ID
     public int Create(Dependency item)
@@ -20,7 +20,7 @@ public class DependencyImplementation : IDependency
         Dependency? temp = Read(id);
         if (temp == null)
         {
-            throw new Exception($"Dependency with ID={id} not exists");
+            throw new DalDoesNotExistException($"Dependency with ID={id} not exists");
         }
         DataSource.Dependencies?.Remove(temp);
     }
@@ -34,8 +34,20 @@ public class DependencyImplementation : IDependency
     // Prints the active dependencies
     public List<Dependency> ReadAll()
     {
-        return DataSource.Dependencies!.FindAll(d => d.isActive == true);
+        return DataSource.Dependencies!.FindAll(t => t.isActive == true);
     }
+    //public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
+    //{
+    //    if (filter != null)
+    //    {
+    //        return from item in DataSource.Dependencies
+    //               where filter(item)
+    //               select item;
+    //    }
+    //    return from item in DataSource.Dependencies
+    //           select item;
+    //}
+
 
     // Receives details of a dependency and updates it
     public void Update(Dependency item)
@@ -43,7 +55,7 @@ public class DependencyImplementation : IDependency
 
         if (Read(item.id) is null)
         {
-            throw new Exception($"Dependency with ID={item.id} not exists");
+            throw new DalDoesNotExistException($"Dependency with ID={item.id} not exists");
         }
         Delete(item.id);
         DataSource.Dependencies?.Add(item);

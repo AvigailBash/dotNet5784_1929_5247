@@ -9,10 +9,10 @@ namespace DalTest
 {
     internal class Program
     {
-
-        private static ITask? s_dalTask = new TaskImplementation();
-        private static IEngineer? s_dalEngineer = new EngineerImplementation();
-        private static IDependency? s_dalDependency = new DependencyImplementation();
+        static readonly IDal s_dal = new DalList();
+        //private static ITask? s_dalTask = new TaskImplementation();
+        //private static IEngineer? s_dalEngineer = new EngineerImplementation();
+        //private static IDependency? s_dalDependency = new DependencyImplementation();
 
         // Receiving data and sending it to a method that creates a new task
         public static void creatTask()
@@ -47,7 +47,7 @@ namespace DalTest
             Console.WriteLine("Press if there is a milestone true or false");
             bool isMileStone = bool.Parse(Console.ReadLine());
             DO.Task t = new DO.Task(0, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
-            s_dalTask!.Create(t);
+            s_dal.Task!.Create(t);
         }
 
         // Receiving data and sending it to a method that creates a new engineerr
@@ -65,7 +65,7 @@ namespace DalTest
             Console.WriteLine("Press if it active true or false");
             bool isActive = bool.Parse(Console.ReadLine());
             DO.Engineer engineer = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
-            s_dalEngineer!.Create(engineer);
+            s_dal.Engineer!.Create(engineer);
         }
 
         // Receiving data and sending it to a method that creates a new dependency
@@ -79,7 +79,7 @@ namespace DalTest
             Console.WriteLine("Press if it active true or false");
             bool isActive = bool.Parse(Console.ReadLine());
             DO.Dependency d = new DO.Dependency(0, dependentTask, dependsOnTask, isActive);
-            s_dalDependency!.Create(d);
+            s_dal.dependency!.Create(d);
         }
         enum mainMenu { Exit, Task, Engineer, Dependency };
         enum options { Exit, Create, Read, ReadAll, Update, Delete };
@@ -88,7 +88,7 @@ namespace DalTest
             try
             {
 
-                Initialization.Do(s_dalTask, s_dalEngineer, s_dalDependency);
+                Initialization.Do(s_dal);
                 // Options to choose which entity to access
                 Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency");
                 mainMenu choice = (mainMenu)Enum.Parse(typeof(mainMenu), Console.ReadLine());
@@ -114,7 +114,7 @@ namespace DalTest
 
                                         Console.WriteLine("Press a Id");
                                         int id = int.Parse(Console.ReadLine());
-                                        DO.Task? task = s_dalTask!.Read(id);
+                                        DO.Task? task = s_dal.Task!.Read(id);
                                         Console.WriteLine($"ID: {task.id}");
                                         Console.WriteLine($"Alias: {task.alias}");
                                         Console.WriteLine($"Description: {task.description}");
@@ -135,7 +135,7 @@ namespace DalTest
 
                                     // Print all tasks
                                     case options.ReadAll:
-                                        List<DO.Task>? tasks = s_dalTask!.ReadAll();
+                                        List<DO.Task>? tasks = s_dal.Task!.ReadAll();
                                         if (tasks != null)
                                         {
                                             foreach (DO.Task ta in tasks)
@@ -174,7 +174,7 @@ namespace DalTest
                                         // Handle delete option
                                         Console.WriteLine("Press a id");
                                         id = int.Parse(Console.ReadLine());
-                                        s_dalTask!.Delete(id);
+                                        s_dal.Task!.Delete(id);
                                         break;
 
                                     default:
@@ -204,7 +204,7 @@ namespace DalTest
                                         // Handle read option for Engineer
                                         Console.WriteLine("Press a id");
                                         int id = int.Parse(Console.ReadLine());
-                                        DO.Engineer eng = s_dalEngineer!.Read(id);
+                                        DO.Engineer eng = s_dal.Engineer!.Read(id);
                                         Console.WriteLine($"ID: {eng.id}");
                                         Console.WriteLine($"Name: {eng.name}");
                                         Console.WriteLine($"Email: {eng.email}");
@@ -216,7 +216,7 @@ namespace DalTest
 
                                     // Print all engineers
                                     case options.ReadAll:
-                                        List<DO.Engineer>? engineers = s_dalEngineer!.ReadAll();
+                                        List<DO.Engineer>? engineers = s_dal.Engineer!.ReadAll();
                                         if (engineers != null)
                                         {
                                             foreach (DO.Engineer en in engineers)
@@ -246,7 +246,7 @@ namespace DalTest
                                         // Handle delete option for Engineer
                                         Console.WriteLine("Press a id");
                                         id = int.Parse(Console.ReadLine());
-                                        s_dalEngineer!.Delete(id);
+                                        s_dal.Engineer!.Delete(id);
                                         break;
 
                                     default: 
@@ -276,7 +276,7 @@ namespace DalTest
                                     case options.Read:
                                         Console.WriteLine("Press a id");
                                         int id = int.Parse(Console.ReadLine());
-                                        DO.Dependency dep = s_dalDependency!.Read(id);
+                                        DO.Dependency dep = s_dal.dependency!.Read(id);
                                         Console.WriteLine($"ID: {dep.id}");
                                         Console.WriteLine($"Depentent task: {dep.dependentTask}");
                                         Console.WriteLine($"Depends on task: {dep.dependsOnTask}");
@@ -286,7 +286,7 @@ namespace DalTest
 
                                     // Print all dependencies
                                     case options.ReadAll:
-                                        List<DO.Dependency>? dependencies = s_dalDependency!.ReadAll();
+                                        List<DO.Dependency>? dependencies = s_dal.dependency!.ReadAll();
                                         if (dependencies != null)
                                         {
                                             foreach (DO.Dependency de in dependencies)
@@ -314,7 +314,7 @@ namespace DalTest
                                         // Handle delete option for Dependency
                                         Console.WriteLine("Press a id");
                                         id = int.Parse(Console.ReadLine());
-                                        s_dalDependency!.Delete(id);
+                                        s_dal.dependency!.Delete(id);
                                         break;
 
                                     default:

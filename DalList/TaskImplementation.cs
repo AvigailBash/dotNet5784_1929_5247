@@ -2,8 +2,9 @@
 using DalApi;
 using DO;
 using System.Collections.Generic;
+using System.Linq;
 
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     // Creates a new task and gives it an ID
     public int Create(Task item)
@@ -20,7 +21,7 @@ public class TaskImplementation : ITask
         Task? temp = Read(id);
         if(temp==null)
         {
-            throw new Exception($"Task with ID={id} not exists");
+            throw new DalDoesNotExistException($"Task with ID={id} not exists");
         }
         DataSource.Tasks?.Remove(temp);
         temp = temp with { isActive = false };
@@ -35,17 +36,30 @@ public class TaskImplementation : ITask
     }
 
     // Prints the active tasks
+
     public List<Task> ReadAll()
     {
-        return DataSource.Tasks!.FindAll(d => d.isActive == true);
+        return DataSource.Tasks!.FindAll(t => t.isActive == true);
     }
+    //public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) //stage 2
+    //{
+    //    if (filter != null)
+    //    {
+    //        return from item in DataSource.Tasks
+    //               where filter(item)
+    //               select item;
+    //    }
+    //    return from item in DataSource.Tasks
+    //           select item;
+    //}
+
 
     // Receives details of an task and updates it
     public void Update(Task item)
     {
         if (Read(item.id) is null) 
         {
-            throw new Exception($"Task with ID={item.id} not exists");
+            throw new DalDoesNotExistException($"Task with ID={item.id} not exists");
         }
         Delete(item.id);
         DataSource.Tasks?.Add(item);
