@@ -2,7 +2,7 @@
 
 public interface IDal
 {
-    ITask Task { get; }
-    IEngineer Engineer { get; }
-    IDependency dependency { get; }
+    ITask Task { get; } // properties
+    IEngineer Engineer { get; } // properties
+    IDependency dependency { get; } // properties
 }
