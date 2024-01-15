@@ -28,15 +28,14 @@ internal class DependencyImplementation : IDependency
     // Gets an ID and prints the dependency if it exists and is active
     public Dependency? Read(int id)
     {
-        return DataSource.Dependencies?.Find(t => (t != null && t.id == id && t.isActive == true));
+        return DataSource.Dependencies?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
+    }
+   public Dependency? Read(Func<Dependency, bool> filter)
+    {
+        return DataSource.Dependencies?.Select(item => item).FirstOrDefault();
     }
 
-    // Prints the active dependencies
-    //public List<Dependency> ReadAll()
-    //{
-    //    return DataSource.Dependencies!.FindAll(t => t.isActive == true);
-    //}
-    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
+    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) 
     {
         if (filter != null)
         {

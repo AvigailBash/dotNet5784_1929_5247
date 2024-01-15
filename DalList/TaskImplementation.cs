@@ -32,16 +32,19 @@ internal class TaskImplementation : ITask
     // Gets an ID and prints the task if it exists and is active
     public Task? Read(int id)
     {
-        return DataSource.Tasks?.Find(t => (t != null && t.id == id && t.isActive == true));
+        return DataSource.Tasks?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
+      
     }
+   public  Task? Read(Func<Task, bool> filter)
+    {
+        return DataSource.Tasks?.Select(item=>item).FirstOrDefault();
+    }
+   
+
 
     // Prints the active tasks
 
-    //public List<Task> ReadAll()
-    //{
-    //    return DataSource.Tasks!.FindAll(t => t.isActive == true);
-    //}
-    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) //stage 2
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) 
     {
         if (filter != null)
         {

@@ -33,15 +33,14 @@ internal class EngineerImplementation : IEngineer
     // Gets an ID and prints the engineer if it exists and is active
     public Engineer? Read(int id)
     {
-        return DataSource.Engineers?.Find(t=>(t!=null&&t.id == id&&t.isActive==true));
+        return DataSource.Engineers?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
     }
-
     // Prints the active engineers
-    //public List<Engineer> ReadAll()
-    //{
-    //    return DataSource.Engineers!.FindAll(t => t.isActive == true);
-    //}
-    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) //stage 2
+   public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers?.Select(item => item).FirstOrDefault();
+    }
+    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) 
     {
         if (filter != null)
         {

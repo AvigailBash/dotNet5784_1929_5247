@@ -139,7 +139,7 @@ public static class Initialization
             int minValue = 200000000;
             int maxValue = 400000000;
             do
-                _id = new Random().Next(minValue, maxValue);
+            _id = new Random().Next(minValue, maxValue);
             while (s_dal!.Engineer.Read(_id) != null);
 
             //level
@@ -172,12 +172,12 @@ public static class Initialization
     public static void Do(IDal dal)
     {
         //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        //createTasks();
         //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        //createEngineer();
         //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        //createDependency();
         s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
+        createTasks();
+        createEngineer();
+        createDependency();
     }
 
 }
