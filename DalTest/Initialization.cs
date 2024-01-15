@@ -8,12 +8,11 @@ using System.Data.Common;
 public static class Initialization
 {
     private static IDal? s_dal;
-    //public static ITask? s_dalTask;
-    //public static IEngineer? s_dalEngineer;
-    //public static IDependency? s_dalDependency;
     private static readonly Random s_rand = new();
 
-    //Creates new tasks
+    /// <summary>
+    /// Creates new tasks
+    /// </summary>
     private static void createTasks()
     {
         string[] aliasNames =
@@ -125,7 +124,9 @@ public static class Initialization
 
     }
 
-    //Creates new engineers
+    /// <summary>
+    /// Creates new engineers
+    /// </summary>
     private static void createEngineer()
     {
 
@@ -150,7 +151,9 @@ public static class Initialization
         }
     }
 
-    //Creates new dependencies
+    /// <summary>
+    /// Creates new dependencies
+    /// </summary>
     private static void createDependency()
     {
         for (int i = 1; i <= 40; i++)
@@ -169,11 +172,13 @@ public static class Initialization
         }
     }
 
+    /// <summary>
+    /// Checks whether the objects exist properly, if not sends an error and calls for initialization
+    /// </summary>
+    /// <param name="dal"></param>
+    /// <exception cref="NullReferenceException"></exception>
     public static void Do(IDal dal)
     {
-        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
         s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         createTasks();
         createEngineer();

@@ -14,6 +14,9 @@ public record Dependency
     bool isActive = false
 )
 {
-    public Dependency() : this(0) { } // An empty constructive action for an entity
+    /// <summary>
+    /// An empty constructive action for an entity
+    /// </summary>
+    public Dependency() : this(0) { }
 }
 

@@ -11,6 +11,10 @@ namespace DalTest
     {
         static readonly IDal s_dal = new DalList();
 
+        /// <summary>
+        /// Receiving data and sending it to a method that creates a new task or update the task
+        /// </summary>
+        /// <param name="num"> The recipient's number to know whether to create or update </param>
         public static void creatTask(int num)
         {
             try
@@ -58,7 +62,10 @@ namespace DalTest
 
         }
 
-        // Receiving data and sending it to a method that creates a new engineerr
+        /// <summary>
+        /// Receiving data and sending it to a method that creates a new engineerr or to update the engineer
+        /// </summary>
+        /// <param name="num"> The recipient's number to know whether to create or update </param>
         public static void creatEngineer(int num)
         {
             DO.Engineer engineer;
@@ -88,7 +95,10 @@ namespace DalTest
 
         }
 
-        // Receiving data and sending it to a method that creates a new dependency
+        /// <summary>
+        /// Receiving data and sending it to a method that creates a new dependency or to update the dependency
+        /// </summary>
+        /// <param name="num"> The recipient's number to know whether to create or update </param>
         public static void creatDependency(int num)
         {
             try
@@ -117,7 +127,6 @@ namespace DalTest
             {
 
                 Initialization.Do(s_dal);
-                // Options to choose which entity to access
                 Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency");
                 mainMenu choice = (mainMenu)Enum.Parse(typeof(mainMenu), Console.ReadLine());
                 while (choice != mainMenu.Exit)
@@ -125,10 +134,10 @@ namespace DalTest
 
                     switch (choice)
                     {
-
                         case mainMenu.Task:
                             try
-                            {  // Choosing which option to access each entity
+                            {
+                                // Choosing which option to access each entity
                                 Console.WriteLine("Press a number:\n0 for Exit\n1 for create\n2 for read\n3 for readAll\n4 for update\n5 for delete");
                                 options taskOption = (options)Enum.Parse(typeof(options), Console.ReadLine());
                                 while (taskOption != options.Exit)
@@ -136,11 +145,9 @@ namespace DalTest
                                     switch (taskOption)
                                     {
 
-
                                         // Receiving data and sending it to a method that creates a new task
                                         case options.Create:
                                             creatTask(1);
-
                                             break;
 
                                         // Inserting an ID and printing the task if it exists and is active
@@ -185,7 +192,6 @@ namespace DalTest
 
                                         // Print all tasks
                                         case options.ReadAll:
-                                            //List<DO.Task>? tasks = s_dal.Task!.ReadAll();
                                             IEnumerable<DO.Task>? tasks = s_dal.Task!.ReadAll();
                                             if (tasks != null)
                                             {
@@ -334,7 +340,7 @@ namespace DalTest
 
 
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 Console.WriteLine(e.Message);
                             }
@@ -425,7 +431,7 @@ namespace DalTest
                                     dependencyOption = (options)Enum.Parse(typeof(options), Console.ReadLine());
                                 }
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 Console.WriteLine(e.Message);
                             }

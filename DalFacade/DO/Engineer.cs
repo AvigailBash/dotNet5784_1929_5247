@@ -19,7 +19,10 @@ public record Engineer
     bool isActive = false
  )
 {
-    public Engineer() : this(0) { } // Empty constructive action for an entity
+    /// <summary>
+    /// Empty constructive action for an entity
+    /// </summary>
+    public Engineer() : this(0) { }
 
 }
 

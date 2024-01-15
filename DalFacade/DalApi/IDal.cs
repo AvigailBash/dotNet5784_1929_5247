@@ -1,8 +1,22 @@
 ﻿namespace DalApi;
 
+/// <summary>
+/// An interface that unites all interfaces within it
+/// </summary>
 public interface IDal
 {
-    ITask Task { get; } // properties
-    IEngineer Engineer { get; } // properties
-    IDependency dependency { get; } // properties
+    /// <summary>
+    /// Task property
+    /// </summary>
+    ITask Task { get; }
+
+    /// <summary>
+    /// Engineer property
+    /// </summary>
+    IEngineer Engineer { get; }
+
+    /// <summary>
+    /// Dependency property
+    /// </summary>
+    IDependency dependency { get; }
 }

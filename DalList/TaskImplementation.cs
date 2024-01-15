@@ -6,7 +6,11 @@ using System.Linq;
 
 internal class TaskImplementation : ITask
 {
-    // Creates a new task and gives it an ID
+    /// <summary>
+    /// Creates a new dependency and gives it an ID
+    /// </summary>
+    /// <param name="item"> The resulting object </param>
+    /// <returns></returns>
     public int Create(Task item)
     {
         int newId = DataSource.Config.NextTaskId;
@@ -15,7 +19,11 @@ internal class TaskImplementation : ITask
         return newId;
     }
 
-    // Gets an ID and deletes the task
+    /// <summary>
+    /// Gets an ID and deletes the dependency
+    /// </summary>
+    /// <param name="id"> The ID of the received object </param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Delete(int id)
     {
         Task? temp = Read(id);
@@ -29,21 +37,32 @@ internal class TaskImplementation : ITask
         
     }
 
-    // Gets an ID and prints the task if it exists and is active
+    /// <summary>
+    /// Gets an ID and prints the dependency if it exists and is active
+    /// </summary>
+    /// <param name="id"> The ID of the received object </param>
+    /// <returns></returns>
     public Task? Read(int id)
     {
         return DataSource.Tasks?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
       
     }
-   public  Task? Read(Func<Task, bool> filter)
+
+    /// <summary>
+    /// Returns an object according to certain search conditions
+    /// </summary>
+    /// <param name="filter"> The search conditions on the object </param>
+    /// <returns></returns>
+    public Task? Read(Func<Task, bool> filter)
     {
         return DataSource.Tasks?.Select(item=>item).FirstOrDefault();
     }
-   
 
-
-    // Prints the active tasks
-
+    /// <summary>
+    /// Returns a collection of objects according to a certain search condition
+    /// </summary>
+    /// <param name="filter"> The search conditions on the objects </param>
+    /// <returns></returns>
     public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) 
     {
         if (filter != null)
@@ -57,7 +76,11 @@ internal class TaskImplementation : ITask
     }
 
 
-    // Receives details of an task and updates it
+    //// <summary>
+    /// Receives details of a dependency and updates it
+    /// </summary>
+    /// <param name="item"> The resulting object </param>
+    /// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
     public void Update(Task item)
     {
         if (Read(item.id) is null) 
