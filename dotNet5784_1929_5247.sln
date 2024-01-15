@@ -11,14 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalList", "DalList\DalList.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.csproj", "{FA16D9CE-48C5-4634-88BC-A5DFD1D95CBF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{861AF305-B35E-4153-A389-9C5782ED4F26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{F2F5C23D-D8A2-42FF-98F8-D51AEA62EBA9}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		xml\data-config.xml.txt = xml\data-config.xml.txt
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{6D0D19E6-61CD-4AEC-9584-F084F01A380C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
