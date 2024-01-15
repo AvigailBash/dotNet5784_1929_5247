@@ -32,21 +32,21 @@ internal class DependencyImplementation : IDependency
     }
 
     // Prints the active dependencies
-    public List<Dependency> ReadAll()
-    {
-        return DataSource.Dependencies!.FindAll(t => t.isActive == true);
-    }
-    //public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
+    //public List<Dependency> ReadAll()
     //{
-    //    if (filter != null)
-    //    {
-    //        return from item in DataSource.Dependencies
-    //               where filter(item)
-    //               select item;
-    //    }
-    //    return from item in DataSource.Dependencies
-    //           select item;
+    //    return DataSource.Dependencies!.FindAll(t => t.isActive == true);
     //}
+    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null) //stage 2
+    {
+        if (filter != null)
+        {
+            return from item in DataSource.Dependencies
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Dependencies
+               select item;
+    }
 
 
     // Receives details of a dependency and updates it

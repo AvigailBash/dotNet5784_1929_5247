@@ -37,21 +37,21 @@ internal class EngineerImplementation : IEngineer
     }
 
     // Prints the active engineers
-    public List<Engineer> ReadAll()
-    {
-        return DataSource.Engineers!.FindAll(t => t.isActive == true);
-    }
-    //public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) //stage 2
+    //public List<Engineer> ReadAll()
     //{
-    //    if (filter != null)
-    //    {
-    //        return from item in DataSource.Engineers
-    //               where filter(item)
-    //               select item;
-    //    }
-    //    return from item in DataSource.Engineers
-    //           select item;
+    //    return DataSource.Engineers!.FindAll(t => t.isActive == true);
     //}
+    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null) //stage 2
+    {
+        if (filter != null)
+        {
+            return from item in DataSource.Engineers
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Engineers
+               select item;
+    }
 
 
     // Receives details of a engineer and updates it

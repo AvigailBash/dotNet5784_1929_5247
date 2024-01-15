@@ -37,21 +37,21 @@ internal class TaskImplementation : ITask
 
     // Prints the active tasks
 
-    public List<Task> ReadAll()
-    {
-        return DataSource.Tasks!.FindAll(t => t.isActive == true);
-    }
-    //public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) //stage 2
+    //public List<Task> ReadAll()
     //{
-    //    if (filter != null)
-    //    {
-    //        return from item in DataSource.Tasks
-    //               where filter(item)
-    //               select item;
-    //    }
-    //    return from item in DataSource.Tasks
-    //           select item;
+    //    return DataSource.Tasks!.FindAll(t => t.isActive == true);
     //}
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) //stage 2
+    {
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
+    }
 
 
     // Receives details of an task and updates it
