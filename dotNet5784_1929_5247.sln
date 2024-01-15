@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{6D0D19E6-61CD-4AEC-9584-F084F01A380C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,10 @@ Global
 		{FA16D9CE-48C5-4634-88BC-A5DFD1D95CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA16D9CE-48C5-4634-88BC-A5DFD1D95CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA16D9CE-48C5-4634-88BC-A5DFD1D95CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE35EC26-F9BB-4C43-81D1-B630BADD01AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -125,7 +125,6 @@ namespace DalTest
         {
             try
             {
-
                 Initialization.Do(s_dal);
                 Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency");
                 mainMenu choice = (mainMenu)Enum.Parse(typeof(mainMenu), Console.ReadLine());
