@@ -32,3 +32,13 @@ public class DalDeletionImpossible : Exception
     /// <param name="message"> The error message sent to the user </param>
     public DalDeletionImpossible(string? message) : base(message) { }
 }
+
+[Serializable]
+public class DalXMLFileLoadCreateException : Exception
+{
+    /// <summary>
+    /// A class that handles file type errors
+    /// </summary>
+    /// <param name="message"> The error message sent to the user </param>
+    public DalXMLFileLoadCreateException(string? message) : base(message) { }
+}

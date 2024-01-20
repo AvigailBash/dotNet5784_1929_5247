@@ -2,6 +2,7 @@
 using Dal;
 using DalApi;
 using DO;
+using System.Data.SqlTypes;
 using System.Numerics;
 using System.Transactions;
 
@@ -9,13 +10,14 @@ namespace DalTest
 {
     internal class Program
     {
-        static readonly IDal s_dal = new DalList();
+        //static readonly IDal s_dal = new DalList();
+        static readonly IDal s_dal = new DalXml();
 
         /// <summary>
         /// Receiving data and sending it to a method that creates a new task or update the task
         /// </summary>
         /// <param name="num"> The recipient's number to know whether to create or update </param>
-        public static void creatTask(int num)
+        public static void creatTask(int num, int id = 0)
         {
             try
             {
@@ -48,7 +50,7 @@ namespace DalTest
                 bool isActive = bool.Parse(Console.ReadLine());
                 Console.WriteLine("Press if there is a milestone true or false");
                 bool isMileStone = bool.Parse(Console.ReadLine());
-                DO.Task t = new DO.Task(0, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
+                DO.Task t = new DO.Task(id, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
                 if (num == 1)
                     s_dal.Task!.Create(t);
                 else
@@ -99,7 +101,7 @@ namespace DalTest
         /// Receiving data and sending it to a method that creates a new dependency or to update the dependency
         /// </summary>
         /// <param name="num"> The recipient's number to know whether to create or update </param>
-        public static void creatDependency(int num)
+        public static void creatDependency(int num, int id = 0)
         {
             try
             {
@@ -110,7 +112,7 @@ namespace DalTest
                 int dependsOnTask = int.Parse(Console.ReadLine());
                 Console.WriteLine("Press if it active true or false");
                 bool isActive = bool.Parse(Console.ReadLine());
-                DO.Dependency d = new DO.Dependency(0, dependentTask, dependsOnTask, isActive);
+                DO.Dependency d = new DO.Dependency(id, dependentTask, dependsOnTask, isActive);
                 if (num == 1)
                     s_dal.dependency!.Create(d);
                 else
@@ -119,14 +121,14 @@ namespace DalTest
             catch (Exception e) { Console.WriteLine(e.Message); }
 
         }
-        enum mainMenu { Exit, Task, Engineer, Dependency };
+        enum mainMenu { Exit, Task, Engineer, Dependency, Initialization };
         enum options { Exit, Create, Read, ReadAll, Update, Delete };
         static void Main(string[] args)
         {
             try
             {
-                Initialization.Do(s_dal);
-                Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency");
+                //Initialization.Do(s_dal);
+                Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency\n4 for initialization");
                 mainMenu choice = (mainMenu)Enum.Parse(typeof(mainMenu), Console.ReadLine());
                 while (choice != mainMenu.Exit)
                 {
@@ -222,7 +224,9 @@ namespace DalTest
 
                                         // Receiving data and updating the received task
                                         case options.Update:
-                                            creatTask(2);
+                                            Console.WriteLine("press which task");
+                                            int taskNum = int.Parse(Console.ReadLine());
+                                            creatTask(2, taskNum);
                                             break;
 
                                         // Getting an ID and deleting the task
@@ -411,7 +415,9 @@ namespace DalTest
 
                                         // Receiving data and updating the received dependency
                                         case options.Update:
-                                            creatDependency(2);
+                                            Console.WriteLine("press which dependency");
+                                            int dependencyNum = int.Parse(Console.ReadLine());
+                                            creatDependency(2, dependencyNum);
                                             break;
 
                                         // Getting an ID and deleting the dependency
@@ -437,13 +443,22 @@ namespace DalTest
 
                             break;
 
+                        case mainMenu.Initialization:
+                            // Verifies with the user that he really wants to initialize the data and initializes if he answered yes
+                            Console.Write("Would you like to create Initial data? (Y/N)");
+                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+                            if (ans == "Y")
+                            {
+                                Initialization.Do(s_dal);
+                            }
+                            break;
 
 
-                        default:
+                                default:
                             Console.WriteLine("Wrong answer");
                             break;
                     }
-                    Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency");
+                    Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for Dependency\n4 for initialization");
                     choice = (mainMenu)Enum.Parse(typeof(mainMenu), Console.ReadLine());
                 }
 
