@@ -7,7 +7,7 @@ using System.Linq;
 internal class TaskImplementation : ITask
 {
     /// <summary>
-    /// Creates a new dependency and gives it an ID
+    /// Creates a new task and gives it an ID
     /// </summary>
     /// <param name="item"> The resulting object </param>
     /// <returns></returns>
@@ -20,7 +20,7 @@ internal class TaskImplementation : ITask
     }
 
     /// <summary>
-    /// Gets an ID and deletes the dependency
+    /// Gets an ID and deletes the task
     /// </summary>
     /// <param name="id"> The ID of the received object </param>
     /// <exception cref="DalDoesNotExistException"></exception>
@@ -38,7 +38,7 @@ internal class TaskImplementation : ITask
     }
 
     /// <summary>
-    /// Gets an ID and prints the dependency if it exists and is active
+    /// Gets an ID and prints the task if it exists and is active
     /// </summary>
     /// <param name="id"> The ID of the received object </param>
     /// <returns></returns>
@@ -77,7 +77,7 @@ internal class TaskImplementation : ITask
 
 
     //// <summary>
-    /// Receives details of a dependency and updates it
+    /// Receives details of a task and updates it
     /// </summary>
     /// <param name="item"> The resulting object </param>
     /// <exception cref="DalDoesNotExistException"> The exception being sent </exception>

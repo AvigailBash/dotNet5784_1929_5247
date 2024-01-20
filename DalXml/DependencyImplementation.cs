@@ -5,18 +5,22 @@ using System.Linq.Expressions;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
+/// <summary>
+/// A class for implementing crud methods when working with XML files
+/// </summary>
 internal class DependencyImplementation: IDependency
 {
     readonly string s_dependencies_xml = "dependencies";
 
+    /// <summary>
+    /// Creates a new dependency and gives it an ID
+    /// </summary>
+    /// <param name="item"> The resulting object </param>
+    /// <returns></returns>
     public int Create(Dependency item)
     {
         XElement dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         int idAuto = Config.NextDependencyId;
-        //XElement id = new XElement("id", idAuto);
-        //XElement dependentTask = new XElement("dependentTask", item.dependentTask);
-        //XElement dependsOnTask = new XElement("dependsOnTask", item.dependsOnTask);
-        //XElement isActive = new XElement("isActive", item.isActive);
         XElement dependencyElement = new XElement("dependency", new XElement("id", idAuto), new XElement("dependentTask", item.dependentTask), new XElement("dependsOnTask", item.dependsOnTask), new XElement("isActive", item.isActive));
 
         dependencyRoot.Add(dependencyElement);
@@ -24,6 +28,11 @@ internal class DependencyImplementation: IDependency
         return idAuto;
     }
 
+    /// <summary>
+    /// Gets an ID and deletes the dependency
+    /// </summary>
+    /// <param name="id"> The ID of the received object </param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Delete(int id)
     {
         var dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
@@ -41,11 +50,21 @@ internal class DependencyImplementation: IDependency
 
     }
 
+    /// <summary>
+    /// Prints a single dependency according to a certain filter
+    /// </summary>
+    /// <param name="filter"> By what to search for the object </param>
+    /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
         return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault(filter);
     }
 
+    /// <summary>
+    /// Gets an ID and prints the dependency if it exists and is active
+    /// </summary>
+    /// <param name="id"> The ID of the received object </param>
+    /// <returns></returns>
     public Dependency? Read(int id)
     {
         //return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault();
@@ -53,6 +72,11 @@ internal class DependencyImplementation: IDependency
         return dependencyElement is null ? null : getDependency(dependencyElement);
     }
 
+    /// <summary>
+    /// Returns a collection of objects according to a certain search condition
+    /// </summary>
+    /// <param name="filter"> The search conditions on the objects </param>
+    /// <returns></returns>
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
         if (filter == null) 
@@ -65,6 +89,11 @@ internal class DependencyImplementation: IDependency
         }
     }
 
+    /// <summary>
+    /// Receives details of a dependency and updates it
+    /// </summary>
+    /// <param name="item"> The resulting object </param>
+    /// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
     public void Update(Dependency item)
     {
         throw new NotImplementedException();

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 internal class EngineerImplementation : IEngineer
 {
     /// <summary>
-    /// Creates a new dependency and gives it an ID
+    /// Creates a new engineer and gives it an ID
     /// </summary>
     /// <param name="item"> The resulting object </param>
     /// <returns></returns>
@@ -21,7 +21,7 @@ internal class EngineerImplementation : IEngineer
     }
 
     /// <summary>
-    /// Gets an ID and deletes the dependency
+    /// Gets an ID and deletes the engineer
     /// </summary>
     /// <param name="id"> The ID of the received object </param>
     /// <exception cref="DalDoesNotExistException"></exception>
@@ -39,7 +39,7 @@ internal class EngineerImplementation : IEngineer
     }
 
     /// <summary>
-    /// Gets an ID and prints the dependency if it exists and is active
+    /// Gets an ID and prints the engineer if it exists and is active
     /// </summary>
     /// <param name="id"> The ID of the received object </param>
     /// <returns></returns>

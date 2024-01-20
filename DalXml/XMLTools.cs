@@ -5,6 +5,9 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
+/// <summary>
+/// A helper class for using XML files
+/// </summary>
 static class XMLTools
 {
     const string s_xml_dir = @"..\xml\";
@@ -14,6 +17,13 @@ static class XMLTools
             Directory.CreateDirectory(s_xml_dir);
     }
 
+    /// <summary>
+    /// Methods for conversions from the file to visual
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="element"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
     #region Extension Fuctions
     public static T? ToEnumNullable<T>(this XElement element, string name) where T : struct, Enum =>
         Enum.TryParse<T>((string?)element.Element(name), out var result) ? (T?)result : null;
@@ -24,7 +34,13 @@ static class XMLTools
     public static int? ToIntNullable(this XElement element, string name) =>
         int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
     #endregion
-
+    /// <summary>
+    /// A method for updating the serial number
+    /// </summary>
+    /// <param name="data_config_xml"></param>
+    /// <param name="elemName"></param>
+    /// <returns></returns>
+    /// <exception cref="FormatException"></exception>
     #region XmlConfig
     public static int GetAndIncreaseNextId(string data_config_xml, string elemName)
     {
@@ -36,6 +52,12 @@ static class XMLTools
     }
     #endregion
 
+    /// <summary>
+    /// A method for saving into the XML file
+    /// </summary>
+    /// <param name="rootElem"></param>
+    /// <param name="entity"></param>
+    /// <exception cref="DalXMLFileLoadCreateException"></exception>
     #region SaveLoadWithXElement
     public static void SaveListToXMLElement(XElement rootElem, string entity)
     {
@@ -49,6 +71,13 @@ static class XMLTools
             throw new DalXMLFileLoadCreateException($"fail to create xml file: {s_xml_dir + filePath}, {ex.Message}");
         }
     }
+
+    /// <summary>
+    /// Loading from the XML file
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    /// <exception cref="DalXMLFileLoadCreateException"></exception>
     public static XElement LoadListFromXMLElement(string entity)
     {
         string filePath = $"{s_xml_dir + entity}.xml";
@@ -67,6 +96,13 @@ static class XMLTools
     }
     #endregion
 
+    /// <summary>
+    /// Saving from the list to a file
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <param name="entity"></param>
+    /// <exception cref="DalXMLFileLoadCreateException"></exception>
     #region SaveLoadWithXMLSerializer
     public static void SaveListToXMLSerializer<T>(List<T> list, string entity) where T : class
     {
@@ -81,6 +117,14 @@ static class XMLTools
             throw new DalXMLFileLoadCreateException($"fail to create xml file: {s_xml_dir + filePath}, {ex.Message}");
         }
     }
+
+    /// <summary>
+    /// Saving from the list to an XML file
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    /// <exception cref="DalXMLFileLoadCreateException"></exception>
     public static List<T> LoadListFromXMLSerializer<T>(string entity) where T : class
     {
         string filePath = $"{s_xml_dir + entity}.xml";
