@@ -21,6 +21,7 @@ namespace DalTest
         {
             try
             {
+                DO.Task? temp = s_dal.Task.Read(num);
                 string? alias, description, deliverables, remarks;
                 DateTime? schedualedDate, deadlineDate, createdAtDate, startDate, completeDate;
                 TimeSpan? requiredEffortTime;
@@ -50,6 +51,49 @@ namespace DalTest
                 bool isActive = bool.Parse(Console.ReadLine());
                 Console.WriteLine("Press if there is a milestone true or false");
                 bool isMileStone = bool.Parse(Console.ReadLine());
+                if (num == 2)
+                {
+                    if (alias == null)
+                    {
+                        alias = temp.alias;
+                    }
+                    if (description == null)
+                    {
+                        description = temp.description;
+                    }
+                    if (deliverables == null)
+                    {
+                        deliverables = temp.deliverables;
+                    }
+                    if (remarks == null)
+                    {
+                        remarks = temp.remarks;
+                    }
+                    if (schedualedDate == null)
+                    {
+                        schedualedDate = temp.schedualedDate;
+                    }
+                    if (requiredEffortTime == null) 
+                    {
+                        requiredEffortTime = temp.requiredEffortTime;
+                    }
+                    if(deadlineDate == null)
+                    {
+                        deadlineDate = temp.deadlineDate;
+                    }
+                    if (createdAtDate == null)
+                    {
+                        createdAtDate = temp.completeDate;
+                    }
+                    if (startDate == null)
+                    {
+                        startDate = temp.startDate;
+                    }
+                    if (completeDate == null)
+                    {
+                        completeDate = temp.completeDate;
+                    }
+                }
                 DO.Task t = new DO.Task(id, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
                 if (num == 1)
                     s_dal.Task!.Create(t);
@@ -73,6 +117,7 @@ namespace DalTest
             DO.Engineer engineer;
             try
             {
+                Engineer? temp = s_dal.Engineer.Read(num);
                 Console.WriteLine("Enter the details:");
                 Console.WriteLine("Press a id");
                 int id = int.Parse(Console.ReadLine());
@@ -84,6 +129,21 @@ namespace DalTest
                 double? cost = double.Parse(Console.ReadLine());
                 Console.WriteLine("Press if it active true or false");
                 bool isActive = bool.Parse(Console.ReadLine());
+                if (num == 2)
+                {
+                    if (name == null)
+                    {
+                        name = temp.name;
+                    }
+                    if (email == null)
+                    {
+                        email = temp.email;
+                    }
+                    if (cost == null)
+                    {
+                        cost = temp.cost;
+                    }
+                }
                 engineer = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
                 if (num == 1)
                     s_dal.Engineer!.Create(engineer);
@@ -105,13 +165,25 @@ namespace DalTest
         {
             try
             {
+                Dependency temp = s_dal.dependency.Read(id)!;
                 Console.WriteLine("Enter the details");
                 Console.WriteLine("Press which task is dependent");
-                int dependentTask = int.Parse(Console.ReadLine());
+                int? dependentTask = int.Parse(Console.ReadLine());
                 Console.WriteLine("Press on which task");
-                int dependsOnTask = int.Parse(Console.ReadLine());
+                int? dependsOnTask = int.Parse(Console.ReadLine());
                 Console.WriteLine("Press if it active true or false");
                 bool isActive = bool.Parse(Console.ReadLine());
+                if (num == 2) 
+                {
+                    if (dependentTask == null)
+                    {
+                        dependentTask = temp.dependentTask;
+                    }
+                    if (dependsOnTask == null)
+                    {
+                        dependsOnTask = temp.dependsOnTask;
+                    }
+                }
                 DO.Dependency d = new DO.Dependency(id, dependentTask, dependsOnTask, isActive);
                 if (num == 1)
                     s_dal.dependency!.Create(d);
@@ -417,6 +489,7 @@ namespace DalTest
                                         case options.Update:
                                             Console.WriteLine("press which dependency");
                                             int dependencyNum = int.Parse(Console.ReadLine());
+
                                             creatDependency(2, dependencyNum);
                                             break;
 
@@ -449,6 +522,7 @@ namespace DalTest
                             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
                             if (ans == "Y")
                             {
+
                                 Initialization.Do(s_dal);
                             }
                             break;

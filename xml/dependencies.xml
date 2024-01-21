@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDependency>
+  <dependency>
+    <id>1010</id>
+    <dependentTask>1014</dependentTask>
+    <dependsOnTask>1006</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1011</id>
+    <dependentTask>1012</dependentTask>
+    <dependsOnTask>1019</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1012</id>
+    <dependentTask>1015</dependentTask>
+    <dependsOnTask>1009</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1009</id>
+    <dependentTask>1002<dependsOnTask>1012<isActive />false</dependsOnTask></dependentTask>
+  </dependency>
+</ArrayOfDependency>

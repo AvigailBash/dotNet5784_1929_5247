@@ -40,7 +40,12 @@ internal class DependencyImplementation: IDependency
         try
         {
             dependencyElement = (from p in dependencyRoot.Elements()where Convert.ToInt32(p.Element("id").Value) == id select p).FirstOrDefault();
-            dependencyElement?.Remove();
+            XElement temp = new("dependency", new XElement("id", id), 
+                new XElement("dependentTask", dependencyElement.Element("dependentTask").Value, 
+                new XElement("dependsOnTask", dependencyElement.Element("dependsOnTask").Value, 
+                new XElement("isActive"), false)));
+            dependencyElement.Remove();
+            dependencyRoot.Add(temp);
             XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
         }
         catch
@@ -81,11 +86,11 @@ internal class DependencyImplementation: IDependency
     {
         if (filter == null) 
         {
-            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d));
+            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).ToList();
         }
         else
         {
-            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).Where(filter);
+            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).Where(filter).ToList();
         }
     }
 
