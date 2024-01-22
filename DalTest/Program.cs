@@ -165,7 +165,7 @@ namespace DalTest
         {
             try
             {
-                Dependency temp = s_dal.dependency.Read(id)!;
+                Dependency temp = s_dal.Dependency.Read(id)!;
                 Console.WriteLine("Enter the details");
                 Console.WriteLine("Press which task is dependent");
                 int? dependentTask = int.Parse(Console.ReadLine());
@@ -186,9 +186,9 @@ namespace DalTest
                 }
                 DO.Dependency d = new DO.Dependency(id, dependentTask, dependsOnTask, isActive);
                 if (num == 1)
-                    s_dal.dependency!.Create(d);
+                    s_dal.Dependency!.Create(d);
                 else
-                    s_dal.dependency!.Update(d);
+                    s_dal.Dependency!.Update(d);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
 
@@ -440,7 +440,7 @@ namespace DalTest
                                         case options.Read:
                                             Console.WriteLine("Press a id");
                                             int id = int.Parse(Console.ReadLine());
-                                            DO.Dependency dep = s_dal.dependency!.Read(id);
+                                            DO.Dependency dep = s_dal.Dependency!.Read(id);
                                             if (dep != null)
                                             {
                                                 Console.WriteLine($"ID: {dep.id}");
@@ -467,7 +467,7 @@ namespace DalTest
                                         // Print all dependencies
                                         case options.ReadAll:
                                             //List<DO.Dependency>? dependencies = s_dal.dependency!.ReadAll();
-                                            IEnumerable<DO.Dependency>? dependencies = s_dal.dependency!.ReadAll();
+                                            IEnumerable<DO.Dependency>? dependencies = s_dal.Dependency!.ReadAll();
                                             if (dependencies != null)
                                             {
                                                 foreach (DO.Dependency de in dependencies)
@@ -498,7 +498,7 @@ namespace DalTest
                                             // Handle delete option for Dependency
                                             Console.WriteLine("Press a id");
                                             id = int.Parse(Console.ReadLine());
-                                            s_dal.dependency!.Delete(id);
+                                            s_dal.Dependency!.Delete(id);
                                             break;
 
                                         default:

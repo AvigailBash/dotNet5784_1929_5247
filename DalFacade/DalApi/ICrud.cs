@@ -45,4 +45,9 @@ public interface ICrud<T> where T : class
     /// </summary>
     /// <param name="id"> The ID of the object to delete</param>
     void Delete(int id);
+
+    /// <summary>
+    /// A method for deleting all objects from the same entity
+    /// </summary>
+    void deleteAll();
 }

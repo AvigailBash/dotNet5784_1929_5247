@@ -85,5 +85,13 @@ internal class DependencyImplementation : IDependency
         Delete(item.id);
         DataSource.Dependencies?.Add(item);
     }
+
+    /// <summary>
+    /// A method for deleting all objects from a dependency entity
+    /// </summary>
+    public void deleteAll()
+    {
+        DataSource.Dependencies!.Clear();
+    }
 }
 

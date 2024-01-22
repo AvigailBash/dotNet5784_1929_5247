@@ -18,5 +18,5 @@ public interface IDal
     /// <summary>
     /// Dependency property
     /// </summary>
-    IDependency dependency { get; }
+    IDependency Dependency { get; }
 }
