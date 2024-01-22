@@ -168,4 +168,12 @@
     <cost>19500</cost>
     <isActive>true</isActive>
   </Engineer>
+  <Engineer>
+    <id>765847321</id>
+    <name>Avugail Bash</name>
+    <email>avigail@gmail.com</email>
+    <level>Expert</level>
+    <cost>30000</cost>
+    <isActive>false</isActive>
+  </Engineer>
 </ArrayOfEngineer>

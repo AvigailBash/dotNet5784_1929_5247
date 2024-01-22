@@ -20,7 +20,7 @@ internal class EngineerImplementation: IEngineer
         bool engineerExists = engineers.Any(e => e.id == item.id);
         if(engineerExists)
         {
-            throw new DalAlreadyExistsException($"Student with ID={item.id} already exists");
+            throw new DalAlreadyExistsException($"Engineer with ID={item.id} already exists");
         }
         engineers.Add(item);
         XMLTools.SaveListToXMLSerializer<Engineer>(engineers, s_engineers_xml);
@@ -40,7 +40,9 @@ internal class EngineerImplementation: IEngineer
         {
             throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
+        Engineer temp = new Engineer(en.id, en.name, en.email, en.level, en.cost, false);
         engineers.Remove(en);
+        engineers.Add(temp);
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
     }
 
@@ -52,7 +54,7 @@ internal class EngineerImplementation: IEngineer
     public Engineer? Read(Func<Engineer, bool> filter)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
-        return engineers.FirstOrDefault(filter);
+        return engineers.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter!(it));
     }
 
     /// <summary>
@@ -74,11 +76,7 @@ internal class EngineerImplementation: IEngineer
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
-        if (filter != null)
-        {
-            return from item in engineers where filter(item) select item;
-        }
-        return engineers.ToList();
+        return from item in engineers where(!item.isActive ? false : filter is null ? true : filter(item) )select item;
     }
 
     //// <summary>

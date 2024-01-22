@@ -21,7 +21,7 @@ namespace DalTest
         {
             try
             {
-                DO.Task? temp = s_dal.Task.Read(num);
+                DO.Task? temp = s_dal.Task.Read(id);
                 string? alias, description, deliverables, remarks;
                 DateTime? schedualedDate, deadlineDate, createdAtDate, startDate, completeDate;
                 TimeSpan? requiredEffortTime;
@@ -117,10 +117,10 @@ namespace DalTest
             DO.Engineer engineer;
             try
             {
-                Engineer? temp = s_dal.Engineer.Read(num);
                 Console.WriteLine("Enter the details:");
                 Console.WriteLine("Press a id");
                 int id = int.Parse(Console.ReadLine());
+                Engineer? temp = s_dal.Engineer.Read(id);
                 Console.WriteLine("Press a name");
                 string? name = Console.ReadLine();
                 Console.WriteLine("Press an email");
@@ -131,11 +131,11 @@ namespace DalTest
                 bool isActive = bool.Parse(Console.ReadLine());
                 if (num == 2)
                 {
-                    if (name == null)
+                    if (name == "")
                     {
                         name = temp.name;
                     }
-                    if (email == null)
+                    if (email == "")
                     {
                         email = temp.email;
                     }

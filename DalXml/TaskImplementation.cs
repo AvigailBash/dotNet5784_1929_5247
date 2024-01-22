@@ -35,7 +35,9 @@ internal class TaskImplementation: ITask
         {
             throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
+        DO.Task temp = new(t.id, t.alias, t.description, t.isMilestone, t.schedualedDate, t.requiredEffortTime, t.deadlineDate, t.createdAtDate, t.startDate, t.completeDate, t.deliverables, t.remarks, t.ingineerId, t.coplexity, false);
         tasks.Remove(t);
+        tasks.Add(temp);
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
     }
 
@@ -47,7 +49,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(filter);
+        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it));
     }
 
     /// <summary>
@@ -58,7 +60,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(int id)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => it.id == id);
+        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true);
     }
 
     /// <summary>
@@ -69,11 +71,7 @@ internal class TaskImplementation: ITask
     public IEnumerable<DO.Task?> ReadAll(Func<DO.Task, bool>? filter = null)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        if(filter!=null)
-        {
-            return from item in tasks where filter(item) select item;
-        }
-        return tasks.ToList();
+        return from item in tasks where (!item.isActive ? false : filter is null ? true : filter(item)) select item;
     }
 
     //// <summary>

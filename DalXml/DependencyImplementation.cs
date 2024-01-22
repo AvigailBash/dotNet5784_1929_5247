@@ -1,14 +1,12 @@
 ﻿namespace Dal;
 using DalApi;
 using DO;
-using System.Linq.Expressions;
 using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 /// <summary>
 /// A class for implementing crud methods when working with XML files
 /// </summary>
-internal class DependencyImplementation: IDependency
+internal class DependencyImplementation : IDependency
 {
     readonly string s_dependencies_xml = "dependencies";
 
@@ -39,10 +37,10 @@ internal class DependencyImplementation: IDependency
         XElement dependencyElement;
         try
         {
-            dependencyElement = (from p in dependencyRoot.Elements()where Convert.ToInt32(p.Element("id").Value) == id select p).FirstOrDefault();
-            XElement temp = new("dependency", new XElement("id", id), 
-                new XElement("dependentTask", dependencyElement.Element("dependentTask").Value, 
-                new XElement("dependsOnTask", dependencyElement.Element("dependsOnTask").Value, 
+            dependencyElement = (from p in dependencyRoot.Elements() where Convert.ToInt32(p.Element("id").Value) == id select p).FirstOrDefault();
+            XElement temp = new("dependency", new XElement("id", id),
+                new XElement("dependentTask", dependencyElement.Element("dependentTask").Value,
+                new XElement("dependsOnTask", dependencyElement.Element("dependsOnTask").Value,
                 new XElement("isActive"), false)));
             dependencyElement.Remove();
             dependencyRoot.Add(temp);
@@ -55,27 +53,44 @@ internal class DependencyImplementation: IDependency
 
     }
 
+    ///// <summary>
+    ///// Prints a single dependency according to a certain filter
+    ///// </summary>
+    ///// <param name="filter"> By what to search for the object </param>
+    ///// <returns></returns>
+    //public Dependency? Read(Func<Dependency, bool> filter)
+    //{
+    //    return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).FirstOrDefault(filter);
+    //}
+
+    ///// <summary>
+    ///// Gets an ID and prints the dependency if it exists and is active
+    ///// </summary>
+    ///// <param name="id"> The ID of the received object </param>
+    ///// <returns></returns>
+    //public Dependency? Read(int id)
+    //{
+    //    //return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault();
+    //    XElement? dependencyElement = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(d => (int?)d.Element("id") == id);
+    //    return dependencyElement is null ? null : getDependency(dependencyElement);
+    //}
+
+
     /// <summary>
     /// Prints a single dependency according to a certain filter
     /// </summary>
     /// <param name="filter"> By what to search for the object </param>
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
-    {
-        return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault(filter);
-    }
+   => ReadAll(filter).FirstOrDefault();
 
     /// <summary>
     /// Gets an ID and prints the dependency if it exists and is active
     /// </summary>
     /// <param name="id"> The ID of the received object </param>
     /// <returns></returns>
-    public Dependency? Read(int id)
-    {
-        //return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault();
-        XElement? dependencyElement = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(d => (int?)d.Element("id") == id);
-        return dependencyElement is null ? null : getDependency(dependencyElement);
-    }
+    public Dependency? Read(int id) =>
+   Read(dependency => dependency.id == id);
 
     /// <summary>
     /// Returns a collection of objects according to a certain search condition
@@ -83,36 +98,48 @@ internal class DependencyImplementation: IDependency
     /// <param name="filter"> The search conditions on the objects </param>
     /// <returns></returns>
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
-    {
-        if (filter == null) 
-        {
-            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).ToList();
-        }
-        else
-        {
-            return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).Where(filter).ToList();
-        }
-    }
+        => XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements()
+        .Select(d => getDependency(d)).Where(dependency => !dependency.isActive ? false : filter is null ? true : filter!(dependency));
 
-    /// <summary>
-    /// Receives details of a dependency and updates it
-    /// </summary>
-    /// <param name="item"> The resulting object </param>
-    /// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
-    public void Update(Dependency item)
+
+/// <summary>
+/// Receives details of a dependency and updates it
+/// </summary>
+/// <param name="item"> The resulting object </param>
+/// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
+public void Update(Dependency item)
+{
+    var dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+    XElement dependencyElement;
+    try
+        {
+            dependencyElement = (from p in dependencyRoot.Elements() where Convert.ToInt32(p.Element("id").Value) == item.id select p).FirstOrDefault();
+            XElement temp = dependencyToXelementConverter(item);
+            dependencyElement!.Remove();
+            dependencyRoot.Add(temp);
+            XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
+        }
+        catch
     {
-        throw new NotImplementedException();
+        throw new DalXMLFileLoadCreateException($"Dependency with ID={item.id} not exists");
+    }
+}
+
+    private static XElement dependencyToXelementConverter(Dependency item)
+    {
+        return new("dependency", new XElement("id", item.id),
+            new XElement("dependentTask", item.dependentTask,
+            new XElement("dependsOnTask", item.dependsOnTask,
+            new XElement("isActive"), item.isActive)));
     }
 
     static Dependency getDependency(XElement x)
-    {
-        return new Dependency()
-        {
-            id = x.ToIntNullable("id") ?? throw new FormatException("can't convert id"),
-            dependentTask = x.ToIntNullable("dependentTask") ?? null,
-            dependsOnTask = x.ToIntNullable("dependsOnTask") ?? null,
-            isActive = (bool?)x.Element("isActive") ?? false
+=> new Dependency()
+{
+   id = x.ToIntNullable("id") ?? throw new FormatException("can't convert id"),
+   dependentTask = x.ToIntNullable("dependentTask") ?? null,
+   dependsOnTask = x.ToIntNullable("dependsOnTask") ?? null,
+   isActive = (bool?)x.Element("isActive") ?? false
+};
 
-        };
-    }
 }
