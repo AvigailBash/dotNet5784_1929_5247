@@ -15,6 +15,7 @@ public static class Initialization
     /// </summary>
     private static void deleteAll()
     {
+        
         s_dal!.Engineer.deleteAll();
         s_dal!.Dependency.deleteAll();
         s_dal!.Task.deleteAll();
@@ -192,6 +193,7 @@ public static class Initialization
     {
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         s_dal = DalApi.Factory.Get;
+        deleteAll();
         createTasks();
         createEngineer();
         createDependency();
