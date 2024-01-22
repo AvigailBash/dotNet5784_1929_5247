@@ -10,8 +10,9 @@ namespace DalTest
 {
     internal class Program
     {
-        //static readonly IDal s_dal = new DalList();
-        static readonly IDal s_dal = new DalXml();
+        static readonly IDal s_dal = Factory.Get;
+      // static readonly IDal s_dal = new DalList();
+        //static readonly IDal s_dal = new DalXml();
 
         /// <summary>
         /// Receiving data and sending it to a method that creates a new task or update the task
@@ -523,7 +524,7 @@ namespace DalTest
                             if (ans == "Y")
                             {
 
-                                Initialization.Do(s_dal);
+                                Initialization.Do();
                             }
                             break;
 
