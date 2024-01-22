@@ -24,5 +24,5 @@ sealed internal class DalList : IDal
 
     public IEngineer Engineer => new EngineerImplementation();
 
-    public IDependency dependency => new DependencyImplementation();
+    public IDependency Dependency => new DependencyImplementation();
 }

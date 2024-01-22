@@ -91,5 +91,13 @@ internal class EngineerImplementation : IEngineer
         Delete(item.id);
         DataSource.Engineers?.Add(item);
     }
+
+    /// <summary>
+    /// A method for deleting all objects from a engineer entity
+    /// </summary>
+    public void deleteAll()
+    {
+        DataSource.Engineers!.Clear();
+    }
 }
 

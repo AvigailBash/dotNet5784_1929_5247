@@ -53,29 +53,6 @@ internal class DependencyImplementation : IDependency
 
     }
 
-    ///// <summary>
-    ///// Prints a single dependency according to a certain filter
-    ///// </summary>
-    ///// <param name="filter"> By what to search for the object </param>
-    ///// <returns></returns>
-    //public Dependency? Read(Func<Dependency, bool> filter)
-    //{
-    //    return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d => getDependency(d)).FirstOrDefault(filter);
-    //}
-
-    ///// <summary>
-    ///// Gets an ID and prints the dependency if it exists and is active
-    ///// </summary>
-    ///// <param name="id"> The ID of the received object </param>
-    ///// <returns></returns>
-    //public Dependency? Read(int id)
-    //{
-    //    //return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(d=> getDependency(d)).FirstOrDefault();
-    //    XElement? dependencyElement = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(d => (int?)d.Element("id") == id);
-    //    return dependencyElement is null ? null : getDependency(dependencyElement);
-    //}
-
-
     /// <summary>
     /// Prints a single dependency according to a certain filter
     /// </summary>
@@ -102,16 +79,16 @@ internal class DependencyImplementation : IDependency
         .Select(d => getDependency(d)).Where(dependency => !dependency.isActive ? false : filter is null ? true : filter!(dependency));
 
 
-/// <summary>
-/// Receives details of a dependency and updates it
-/// </summary>
-/// <param name="item"> The resulting object </param>
-/// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
-public void Update(Dependency item)
-{
-    var dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
-    XElement dependencyElement;
-    try
+    /// <summary>
+    /// Receives details of a dependency and updates it
+    /// </summary>
+    /// <param name="item"> The resulting object </param>
+    /// <exception cref="DalDoesNotExistException"> The exception being sent </exception>
+    public void Update(Dependency item)
+    {
+        var dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        XElement dependencyElement;
+        try
         {
             dependencyElement = (from p in dependencyRoot.Elements() where Convert.ToInt32(p.Element("id").Value) == item.id select p).FirstOrDefault();
             XElement temp = dependencyToXelementConverter(item);
@@ -120,11 +97,26 @@ public void Update(Dependency item)
             XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
         }
         catch
-    {
-        throw new DalXMLFileLoadCreateException($"Dependency with ID={item.id} not exists");
+        {
+            throw new DalXMLFileLoadCreateException($"Dependency with ID={item.id} not exists");
+        }
     }
-}
 
+    /// <summary>
+    /// A method for deleting all objects from a dependency entity
+    /// </summary>
+    public void deleteAll()
+    {
+        XElement dependencyRoot = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        dependencyRoot.RemoveAll();
+        XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
+    }
+
+    /// <summary>
+    /// A method that accepts an object of type XElement and converts it to Dependency
+    /// </summary>
+    /// <param name="item"> The returned value </param>
+    /// <returns></returns>
     private static XElement dependencyToXelementConverter(Dependency item)
     {
         return new("dependency", new XElement("id", item.id),
@@ -133,13 +125,19 @@ public void Update(Dependency item)
             new XElement("isActive"), item.isActive)));
     }
 
+    /// <summary>
+    /// A method that accepts an object of type Dependency and converts it to XElement
+    /// </summary>
+    /// <param name="x"> The returned value </param>
+    /// <returns></returns>
+    /// <exception cref="FormatException"></exception>
     static Dependency getDependency(XElement x)
 => new Dependency()
 {
-   id = x.ToIntNullable("id") ?? throw new FormatException("can't convert id"),
-   dependentTask = x.ToIntNullable("dependentTask") ?? null,
-   dependsOnTask = x.ToIntNullable("dependsOnTask") ?? null,
-   isActive = (bool?)x.Element("isActive") ?? false
+    id = x.ToIntNullable("id") ?? throw new FormatException("can't convert id"),
+    dependentTask = x.ToIntNullable("dependentTask") ?? null,
+    dependsOnTask = x.ToIntNullable("dependsOnTask") ?? null,
+    isActive = (bool?)x.Element("isActive") ?? false
 };
 
 }

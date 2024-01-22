@@ -3,12 +3,22 @@ using DalApi;
 using DO;
 using Dal;
 using System.Data.Common;
-
+using System.IO.Pipes;
 
 public static class Initialization
 {
     private static IDal? s_dal;
     private static readonly Random s_rand = new();
+
+    /// <summary>
+    /// A method that deletes the objects that were added and restarts when you choose this in the program
+    /// </summary>
+    private static void deleteAll()
+    {
+        s_dal!.Engineer.deleteAll();
+        s_dal!.Dependency.deleteAll();
+        s_dal!.Task.deleteAll();
+    }
 
     /// <summary>
     /// Creates new tasks
@@ -168,9 +178,10 @@ public static class Initialization
 
             } while (_dependsOnTask == _dependentTask);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
-            s_dal!.dependency.Create(newDependency);
+            s_dal!.Dependency.Create(newDependency);
         }
     }
+
 
     /// <summary>
     /// Checks whether the objects exist properly, if not sends an error and calls for initialization

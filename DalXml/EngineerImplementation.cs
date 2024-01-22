@@ -96,4 +96,13 @@ internal class EngineerImplementation: IEngineer
         engineers.Add(item);
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
     }
+    /// <summary>
+    /// A method for deleting all objects from a dependency entity
+    /// </summary>
+    public void deleteAll()
+    {
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
+        engineers.Clear();
+        XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
+    }
 }

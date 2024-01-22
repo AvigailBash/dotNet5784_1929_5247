@@ -91,4 +91,13 @@ internal class TaskImplementation: ITask
         tasks.Add(item);
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
     }
+    /// <summary>
+    /// A method for deleting all objects from a dependency entity
+    /// </summary>
+    public void deleteAll()
+    {
+        List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
+        tasks.Clear();
+        XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
+    }
 }
