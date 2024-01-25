@@ -21,12 +21,20 @@ internal class EngineerImplementation : IEngineer
     
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        DO.Engineer? doEngineer = _dal.Engineer.Read(id);
+        try
+        {
+                _dal.Engineer.Delete(id);
+        }
+        catch(DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
+        }
     }
    
     public BO.Engineer Read(int id)
     {
-        DO.Engineer doEngineer = _dal.Engineer.Read(id);
+        DO.Engineer? doEngineer = _dal.Engineer.Read(id);
         if(doEngineer == null)
         {
             throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
@@ -57,6 +65,17 @@ internal class EngineerImplementation : IEngineer
 
     public void Update(BO.Engineer engineer)
     {
-        throw new NotImplementedException();
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineer.id);
+        try
+        {
+            if (doEngineer != null) 
+            {
+                _dal.Engineer.Update(doEngineer);
+            }
+        }
+        catch(DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
+        }
     }
 }
