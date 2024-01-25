@@ -1,14 +1,22 @@
 ﻿using BlApi;
-using BO;
 
 namespace BlImplementation;
 
 internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public void Create(Engineer engineer)
+    public int Create(BO.Engineer boEngineer)
     {
-        throw new NotImplementedException();
+        DO.Engineer doEngineer = new DO.Engineer(boEngineer.id, boEngineer.name, boEngineer.email, boEngineer.level, boEngineer.cost, boEngineer.isActive);
+        try
+        {
+            int idEn = _dal.Engineer.Create(doEngineer);
+            return idEn;
+        }
+        catch(DO.DalAlreadyExistsException ex)
+        {
+            throw new BO.BlAlreadyExistsException($"Student with ID={boEngineer.id} already exists", ex);
+        }
     }
     
     public void Delete(int id)
@@ -16,17 +24,38 @@ internal class EngineerImplementation : IEngineer
         throw new NotImplementedException();
     }
    
-    public Engineer Read(int id)
+    public BO.Engineer Read(int id)
     {
-        throw new NotImplementedException();
+        DO.Engineer doEngineer = _dal.Engineer.Read(id);
+        if(doEngineer == null)
+        {
+            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
+        }
+        return new BO.Engineer()
+        {
+            id = doEngineer.id,
+            name = doEngineer.name,
+            email = doEngineer.email,
+            level = doEngineer.level,
+            cost = doEngineer.cost,
+            isActive = doEngineer.isActive,
+        };
     }
 
-    public IEnumerable<IEngineer> ReadAll(Func<Engineer, bool>? filter = null)
+    public IEnumerable<IEngineer> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll() select new BO.Engineer()
+        {
+            id = doEngineer.id,
+            name = doEngineer.name,
+            email = doEngineer.email,
+            level = doEngineer.level,
+            cost = doEngineer.cost,
+            isActive = doEngineer.isActive
+        });
     }
 
-    public void Update(Engineer engineer)
+    public void Update(BO.Engineer engineer)
     {
         throw new NotImplementedException();
     }
