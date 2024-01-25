@@ -3,8 +3,9 @@
 public class Task
 {
     public int id { get; init; }
-    public int? alias { get; set; }
-    public int? description { get; set; }
+    public string? alias { get; set; }
+    public bool isMilestone { get; set; }
+    public string? description { get; set; }
     public BO.status status { get; set; }
     public list<BO.TaskInList>? dependencies { get; init; }
     public BO.MilestoneInTask milestone { get; set; }
@@ -19,5 +20,6 @@ public class Task
     public string? remarks { get; set; }
     public BO.EngineerInTask engineer { get; set; }
     public BO.EngineerExperience coplexity { get; set; }
+    public bool isActive { get; set; }
 
 }

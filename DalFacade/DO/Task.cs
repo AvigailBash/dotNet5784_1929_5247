@@ -15,24 +15,24 @@
 /// <param name="completeDate"> Date the assignment was completed </param>
 /// <param name="deliverables"> the product of the task </param>
 /// <param name="remarks"> Notes on the assignment </param>
-/// <param name="ingineerId"> The identity card of the engineer of the assignment </param>
+/// <param name="engineerId"> The identity card of the engineer of the assignment </param>
 /// <param name="coplexity"> The difficulty of the assignment </param>
 /// <param name="isActive"> Is the assignment active? </param>
 public record Task
 (
     int id,
+    DateTime createdAtDate,
     string? alias = null,
     string? description = null,
     bool isMilestone = false,
     DateTime? schedualedDate = null,
     TimeSpan? requiredEffortTime = null,
     DateTime? deadlineDate = null,
-    DateTime? createdAtDate = null,
     DateTime? startDate = null,
     DateTime? completeDate = null,
     string? deliverables = null,
     string? remarks = null,
-    int? ingineerId = null,
+    int? engineerId = null,
     DO.Engineerlevel? coplexity = null,
     bool isActive = false
 
