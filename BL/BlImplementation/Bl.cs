@@ -3,11 +3,11 @@
 
 namespace BlImplementation;
 
-internal class Bl : IBl
+internal class Bl:IBl
 {
     public IEngineer Engineer => new EngineerImplementation();
 
-    public IEngineerInTask EngineerInTask =>  new EngineerInTaskImplementation();
+   public IEngineerInTask EngineerInTask=> new EngineerInTaskImplementation();
 
     public IMilestone Milestone =>  new MilestoneImplementation();
 
