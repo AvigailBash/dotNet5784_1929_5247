@@ -84,8 +84,8 @@ namespace BlApi
                         completeDate = temp.completeDate;
                     }
                 }
-                //BO.Task t = new BO.Task(id, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
-                BO.Task = new BO.Task();
+                BO.Task t = new BO.Task(id, createdAtDate, alias, description);
+                //BO.Task = new BO.Task();
                 if (num == 1)
                     s_bl.Task!.Create(t);
                 else
