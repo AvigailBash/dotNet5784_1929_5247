@@ -1,6 +1,4 @@
 ﻿using BlApi;
-using BO;
-using DO;
 using System.Threading.Tasks;
 
 namespace BlImplementation;
@@ -21,7 +19,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Task with ID={boTask.id} already exists", ex);
+            throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={boTask.id} already exists", ex);
         }
     }
 
@@ -34,7 +32,7 @@ internal class TaskImplementation : ITask
 
         catch(DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Task with ID={id} does not exists", ex);
+            throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={id} does not exists", ex);
         }
     }
 
@@ -42,7 +40,7 @@ internal class TaskImplementation : ITask
     {
         DO.Task? doTask = _dal.Task.Read(Id);
         if (doTask == null)
-            throw new BO.BlDoesNotExistException($"Task with ID={Id} does Not exist");
+            throw new BO.Exceptions.BlDoesNotExistException($"Task with ID={Id} does Not exist");
         return new BO.Task()
         {
             id = Id,
@@ -65,7 +63,7 @@ internal class TaskImplementation : ITask
 
     }
 
-    public IEnumerable<ITask> ReadAll(Func<BO.Task, bool>? filter = null)
+    public IEnumerable<ITask>? ReadAll(Func<BO.Task, bool>? filter = null)
     {
         return (from DO.Task doTask in _dal.Task.ReadAll()
                 select new BO.TaskInList
@@ -87,7 +85,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Task with ID={task.id} does not exists", ex);
+            throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={task.id} does not exists", ex);
         }
 
 

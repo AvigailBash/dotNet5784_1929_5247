@@ -244,7 +244,7 @@ namespace DalTest
                                                 Console.WriteLine($"Complete Date: {task.completeDate}");
                                                 Console.WriteLine($"Deliverables: {task.deliverables}");
                                                 Console.WriteLine($"Remarks: {task.remarks}");
-                                                Console.WriteLine($"Engineer ID: {task.ingineerId}");
+                                                Console.WriteLine($"Engineer ID: {task.engineerId}");
                                                 Console.WriteLine($"Coplexity: {task.coplexity}");
                                                 Console.WriteLine($"Is Active: {task.isActive}");
                                                 Console.WriteLine();

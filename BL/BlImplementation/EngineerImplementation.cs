@@ -15,7 +15,7 @@ internal class EngineerImplementation : IEngineer
         }
         catch(DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Student with ID={boEngineer.id} already exists", ex);
+            throw new BO.Exceptions.BlAlreadyExistsException($"Student with ID={boEngineer.id} already exists", ex);
         }
     }
     
@@ -28,7 +28,7 @@ internal class EngineerImplementation : IEngineer
         }
         catch(DO.DalDoesNotExistException ex)
         {
-            throw new BO.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
+            throw new BO.Exceptions.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
         }
     }
    
@@ -37,7 +37,7 @@ internal class EngineerImplementation : IEngineer
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
         if(doEngineer == null)
         {
-            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
+            throw new BO.Exceptions.BlDoesNotExistException($"Student with ID={id} does Not exist");
         }
         return new BO.Engineer()
         {
@@ -75,7 +75,7 @@ internal class EngineerImplementation : IEngineer
         }
         catch(DO.DalDoesNotExistException ex)
         {
-            throw new BO.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
+            throw new BO.Exceptions.BlDoesNotExistException($"Student with ID={doEngineer.id} does Not exist");
         }
     }
 }
