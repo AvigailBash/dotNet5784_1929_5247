@@ -7,4 +7,5 @@ public interface ITask
     public int Create(BO.Task task);
     public void Update(BO.Task task);
     public void Delete(int id);
+    public DateTime findForecastDate(DateTime scheduale, DateTime start, TimeSpan require);
 }

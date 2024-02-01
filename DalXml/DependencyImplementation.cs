@@ -74,7 +74,7 @@ internal class DependencyImplementation : IDependency
     /// </summary>
     /// <param name="filter"> The search conditions on the objects </param>
     /// <returns></returns>
-    public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
+    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
         => XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements()
         .Select(d => getDependency(d)).Where(dependency => !dependency.isActive ? false : filter is null ? true : filter!(dependency));
 

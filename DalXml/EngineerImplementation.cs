@@ -73,7 +73,7 @@ internal class EngineerImplementation: IEngineer
     /// </summary>
     /// <param name="filter"> The search conditions on the objects </param>
     /// <returns></returns>
-    public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
+    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
         return from item in engineers where(!item.isActive ? false : filter is null ? true : filter(item) )select item;

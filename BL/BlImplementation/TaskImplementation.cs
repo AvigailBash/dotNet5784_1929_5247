@@ -1,5 +1,8 @@
 ﻿using BlApi;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+
 
 namespace BlImplementation;
 
@@ -8,10 +11,12 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Task boTask)
     {
+
         DO.Task doTask = new DO.Task(boTask.id, boTask.createdAtDate, boTask.alias, boTask.description,
             boTask.isMilestone, boTask.schedualedDate,boTask.requiredEffortTime, boTask.deadlineDate, 
-            boTask.startDate, boTask.completeDate, boTask.deliverables, boTask.remarks, boTask.engineer.id,
-            boTask.coplexity, boTask.isActive);
+            boTask.startDate, boTask.completeDate, boTask.deliverables, boTask.remarks, boTask.engineer?.id,
+            (DO.Engineerlevel?)boTask.coplexity, boTask.isActive);
+         //var x=boTask.dependencies.Select(t=>new DO.Dependency(boTask.id,t.id,t.))
         try
         {
             int idTask = _dal.Task.Create(doTask);
@@ -55,24 +60,26 @@ internal class TaskImplementation : ITask
             completeDate = doTask.completeDate,
             deliverables = doTask.deliverables,
             remarks = doTask.remarks,
-            engineer = _dal.Engineer.Read(doTask.engineerId),
-            coplexity = doTask.coplexity,
-            isActive = doTask.isActive
+            forecastDate = findForecastDate(doTask.schedualedDate, doTask.startDate, doTask.requiredEffortTime),
+            engineer = convertFromEngineerToEngineerInTask(doTask.engineerId),
+            coplexity = (BO.Engineerlevel?)doTask.coplexity,
+            dependencies = findDependencies(doTask),
+            isActive = doTask.isActive,
+            status=findStatus(doTask)
+
         };
-
-
     }
 
-    public IEnumerable<ITask>? ReadAll(Func<BO.Task, bool>? filter = null)
+    public IEnumerable<ITask> ReadAll(Func<BO.Task, bool>? filter = null)//filterrrrrr
     {
-        return (from DO.Task doTask in _dal.Task.ReadAll()
-                select new BO.TaskInList
+        return (from DO.Task doTask in _dal.Task.ReadAll(filter)
+                select new BO.TaskInList 
                 {
                     id = doTask.id,
                     description = doTask.description,
                     alias = doTask.alias,
-                    status = null//איך אפשר להגדיר את סטטוס אם הוא לא נמצא ב DO
-                }); ;
+                    status =findStatus(doTask)
+                }); 
 
     }
 
@@ -90,4 +97,44 @@ internal class TaskImplementation : ITask
 
 
     }
+
+
+    public DateTime findForecastDate(DateTime scheduale,DateTime start,TimeSpan require)
+    {
+        DateTime maxDate;
+        int max= DateTime.Compare(scheduale, start);
+        if (max <=0) { maxDate = start; }
+        else{  maxDate = scheduale; }
+        maxDate.Add(require);
+        return  maxDate;
+    }
+
+    public List<BO.TaskInList> findDependencies(DO.Task task)
+    {
+        IEnumerable<DO.Task?> newList= from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask==task.id select _dal.Task.Read(doDependency.dependsOnTask);
+       List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
+        return taskInLists;
+    }
+
+    public BO.Status findStatus(DO.Task task) 
+    {
+        if (task.schedualedDate == null)
+            return BO.Status.Unscheduled;
+        if(task.startDate== null)
+            return BO.Status.Scheduled;
+        if(task.completeDate== null)
+            return BO.Status.OnTrack;
+        return BO.Status.Done;
+    }
+
+    public BO.EngineerInTask convertFromEngineerToEngineerInTask(int? id)
+    {
+        DO.Engineer? engineer=_dal.Engineer.Read(id);
+        BO.EngineerInTask engineerInTask=new BO.EngineerInTask(engineer.id,engineer.name);
+        return engineerInTask;
+    }
+
+    
 }
+
+

@@ -35,7 +35,7 @@ internal class TaskImplementation: ITask
         {
             throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
-        DO.Task temp = new(t.id, t.alias, t.description, t.isMilestone, t.schedualedDate, t.requiredEffortTime, t.deadlineDate, t.createdAtDate, t.startDate, t.completeDate, t.deliverables, t.remarks, t.ingineerId, t.coplexity, false);
+        DO.Task temp = new(t.id, t.createdAtDate, t.alias, t.description, t.isMilestone, t.schedualedDate, t.requiredEffortTime, t.deadlineDate, t.startDate, t.completeDate, t.deliverables, t.remarks, t.engineerId, t.coplexity, false);
         tasks.Remove(t);
         tasks.Add(temp);
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
@@ -68,7 +68,7 @@ internal class TaskImplementation: ITask
     /// </summary>
     /// <param name="filter"> The search conditions on the objects </param>
     /// <returns></returns>
-    public IEnumerable<DO.Task?> ReadAll(Func<DO.Task, bool>? filter = null)
+    public IEnumerable<DO.Task> ReadAll(Func<DO.Task, bool>? filter = null)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
         return from item in tasks where (!item.isActive ? false : filter is null ? true : filter(item)) select item;

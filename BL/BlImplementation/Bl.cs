@@ -9,7 +9,7 @@ internal class Bl:IBl
 
    public IEngineerInTask EngineerInTask=> new EngineerInTaskImplementation();
 
-    public IMilestone Milestone =>  new MilestoneImplementation();
+    //public IMilestone Milestone =>  new MilestoneImplementation();
 
     public IMilestoneInList MilestoneInList => new MilestoneInListImplementation();
 

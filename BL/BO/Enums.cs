@@ -6,5 +6,5 @@ public enum Engineerlevel
 
 public enum Status
 {
-    A, B, C
+    Unscheduled, Scheduled, OnTrack, Done
 }

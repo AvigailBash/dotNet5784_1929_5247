@@ -32,7 +32,7 @@ public interface ICrud<T> where T : class
     /// </summary>
     /// <param name="filter"> According to what are the objective ones searched for </param>
     /// <returns></returns>
-    IEnumerable<T?> ReadAll(Func<T, bool>? filter = null);
+    IEnumerable<T> ReadAll(Func<T, bool>? filter = null);
 
     /// <summary>
     /// Updates entity object

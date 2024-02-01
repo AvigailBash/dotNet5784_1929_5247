@@ -55,7 +55,7 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public Task? Read(Func<Task, bool> filter)
     {
-        return DataSource.Tasks?.Select(item=>item).FirstOrDefault();
+        return DataSource.Tasks?.Select(item => item).FirstOrDefault();
     }
 
     /// <summary>

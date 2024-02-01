@@ -28,4 +28,18 @@ internal class Exceptions
     {
         public BlNullPropertyException(string? message) : base(message) { }
     }
+
+
+    [Serializable]
+    public class BlIncorrectInput : Exception
+    {
+        public BlIncorrectInput(string? message) : base(message) { }
+    }
+
+    [Serializable]
+    public class BlCannotDeleteThisEngineer : Exception
+    {
+        public BlCannotDeleteThisEngineer(string? message) : base(message) { }
+    }
+
 }

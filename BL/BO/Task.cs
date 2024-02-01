@@ -1,4 +1,6 @@
-﻿namespace BO;
+﻿using System.Collections.Generic;
+
+namespace BO;
 
 public class Task
 {
@@ -6,9 +8,9 @@ public class Task
     public string? alias { get; set; }
     public bool isMilestone { get; set; }
     public string? description { get; set; }
-    public BO.status status { get; set; }
-    public list<BO.TaskInList>? dependencies { get; init; }
-    public BO.MilestoneInTask milestone { get; set; }
+    public BO.Status status { get; set; }
+    public List<BO.TaskInList>? dependencies { get; init; }
+    //public BO.MilestoneInTask milestone { get; set; }
     public DateTime createdAtDate { get; init; }
     public DateTime? schedualedDate { get; set; }
     public DateTime? startDate { get; init; }
@@ -18,8 +20,8 @@ public class Task
     public TimeSpan? requiredEffortTime { get; set; }
     public string? deliverables { get; set; }
     public string? remarks { get; set; }
-    public BO.EngineerInTask engineer { get; set; }
-    public BO.EngineerExperience coplexity { get; set; }
+    public BO.EngineerInTask? engineer { get; set; }
+    public BO.Engineerlevel? coplexity { get; set; }
     public bool isActive { get; set; }
 
 }
