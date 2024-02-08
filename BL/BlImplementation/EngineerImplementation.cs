@@ -61,7 +61,7 @@ internal class EngineerImplementation : IEngineer
 
     public IEnumerable<BO.Engineer> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll(filter) select new BO.Engineer()
+        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll() select new BO.Engineer()
         {
             id = doEngineer.id,
             name = doEngineer.name,

@@ -128,7 +128,7 @@ public static class Initialization
             } while (_completeDate > _deadlineDate);
            
             bool _isActive = true;
-            Task newTask = new(0, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _createdAtDate, _startDate, _completeDate, null, null, null, null, true);
+            Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, null, null, true);
             s_dal!.Task.Create(newTask);
 
         }

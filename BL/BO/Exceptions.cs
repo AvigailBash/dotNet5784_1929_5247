@@ -41,5 +41,10 @@ internal class Exceptions
     {
         public BlCannotDeleteThisEngineer(string? message) : base(message) { }
     }
+    [Serializable]
+    public class BlCannotChangeInThisStatus : Exception
+    {
+        public BlCannotChangeInThisStatus(string? message) : base(message) { }
+    }
 
 }

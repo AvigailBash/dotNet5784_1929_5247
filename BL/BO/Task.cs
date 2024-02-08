@@ -23,5 +23,46 @@ public class Task
     public BO.EngineerInTask? engineer { get; set; }
     public BO.Engineerlevel? coplexity { get; set; }
     public bool isActive { get; set; }
-
+    public Task()
+    {
+        this.id = 0;
+        this.alias = null;
+        this.isMilestone = false;
+        this.description = null;
+        this.status = BO.Status.Unscheduled;
+        this.dependencies = null;
+        this.createdAtDate = DateTime.MinValue;
+        this.schedualedDate = null;
+        this.startDate = null;
+        this.forecastDate = null;
+        this.deadlineDate = null;
+        this.completeDate = null;
+        this.requiredEffortTime = null;
+        this.deliverables = null;
+        this.remarks = null;
+        this.engineer = null;
+        this.coplexity = BO.Engineerlevel.Beginner;
+        this.isActive = false;
+    }
+    public Task(int id, string? alias, bool isMilestone, string? description, Status status, List<TaskInList>? dependencies, DateTime createdAtDate, DateTime? schedualedDate, DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate, TimeSpan? requiredEffortTime, string? deliverables, string? remarks, EngineerInTask? engineer, Engineerlevel? coplexity, bool isActive)
+    {
+        this.id = id;
+        this.alias = alias;
+        this.isMilestone = isMilestone;
+        this.description = description;
+        this.status = status;
+        this.dependencies = dependencies;
+        this.createdAtDate = createdAtDate;
+        this.schedualedDate = schedualedDate;
+        this.startDate = startDate;
+        this.forecastDate = forecastDate;
+        this.deadlineDate = deadlineDate;
+        this.completeDate = completeDate;
+        this.requiredEffortTime = requiredEffortTime;
+        this.deliverables = deliverables;
+        this.remarks = remarks;
+        this.engineer = engineer;
+        this.coplexity = coplexity;
+        this.isActive = isActive;
+    }
 }

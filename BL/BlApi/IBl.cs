@@ -12,5 +12,8 @@ public interface IBl
     public ITask Task { get; }
     public ITaskInEngineer TaskInEngineer { get; }
     public ITaskInList TaskInList { get; }
+   // public BO.StatusOfProject ProjectStatus { get; }
+   // public DateTime? startProcject { get; }
+   // public DateTime? EndProcject { get; }
 
 }

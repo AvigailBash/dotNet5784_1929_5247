@@ -44,7 +44,7 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public Task? Read(int id)
     {
-        return DataSource.Tasks?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
+        return (DataSource.Tasks?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true))) ?? throw new DalDoesNotExistException($"Task with ID={id} not exists");
       
     }
 
@@ -55,7 +55,7 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public Task? Read(Func<Task, bool> filter)
     {
-        return DataSource.Tasks?.Select(item => item).FirstOrDefault();
+        return (DataSource.Tasks?.Select(item => item).Where(filter).FirstOrDefault()) ?? throw new DalDoesNotExistException("Task not exists");
     }
 
     /// <summary>

@@ -54,7 +54,7 @@ internal class EngineerImplementation: IEngineer
     public Engineer? Read(Func<Engineer, bool> filter)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
-        return engineers.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter!(it));
+        return engineers.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter!(it)) ?? throw new DalDoesNotExistException("Engineer already exists");
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ internal class EngineerImplementation: IEngineer
     public Engineer? Read(int id)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
-        return engineers.FirstOrDefault(it => it.id == id && it.isActive == true);
+        return engineers.FirstOrDefault(it => it.id == id && it.isActive == true) ?? throw new DalDoesNotExistException($"Engineer with ID={id} already exists");
     }
 
     /// <summary>

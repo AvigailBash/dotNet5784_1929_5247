@@ -10,10 +10,16 @@ public class EngineerInTask
         this.id = 0;
         this.name = null;
     }
-    public EngineerInTask (int id, string? name)
+    public EngineerInTask(int id, string? name)
     {
         this.id = id;
         this.name = name;
+    }
+
+    public void ToString()
+    {
+        Console.WriteLine($"Id: {this.id}");
+        Console.WriteLine($"Name: {this.name}");
     }
 }
 

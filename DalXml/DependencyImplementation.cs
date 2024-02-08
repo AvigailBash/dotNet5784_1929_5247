@@ -59,7 +59,7 @@ internal class DependencyImplementation : IDependency
     /// <param name="filter"> By what to search for the object </param>
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
-   => ReadAll(filter).FirstOrDefault();
+   => ReadAll(filter).FirstOrDefault() ?? throw new DalDoesNotExistException("Dependency not exists");
 
     /// <summary>
     /// Gets an ID and prints the dependency if it exists and is active
@@ -67,7 +67,7 @@ internal class DependencyImplementation : IDependency
     /// <param name="id"> The ID of the received object </param>
     /// <returns></returns>
     public Dependency? Read(int id) =>
-   Read(dependency => dependency.id == id);
+   Read(dependency => dependency.id == id) ?? throw new DalDoesNotExistException($"Dependency with ID={id} not exists");
 
     /// <summary>
     /// Returns a collection of objects according to a certain search condition

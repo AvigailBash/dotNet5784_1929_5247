@@ -33,7 +33,7 @@ internal class TaskImplementation: ITask
         DO.Task? t = Read(id);
         if (t == null) 
         {
-            throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
+            throw new DalDoesNotExistException($"Task with ID={id} not exists");
         }
         DO.Task temp = new(t.id, t.createdAtDate, t.alias, t.description, t.isMilestone, t.schedualedDate, t.requiredEffortTime, t.deadlineDate, t.startDate, t.completeDate, t.deliverables, t.remarks, t.engineerId, t.coplexity, false);
         tasks.Remove(t);
@@ -49,7 +49,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it));
+        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it)) ?? throw new DalDoesNotExistException("Task not exists");
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(int id)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true);
+        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true) ?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ internal class TaskImplementation: ITask
         DO.Task? t = Read(item.id);
         if(t==null)
         {
-            throw new DalDoesNotExistException($"Engineer with ID={item.id} not exists");
+            throw new DalDoesNotExistException($"Task with ID={item.id} not exists");
         }
         tasks.Remove(t);
         tasks.Add(item);

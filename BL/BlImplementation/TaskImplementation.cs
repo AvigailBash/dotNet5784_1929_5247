@@ -11,6 +11,10 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Task boTask)
     {
+        //if (statusOfProject == BO.StatusOfProject.End)
+        //{
+
+        //}
 
         DO.Task doTask = new DO.Task(boTask.id, boTask.createdAtDate, boTask.alias, boTask.description,
             boTask.isMilestone, boTask.schedualedDate,boTask.requiredEffortTime, boTask.deadlineDate, 
@@ -70,9 +74,9 @@ internal class TaskImplementation : ITask
         };
     }
 
-    public IEnumerable<ITask> ReadAll(Func<BO.Task, bool>? filter = null)//filterrrrrr
+    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)//filterrrrrr
     {
-        return (from DO.Task doTask in _dal.Task.ReadAll(filter)
+        return (from DO.Task doTask in _dal.Task.ReadAll()
                 select new BO.TaskInList 
                 {
                     id = doTask.id,
@@ -99,19 +103,19 @@ internal class TaskImplementation : ITask
     }
 
 
-    public DateTime findForecastDate(DateTime scheduale,DateTime start,TimeSpan require)
+    public DateTime findForecastDate(DateTime? scheduale ,DateTime? start,TimeSpan? require)
     {
         DateTime maxDate;
-        int max= DateTime.Compare(scheduale, start);
-        if (max <=0) { maxDate = start; }
-        else{  maxDate = scheduale; }
-        maxDate.Add(require);
+        int max= DateTime.Compare(scheduale?? DateTime.MinValue, start?? DateTime.MinValue);
+        if (max <=0) { maxDate = start ?? DateTime.MinValue; }
+        else{  maxDate = scheduale ?? DateTime.MinValue; }
+        maxDate.Add(require?? TimeSpan.Zero);
         return  maxDate;
     }
 
     public List<BO.TaskInList> findDependencies(DO.Task task)
     {
-        IEnumerable<DO.Task?> newList= from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask==task.id select _dal.Task.Read(doDependency.dependsOnTask);
+        IEnumerable<DO.Task?> newList= from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask==task.id select _dal.Task.Read(doDependency.dependsOnTask?? 0);
        List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
         return taskInLists;
     }
@@ -129,7 +133,7 @@ internal class TaskImplementation : ITask
 
     public BO.EngineerInTask convertFromEngineerToEngineerInTask(int? id)
     {
-        DO.Engineer? engineer=_dal.Engineer.Read(id);
+        DO.Engineer? engineer = _dal.Engineer.Read(id?? 0);
         BO.EngineerInTask engineerInTask=new BO.EngineerInTask(engineer.id,engineer.name);
         return engineerInTask;
     }

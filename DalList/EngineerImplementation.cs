@@ -14,7 +14,7 @@ internal class EngineerImplementation : IEngineer
     {
         if (Read(item.id) is not null)
         {
-            throw new DalAlreadyExistsException($"Student with ID={item.id} already exists");
+            throw new DalAlreadyExistsException($"Engineer with ID={item.id} already exists");
         }           
         DataSource.Engineers?.Add(item);
         return item.id;
@@ -45,7 +45,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public Engineer? Read(int id)
     {
-        return DataSource.Engineers?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
+        return (DataSource.Engineers?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true))) ?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public Engineer? Read(Func<Engineer, bool> filter)
     {
-        return DataSource.Engineers?.Select(item => item).FirstOrDefault();
+        return DataSource.Engineers?.Select(item => item).Where(filter).FirstOrDefault() ?? throw new DalDoesNotExistException($"Engineer not exists");
     }
 
     /// <summary>

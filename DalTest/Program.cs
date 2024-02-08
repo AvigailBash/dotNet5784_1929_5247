@@ -24,7 +24,8 @@ namespace DalTest
             {
                 DO.Task? temp = s_dal.Task.Read(id);
                 string? alias, description, deliverables, remarks;
-                DateTime? schedualedDate, deadlineDate, createdAtDate, startDate, completeDate;
+                DateTime? schedualedDate, deadlineDate, startDate, completeDate;
+                DateTime createdAtDate;
                 TimeSpan? requiredEffortTime;
                 DO.Engineerlevel level;
                 Console.WriteLine("Enter the details:");
@@ -84,7 +85,7 @@ namespace DalTest
                     }
                     if (createdAtDate == null)
                     {
-                        createdAtDate = temp.completeDate;
+                        createdAtDate = temp.createdAtDate;
                     }
                     if (startDate == null)
                     {
@@ -95,7 +96,7 @@ namespace DalTest
                         completeDate = temp.completeDate;
                     }
                 }
-                DO.Task t = new DO.Task(id, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, createdAtDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
+                DO.Task t = new DO.Task(id, createdAtDate, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
                 if (num == 1)
                     s_dal.Task!.Create(t);
                 else
@@ -283,7 +284,7 @@ namespace DalTest
                                                     Console.WriteLine($"Complete Date: {ta.completeDate}");
                                                     Console.WriteLine($"Deliverables: {ta.deliverables}");
                                                     Console.WriteLine($"Remarks: {ta.remarks}");
-                                                    Console.WriteLine($"Engineer ID: {ta.ingineerId}");
+                                                    Console.WriteLine($"Engineer ID: {ta.engineerId}");
                                                     Console.WriteLine($"Coplexity: {ta.coplexity}");
                                                     Console.WriteLine($"Is Active: {ta.isActive}");
                                                     Console.WriteLine();

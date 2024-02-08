@@ -40,7 +40,7 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public Dependency? Read(int id)
     {
-        return DataSource.Dependencies?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true));
+        return (DataSource.Dependencies?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true))) ?? throw new DalDoesNotExistException($"Dependency with ID={id} not exists");
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter);
+        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter) ?? throw new DalDoesNotExistException("Dependency not exists");
     }
 
     /// <summary>

@@ -8,3 +8,7 @@ public enum Status
 {
     Unscheduled, Scheduled, OnTrack, Done
 }
+public enum StatusOfProject
+{
+    Start, Middle, End
+}
