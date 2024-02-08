@@ -41,6 +41,6 @@ public record Task
     /// <summary>
     /// Empty constructive action for an entity
     /// </summary>
-    //public Task() : this(0) { }
+    public Task() : this(0) { }
 
 }
