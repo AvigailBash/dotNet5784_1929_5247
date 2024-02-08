@@ -84,7 +84,6 @@ internal class TaskImplementation : ITask
                     alias = doTask.alias,
                     status =findStatus(doTask)
                 }); 
-
     }
 
     public void Update(BO.Task task)
@@ -98,7 +97,6 @@ internal class TaskImplementation : ITask
         {
             throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={task.id} does not exists", ex);
         }
-
 
     }
 
@@ -137,7 +135,7 @@ internal class TaskImplementation : ITask
         BO.EngineerInTask engineerInTask=new BO.EngineerInTask(engineer.id,engineer.name);
         return engineerInTask;
     }
-
+    
     
 }
 

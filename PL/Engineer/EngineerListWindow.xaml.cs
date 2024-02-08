@@ -23,6 +23,28 @@ namespace PL.Engineer
         public EngineerListWindow()
         {
             InitializeComponent();
+            engineer = s_bl?.Engineer.ReadAll()!;
+        }
+
+        public IEnumerable<BO.Engineer> engineer
+        {
+            get { return (IEnumerable<BO.Engineer>)GetValue(engineerProperty); }
+            set { SetValue(engineerProperty, value); }
+        }
+
+        public static readonly DependencyProperty engineerProperty =
+            DependencyProperty.Register("engineer", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
+
+        public BO.Engineerlevel Level { get; set; } = BO.Engineerlevel.None;
+
+        private void SelectEngineerLevelInCombobox(object sender, SelectionChangedEventArgs e)
+        {
+            engineer = (Level == BO.Engineerlevel.None) ?
+           s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.level == Level)!;
+
         }
     }
+
+
+
 }

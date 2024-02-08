@@ -61,16 +61,33 @@ internal class EngineerImplementation : IEngineer
 
     public IEnumerable<BO.Engineer> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll() select new BO.Engineer()
+        //return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll() select new BO.Engineer
+        //{
+        //    id = doEngineer.id,
+        //    name = doEngineer.name,
+        //    email = doEngineer.email,
+        //    level = (BO.Engineerlevel?)doEngineer.level,
+        //    cost = doEngineer.cost,
+        //    isActive = doEngineer.isActive,
+        //    task = _dal.Task.ReadAll().Where(t => t.id == doEngineer.id).Select(t => new BO.TaskInEngineer(t.id, t.alias)).FirstOrDefault()
+        //});
+       var engineers=from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
+                select new BO.Engineer
+                {
+                    id = doEngineer.id,
+                    name = doEngineer.name,
+                    email = doEngineer.email,
+                    level = (BO.Engineerlevel?)doEngineer.level,
+                    cost = doEngineer.cost,
+                    isActive = doEngineer.isActive,
+                    task = _dal.Task.ReadAll().Where(t => t.id == doEngineer.id).Select(t => new BO.TaskInEngineer(t.id, t.alias)).FirstOrDefault()
+                };
+
+        if (filter != null)
         {
-            id = doEngineer.id,
-            name = doEngineer.name,
-            email = doEngineer.email,
-            level = (BO.Engineerlevel?)doEngineer.level,
-            cost = doEngineer.cost,
-            isActive = doEngineer.isActive,
-            task=_dal.Task.ReadAll().Where(t =>t.id==doEngineer.id).Select(t => new BO.TaskInEngineer(t.id,t.alias)).FirstOrDefault()
-        });
+            engineers = engineers.Where(filter);
+        }
+        return engineers;
     }
 
     public void Update(BO.Engineer engineer)

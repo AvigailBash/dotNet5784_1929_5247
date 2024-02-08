@@ -11,7 +11,7 @@ namespace DalTest
     internal class Program
     {
         static readonly IDal s_dal = Factory.Get;
-      // static readonly IDal s_dal = new DalList();
+     //  static readonly IDal s_dal = new DalList();
         //static readonly IDal s_dal = new DalXml();
 
         /// <summary>

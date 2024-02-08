@@ -31,4 +31,6 @@ public class Engineer
         this.isActive = isActive;
         this.task = task;
     }
+    public override string ToString() => this.ToStringProperty();
+
 }

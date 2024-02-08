@@ -145,6 +145,7 @@ public static class Initialization
         {
             "Noa Levi","Moshe Choen","Yael Levi","Maor Tal","Dan Bash"
         };
+        int i = 0;
         foreach (string name in names)
         {
             int _id;
@@ -153,12 +154,33 @@ public static class Initialization
             do
             _id = new Random().Next(minValue, maxValue);
             while (s_dal!.Engineer.Read(_id) != null);
-
-            //level
-            double _cost = new Random().Next(10000, 20000);
+            DO.Engineerlevel level;
+            switch (i)
+            {
+                case 0:
+                    level = Engineerlevel.Beginner;
+                    break;
+                case 1:
+                    level = Engineerlevel.AdvancedBeginner;
+                    break;
+                case 2:
+                    level = Engineerlevel.Intermediate;
+                    break;
+                case 3:
+                    level = Engineerlevel.Advanced;
+                    break;
+                case 4:
+                    level = Engineerlevel.Expert;
+                    break;
+                default:
+                    level = Engineerlevel.Beginner;
+                    break;
+            }
+                    double _cost = new Random().Next(10000, 20000);
             bool _isActive = true;//לעשות מיל לפי שם
-            Engineer newEngineer = new Engineer(_id, name, "engineer12@gmail.com", DO.Engineerlevel.Intermediate, _cost, _isActive);
+            Engineer newEngineer = new Engineer(_id, name, "engineer12@gmail.com", level, _cost, _isActive);
             s_dal!.Engineer.Create(newEngineer);
+            i++;
         }
     }
 
@@ -198,5 +220,6 @@ public static class Initialization
         createEngineer();
         createDependency();
     }
-
+   
+   
 }
