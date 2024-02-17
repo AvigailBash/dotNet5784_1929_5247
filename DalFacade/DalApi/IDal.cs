@@ -19,4 +19,6 @@ public interface IDal
     /// Dependency property
     /// </summary>
     IDependency Dependency { get; }
+
+    IClock Clock { get; }
 }

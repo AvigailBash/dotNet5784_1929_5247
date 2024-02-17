@@ -68,10 +68,11 @@ internal class TaskImplementation : ITask
         if (filter != null)
         {
             return from item in DataSource.Tasks
-                   where filter(item)
+                   where filter(item) && item.isActive == true
                    select item;
         }
         return from item in DataSource.Tasks
+               where item.isActive == true
                select item;
     }
 
@@ -87,7 +88,8 @@ internal class TaskImplementation : ITask
         {
             throw new DalDoesNotExistException($"Task with ID={item.id} not exists");
         }
-        Delete(item.id);
+        //Delete(item.id);
+        DataSource.Tasks?.Remove(Read(item.id)!);
         DataSource.Tasks?.Add(item);
     }
 

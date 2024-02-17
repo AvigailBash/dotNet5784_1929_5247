@@ -1,5 +1,8 @@
 ﻿namespace BO;
 
+/// <summary>
+/// An engineer entity that contains details about the engineer
+/// </summary>
 public class Engineer
 {
     public int id { get;init; }
@@ -11,6 +14,9 @@ public class Engineer
 
     public BO.TaskInEngineer? task { get; set; }
 
+    /// <summary>
+    /// An empty constructor action that constructs an empty object
+    /// </summary>
     public Engineer()
     {
         this.id = 0;
@@ -20,16 +26,6 @@ public class Engineer
         this.cost = 0;
         this.isActive = false;
         this.task = null;
-    }
-    public Engineer(int id, string? name, string? email, Engineerlevel? level, double? cost, bool isActive, TaskInEngineer? task)
-    {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.level = level;
-        this.cost = cost;
-        this.isActive = isActive;
-        this.task = task;
     }
     public override string ToString() => this.ToStringProperty();
 

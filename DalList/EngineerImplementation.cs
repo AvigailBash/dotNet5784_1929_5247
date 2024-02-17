@@ -45,7 +45,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public Engineer? Read(int id)
     {
-        return (DataSource.Engineers?.FirstOrDefault(t => (t != null && t.id == id && t.isActive == true)));//?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
+        return (DataSource.Engineers?.FirstOrDefault(t => (t != null && t.id == id) && t.isActive == true)); //?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public Engineer? Read(Func<Engineer, bool> filter)
     {
-        return DataSource.Engineers?.Select(item => item).Where(filter).FirstOrDefault();//?? throw new DalDoesNotExistException($"Engineer not exists");
+        return DataSource.Engineers?.Select(item => item).Where(filter).FirstOrDefault() ?? throw new DalDoesNotExistException($"Engineer not exists");
     }
 
     /// <summary>
@@ -68,10 +68,11 @@ internal class EngineerImplementation : IEngineer
         if (filter != null)
         {
             return from item in DataSource.Engineers
-                   where filter(item)
+                   where filter(item) && item.isActive == true
                    select item;
         }
         return from item in DataSource.Engineers
+               where item.isActive == true
                select item;
     }
 
@@ -88,7 +89,8 @@ internal class EngineerImplementation : IEngineer
         {
             throw new DalDoesNotExistException($"Engineer with ID={item.id} not exists");
         }
-        Delete(item.id);
+        //Delete(item.id);
+        DataSource.Engineers?.Remove(Read(item.id)!);
         DataSource.Engineers?.Add(item);
     }
 

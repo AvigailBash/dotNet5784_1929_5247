@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
         Title="EngineerWindow" Height="450" Width="800"
-        DataContext="{Binding engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
+        DataContext="{Binding Engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
 
     <Window.Resources>
         <Style x:Key="myLabelStyle"
@@ -15,26 +15,52 @@
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Height" Value="26" />
-            <Setter Property="Width" Value="120" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="300, 0,0,0" />
         </Style>
     </Window.Resources>
     <Grid>
-        <Label Style="{StaticResource myLabelStyle}" Content="תז" HorizontalAlignment="Left" Margin="687,38,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="שם" Margin="687,95,44,298"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="מייל" HorizontalAlignment="Left" Margin="687,150,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="רמת מהנדס" HorizontalAlignment="Left" Margin="650,0,0,0" VerticalAlignment="Center"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="משכורת" HorizontalAlignment="Left" Margin="666,267,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="פעיל" HorizontalAlignment="Left" Margin="681,319,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource myLabelStyle}" Content="אחראי על משימה" HorizontalAlignment="Left" Margin="617,372,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="387,46,0,0" TextWrapping="Wrap" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="387,95,0,0" TextWrapping="Wrap" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="387,158,0,0" TextWrapping="Wrap" Text="{Binding email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="387,208,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="387,262,0,0" TextWrapping="Wrap" Text="{Binding cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="487,307,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="387,363,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="45,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654" Width="105"/>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition> 
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>-->
+
+        <Label Style="{StaticResource myLabelStyle}" Content="Id" HorizontalAlignment="Left" Margin="213,47,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource myLabelStyle}" Content="Email" HorizontalAlignment="Left" Margin="213,159,0,0" VerticalAlignment="Top"/>
+            <Label Style="{StaticResource myLabelStyle}" Content="Enginner experience" HorizontalAlignment="Left" Margin="213,202,0,0" VerticalAlignment="Top"/>
+            <Label Style="{StaticResource myLabelStyle}" Content="Salary" HorizontalAlignment="Left" Margin="213,254,0,0" VerticalAlignment="Top"/>
+            <Label Style="{StaticResource myLabelStyle}" Content="Is active" HorizontalAlignment="Left" Margin="213,302,0,0" VerticalAlignment="Top"/>
+            <Label Style="{StaticResource myLabelStyle}" Content="Task for engineer" HorizontalAlignment="Left" Margin="213,359,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="387,46,0,0" TextWrapping="Wrap" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" IsEnabled="{Binding id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnabledKey}}"/>
+            <TextBox HorizontalAlignment="Left" Margin="387,95,0,0" TextWrapping="Wrap" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <TextBox HorizontalAlignment="Left" Margin="387,158,0,0" TextWrapping="Wrap" Text="{Binding email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <ComboBox HorizontalAlignment="Left" Margin="387,208,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <TextBox HorizontalAlignment="Left" Margin="387,262,0,0" TextWrapping="Wrap" Text="{Binding cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+            <CheckBox Content="" HorizontalAlignment="Left" Margin="487,307,0,0" VerticalAlignment="Top"/>
+            <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Height="20" HorizontalAlignment="Left" Margin="45,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654" Width="105" Click="clickForUpdateOrAdd"/>
+            <TextBox HorizontalAlignment="Left" Margin="387,367,0,0" TextWrapping="Wrap" Text="{Binding task, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Name" HorizontalAlignment="Left" Margin="213,95,0,0" VerticalAlignment="Top"/>
 
 
+        <!--</Grid>-->
+        
+     
     </Grid>
 </Window>

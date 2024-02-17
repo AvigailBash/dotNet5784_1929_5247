@@ -4,6 +4,9 @@ using System.Reflection;
 
 public static class Factory
 {
+    /// <summary>
+    /// A class that knows at runtime from which data structure to get the data and brings it to the BL layer
+    /// </summary>
     public static IDal Get
     {
         get

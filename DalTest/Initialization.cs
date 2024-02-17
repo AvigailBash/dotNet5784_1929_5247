@@ -32,6 +32,14 @@ public static class Initialization
             "User Interface (UI) Design","Backend Developmen","Integration Testing","Security Implementation","Documentation","Version Control","User Acceptance Testing"
         };
         string? _description = null;
+        IEnumerable<DO.Engineer> engineers = s_dal!.Engineer.ReadAll();
+        int[] arr = new int[5];
+        int i = 0;
+        DO.Engineerlevel level;
+        foreach(DO.Engineer engineer in engineers)
+        {
+            arr[i++] = engineer.id;
+        }i = 0;
         foreach (var _alias in aliasNames)
         {
             switch (_alias)
@@ -97,7 +105,7 @@ public static class Initialization
                     _description = "User Acceptance Testing";
                     break;
             }
-            DateTime _schedualedDate = DateTime.Today;
+            DateTime? _schedualedDate = null;
             DateTime _createdAtDate = DateTime.Today;
             DateTime _startDate = DateTime.Today;
 
@@ -126,9 +134,12 @@ public static class Initialization
                 randomNumberOfDays = random.Next(range3);
                 _completeDate = today.AddDays(randomNumberOfDays);
             } while (_completeDate > _deadlineDate);
-           
+
             bool _isActive = true;
-            Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, null, null, true);
+            int engineerId = arr[i];
+            i = (i + 1) % 5;
+            level = s_dal.Engineer.Read(engineerId)!.level!.Value;
+            Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, engineerId, level, true);
             s_dal!.Task.Create(newTask);
 
         }
@@ -216,9 +227,9 @@ public static class Initialization
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         s_dal = DalApi.Factory.Get;
         deleteAll();
-        createTasks();
         createEngineer();
         createDependency();
+        createTasks();
     }
    
    

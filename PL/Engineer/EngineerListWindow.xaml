@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="EngineerListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-      
+
     <!--Extrnal Grid-->
     <Grid>
         <Grid.RowDefinitions>
@@ -21,19 +21,22 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label  Grid.Column="0" Content="Label" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
+
+            <Label  Grid.Column="0" Content="Engineer experience" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
             <ComboBox ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
                  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedValue="{Binding Level, Mode=TwoWay}" SelectionChanged="SelectEngineerLevelInCombobox"/>
 
         </Grid>
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding engineer}">
+
+        <ListView x:Name="click" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="clickOpenEngineerWindowForUptade">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-<Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100"/>
+
+        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Center" Height="50" Width="100" Click="clickOpenEngineerWindowForCreate" Margin="0,531,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
 
 
     </Grid>

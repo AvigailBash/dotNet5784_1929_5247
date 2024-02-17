@@ -21,37 +21,63 @@ namespace PL.Engineer
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-     
-        public BO.Engineer engineer
-        {
-            get { return (BO.Engineer)GetValue(engineerProperty); }
-            set { SetValue(engineerProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for engineer.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty engineerProperty =
-            DependencyProperty.Register("engineer", typeof(BO.Engineer), typeof(EngineerWindow), new PropertyMetadata(0));
-
-
         public EngineerWindow(int Id = 0)
-        {  
-           InitializeComponent();
-            if(Id == 0)
+        {
+            InitializeComponent();
+            if (Id == 0)
             {
-                engineer=new BO.Engineer();
+                Engineer = new BO.Engineer();
             }
             else
             {
                 try
                 {
-                    engineer = s_bl.Engineer.Read(Id);
+                    Engineer = s_bl.Engineer.Read(Id)!;
                 }
-                catch(Exception ex) { Console.WriteLine(ex); }
-                    
+                catch (Exception ex) { Console.WriteLine(ex); }
+
             }
 
         }
 
+        public BO.Engineer Engineer
+        {
+            get { return (BO.Engineer)GetValue(EngineerProperty); }
+            set { SetValue(EngineerProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EngineerList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EngineerProperty =
+            DependencyProperty.Register(nameof(Engineer), typeof(BO.Engineer), typeof(EngineerWindow));
+
+        public IEnumerable<BO.TaskInList> TaskInLists
+        {
+            get { return (IEnumerable<BO.TaskInList>)GetValue(taskInListsProperty); }
+            set { SetValue(taskInListsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TaskInLists.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty taskInListsProperty =
+            DependencyProperty.Register(nameof(TaskInLists), typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
        
+
+        private void clickForUpdateOrAdd(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            try
+            {
+                if (button is { Content: "Add"})
+                {
+                    s_bl.Engineer.Create(Engineer);
+                }
+                else
+                {
+                    s_bl.Engineer.Update(Engineer);
+                }
+                MessageBox.Show("success");
+                this.Close();
+            }
+            catch (Exception ex) { Console.WriteLine(ex); };
+        }
     }
 }

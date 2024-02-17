@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 
 namespace BO;
-
+/// <summary>
+/// An task entity that contains details about the task
+/// </summary>
 public class Task
 {
     public int id { get; init; }
@@ -23,6 +25,10 @@ public class Task
     public BO.EngineerInTask? engineer { get; set; }
     public BO.Engineerlevel? coplexity { get; set; }
     public bool isActive { get; set; }
+
+    /// <summary>
+    /// An empty constructor action that initializes an empty object
+    /// </summary>
     public Task()
     {
         this.id = 0;
@@ -43,26 +49,5 @@ public class Task
         this.engineer = null;
         this.coplexity = BO.Engineerlevel.Beginner;
         this.isActive = false;
-    }
-    public Task(int id, string? alias, bool isMilestone, string? description, Status status, List<TaskInList>? dependencies, DateTime createdAtDate, DateTime? schedualedDate, DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate, TimeSpan? requiredEffortTime, string? deliverables, string? remarks, EngineerInTask? engineer, Engineerlevel? coplexity, bool isActive)
-    {
-        this.id = id;
-        this.alias = alias;
-        this.isMilestone = isMilestone;
-        this.description = description;
-        this.status = status;
-        this.dependencies = dependencies;
-        this.createdAtDate = createdAtDate;
-        this.schedualedDate = schedualedDate;
-        this.startDate = startDate;
-        this.forecastDate = forecastDate;
-        this.deadlineDate = deadlineDate;
-        this.completeDate = completeDate;
-        this.requiredEffortTime = requiredEffortTime;
-        this.deliverables = deliverables;
-        this.remarks = remarks;
-        this.engineer = engineer;
-        this.coplexity = coplexity;
-        this.isActive = isActive;
     }
 }

@@ -23,25 +23,36 @@ namespace PL.Engineer
         public EngineerListWindow()
         {
             InitializeComponent();
-            engineer = s_bl?.Engineer.ReadAll()!;
+            EngineerList = s_bl?.Engineer.ReadAll()!;
         }
 
-        public IEnumerable<BO.Engineer> engineer
+        public IEnumerable<BO.Engineer> EngineerList
         {
-            get { return (IEnumerable<BO.Engineer>)GetValue(engineerProperty); }
-            set { SetValue(engineerProperty, value); }
+            get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
+            set { SetValue(EngineerListProperty, value); }
         }
 
-        public static readonly DependencyProperty engineerProperty =
-            DependencyProperty.Register("engineer", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
+        public static readonly DependencyProperty EngineerListProperty =
+            DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow));
 
         public BO.Engineerlevel Level { get; set; } = BO.Engineerlevel.None;
 
         private void SelectEngineerLevelInCombobox(object sender, SelectionChangedEventArgs e)
         {
-            engineer = (Level == BO.Engineerlevel.None) ?
+            EngineerList = (Level == BO.Engineerlevel.None) ?
            s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.level == Level)!;
 
+        }
+        private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
+        {
+            new EngineerWindow().Show();
+        }
+
+        private void clickOpenEngineerWindowForUptade(object sender, MouseButtonEventArgs e)
+        {
+            BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
+            EngineerWindow ew = new EngineerWindow(en!.id);
+            ew.ShowDialog();
         }
     }
 

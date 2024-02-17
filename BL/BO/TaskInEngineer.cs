@@ -1,5 +1,7 @@
 ﻿namespace BO;
-
+/// <summary>
+/// An entity that contains few details about the task the engineer is responsible for
+/// </summary>
 public class TaskInEngineer
 {
     public int id { get; init; }

@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DalApi;
+using DO;
+using BO;
 using System.Reflection.Emit;
 
 
@@ -8,51 +10,65 @@ namespace BlTest
     internal class Program
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        public static void inputForTask(int num, int id = 0)
+
+        /// <summary>
+        /// A method that captures details for a task in update or create state
+        /// </summary>
+        /// <param name="num"> Checking whether the status is creation or update </param>
+        /// <param name="Id"> The automatic number of the task, is equal to zero in the state of creation </param>
+        public static void inputForTask(int num, int Id = 0)
         {
             try
             {
-                BO.Task? temp = s_bl.Task.Read(id);
+                if (num == 2) 
+                {
+                    BO.Task? temp = s_bl.Task.Read(Id);
+                }
                 List<BO.TaskInList>? taskList = new List<BO.TaskInList>();
                 BO.EngineerInTask engineer;
                 Console.WriteLine("Enter the details:");
                 Console.WriteLine("Press an alias");
-                string? alias = Console.ReadLine();
+                string? Alias = Console.ReadLine() ?? null;
+                if (Alias == "") { Alias = null; }
                 Console.WriteLine("Press a description");
-                string? description = Console.ReadLine();
+                string? Description = Console.ReadLine();
+                if (Description == "") { Description = null; }
                 Console.WriteLine("Press a deliverable");
-                string? deliverables = Console.ReadLine();
+                string? Deliverables = Console.ReadLine();
+                if (Deliverables == "") { Deliverables = null; }
                 Console.WriteLine("Press a remarks");
-                string? remarks = Console.ReadLine();
+                string? Remarks = Console.ReadLine();
+                if (Remarks == "") { Remarks = null; }
                 Console.WriteLine("Press a schedualed Date");
-                DateTime? schedualedDate = DateTime.Parse(Console.ReadLine());
+                //Console.WriteLine($"The minimum date is: {s_bl.Clock.minimumDateForSceduale()});
+                DateTime? SchedualedDate = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press a deadline Date");
-                DateTime?  deadlineDate = DateTime.Parse(Console.ReadLine());
+                DateTime?  DeadlineDate = DateTime.Parse(Console.ReadLine()!);
               
                 Console.WriteLine("Press a start Date");
-                DateTime?  startDate = DateTime.Parse(Console.ReadLine());
+                DateTime?  StartDate = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press a complete Date");
-                DateTime?  completeDate = DateTime.Parse(Console.ReadLine());
+                DateTime?  CompleteDate = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press a required Effort Time");
-                TimeSpan? requiredEffortTime = TimeSpan.Parse(Console.ReadLine());
+                TimeSpan? RequiredEffortTime = TimeSpan.Parse(Console.ReadLine()!);
                 Console.WriteLine("press the forecast Date");
-                DateTime?  forecastDate = DateTime.Parse(Console.ReadLine());
+                DateTime?  ForecastDate = DateTime.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press if it active true or false");
-                bool isActive = bool.Parse(Console.ReadLine());
+                bool IsActive = bool.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press if there is a milestone true or false");
-                bool isMileStone = bool.Parse(Console.ReadLine());
+                bool IsMileStone = bool.Parse(Console.ReadLine()!);
                
                 Console.WriteLine("press for level:  \n 0 for Beginner \n 1 for AdvancedBeginner \n 2 for Intermediate \n 3 for Advanced \n 4 for Expert");
-                BO.Engineerlevel? level = (BO.Engineerlevel)int.Parse(Console.ReadLine());
+                BO.Engineerlevel? Level = (BO.Engineerlevel)int.Parse(Console.ReadLine());
                 Console.WriteLine("press details of engineer");
                 Console.WriteLine("press the id");
-                int engineerId = int.Parse(Console.ReadLine());
+                int EngineerId = int.Parse(Console.ReadLine());
                 Console.WriteLine("press the name");
-                string name = Console.ReadLine();
-                BO.EngineerInTask? engineerInTask = new BO.EngineerInTask(engineerId, name);
+                string Name = Console.ReadLine();
+                BO.EngineerInTask? EngineerInTask = new BO.EngineerInTask() { id = EngineerId, name = Name };
                 Console.WriteLine("press the number of dependencies");
-                int amountForDependencies = int.Parse(Console.ReadLine());
-                for (int i = 0; i < amountForDependencies; i++)
+                int AmountForDependencies = int.Parse(Console.ReadLine());
+                for (int i = 0; i < AmountForDependencies; i++)
                 {
                     Console.WriteLine("press the details:");
                     Console.WriteLine("press the id");
@@ -69,17 +85,18 @@ namespace BlTest
                 BO.Task t;
                 if (num == 2)
                 {
+                    BO.Task? temp = s_bl.Task.Read(Id);
                     DateTime? createdAtDate2;
                     BO.Status? status2;
                     Console.WriteLine("Press a created At Date");
                     createdAtDate2 = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("press for stutus: \n0 for Unscheduled \n 1 for Scheduled \n 2 for OnTrack \n 3 for Done");
                     status2 = (BO.Status)int.Parse(Console.ReadLine());
-                    t = new BO.Task(id, alias ?? temp.alias, isMileStone, description ?? temp.description, status2 ?? temp.status, taskList ?? temp.dependencies, createdAtDate2 ?? temp.createdAtDate, schedualedDate ?? temp.schedualedDate, startDate ?? temp.startDate, forecastDate ?? temp.forecastDate, deadlineDate ?? temp.deadlineDate, completeDate ?? temp.completeDate, requiredEffortTime ?? temp.requiredEffortTime, deliverables ?? temp.deliverables, remarks ?? temp.remarks, engineerInTask ?? temp.engineer, level ?? temp.coplexity, isActive);
+                    t = new BO.Task() { id = Id, alias = Alias ?? temp!.alias, isMilestone = IsMileStone, description = Description ?? temp!.description, status = status2 ?? temp!.status, dependencies = taskList ?? temp!.dependencies, createdAtDate = createdAtDate2 ?? temp!.createdAtDate, schedualedDate = SchedualedDate ?? temp!.schedualedDate, startDate = StartDate ?? temp!.startDate, forecastDate = ForecastDate ?? temp!.forecastDate, deadlineDate = DeadlineDate ?? temp!.deadlineDate, completeDate = CompleteDate ?? CompleteDate, requiredEffortTime = RequiredEffortTime ?? temp!.requiredEffortTime, deliverables = Deliverables ?? temp!.deliverables, remarks = Remarks ?? temp!.remarks, engineer = EngineerInTask ?? temp!.engineer, coplexity = Level ?? temp!.coplexity, isActive = IsActive };
                     //t.id
-                    t.alias = alias ?? temp.alias;
-                    t.isMilestone = isMileStone;
-                    t.description = description ?? temp.description;
+                    t.alias = Alias ?? temp.alias;
+                    t.isMilestone = IsMileStone;
+                    t.description = Description ?? temp.description;
                     t.status = status2 ?? temp.status;
                     //t.dependencies = taskList ?? temp.dependencies;
                     //t.createdAtDate = createdAtDate ?? temp.createdAtDate;
@@ -92,7 +109,7 @@ namespace BlTest
                     createdAtDate1 = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("press for stutus: \n0 for Unscheduled \n 1 for Scheduled \n 2 for OnTrack \n 3 for Done");
                     status1 = (BO.Status)int.Parse(Console.ReadLine());
-                    t = new BO.Task(id, alias, isMileStone, description, status1, taskList, createdAtDate1, schedualedDate, startDate, forecastDate, deadlineDate, completeDate, requiredEffortTime, deliverables, remarks, engineerInTask, level, isActive);
+                    t = new BO.Task() { id = Id, alias = Alias, isMilestone = IsMileStone, description = Description, status = status1, dependencies = taskList, createdAtDate = createdAtDate1, schedualedDate = SchedualedDate, startDate = StartDate, forecastDate = ForecastDate, deadlineDate = DeadlineDate, completeDate = CompleteDate, requiredEffortTime = RequiredEffortTime, deliverables = Deliverables, remarks = Remarks, engineer = EngineerInTask, coplexity = Level, isActive = IsActive };
                 }
                 if (num == 1)
                     s_bl.Task!.Create(t);
@@ -107,6 +124,10 @@ namespace BlTest
 
         }
 
+        /// <summary>
+        /// A method that prints the details of the task
+        /// </summary>
+        /// <param name="task"> The resulting task for printing </param>
         public static void printTask(BO.Task task)
         {
             Console.WriteLine($"ID: {task.id}");
@@ -114,7 +135,6 @@ namespace BlTest
             Console.WriteLine($"Description: {task.description}");
             Console.WriteLine($"Is Milestone: {task.isMilestone}");
             Console.WriteLine($"Status: {task.status}");
-            Console.WriteLine($"Dependencies: {task.dependencies}");
             Console.WriteLine($"Scheduled Date:  {task.schedualedDate}");
             Console.WriteLine($"Required Effort Time: {task.requiredEffortTime}");
             Console.WriteLine($"Deadline Date: {task.deadlineDate}");
@@ -127,7 +147,18 @@ namespace BlTest
             task.engineer?.ToString();
             Console.WriteLine($"Coplexity: {task.coplexity}");
             Console.WriteLine($"Is Active: {task.isActive}");
+            Console.WriteLine("Dependencies:");
+            foreach (BO.TaskInList tl in task.dependencies!)
+            {
+                Console.WriteLine(tl.id);
+                Console.WriteLine(tl.alias);
+            }
         }
+
+        /// <summary>
+        /// Printing details of a task in the list
+        /// </summary>
+        /// <param name="taskInList"> The resulting object </param>
         public static void PrintTaskInList(BO.TaskInList taskInList)
         {
             Console.WriteLine($"ID: {taskInList.id}");
@@ -136,36 +167,48 @@ namespace BlTest
             Console.WriteLine($"Status: {taskInList.status}");
         }
 
-        public static void inputForEngineer(int num, int id = 0)
+        /// <summary>
+        /// A method that captures details for a enginner in update or create state
+        /// </summary>
+        /// <param name="num"> Checking whether the status is creation or update </param>
+        /// <param name="Id"> The automatic number of the task, is equal to zero in the state of creation </param>
+        public static void inputForEngineer(int num, int Id = 0)
         {
             BO.Engineer engineer;
             try
             {
+                if (num == 2)
+                {
+                    BO.Engineer? temp = s_bl.Engineer.Read(Id);
+                }
                 Console.WriteLine("Enter the details:");
-                BO.Engineer? temp = s_bl.Engineer.Read(id);
                 Console.WriteLine("Press a name");
-                string? name = Console.ReadLine();
+                string? Name = Console.ReadLine();
+                if(Name == "") { Name = null; }
                 Console.WriteLine("Press an email");
-                string? email = Console.ReadLine();
+                string? Email = Console.ReadLine();
+                if (Email == "") { Email = null; }
                 Console.WriteLine("press for level:  \n 0 for Beginner \n 1 for AdvancedBeginner \n 2 for Intermediate \n 3 for Advanced \n 4 for Expert");
-                BO.Engineerlevel? level = (BO.Engineerlevel)int.Parse(Console.ReadLine());
+                BO.Engineerlevel? Level = (BO.Engineerlevel)int.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press how much he paid");
-                double? cost = double.Parse(Console.ReadLine());
+                double? Cost = double.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press if it active true or false");
-                bool isActive = bool.Parse(Console.ReadLine());
+                bool IsActive = bool.Parse(Console.ReadLine()!);
                 Console.WriteLine("press the details of the task");
                 Console.WriteLine("press the id");
-                int idTask = int.Parse(Console.ReadLine());
+                int idTask = int.Parse(Console.ReadLine()!);
                 Console.WriteLine("press thr alias");
-                string alias = Console.ReadLine();
-                BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer(idTask, alias);
+                string Alias = Console.ReadLine()!;
+                BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer(idTask, Alias);
                 if(num == 2)
                 {
-                    engineer = new BO.Engineer(id, name ?? temp.name, email ?? temp.email, level ?? temp.level, cost ?? temp.cost, isActive, taskInEngineer?? temp.task);
+                    BO.Engineer? temp = s_bl.Engineer.Read(Id);
+                    engineer = new BO.Engineer() { id = Id, name = Name ?? temp!.name, email = Email ?? temp!.email, level = Level ?? temp!.level, cost = Cost ?? temp!.cost, isActive = IsActive, task = taskInEngineer ?? temp!.task };
+                    
                 }
                 else
                 {
-                    engineer = new BO.Engineer(id, name, email, level, cost, isActive, taskInEngineer); ;
+                    engineer = new BO.Engineer() { id = Id, name = Name, email = Email, level = Level, cost = Cost, isActive = IsActive, task = taskInEngineer };
                 }
                 if (num == 1)
                     s_bl.Engineer!.Create(engineer);
@@ -179,6 +222,10 @@ namespace BlTest
 
         }
 
+        /// <summary>
+        /// A method that prints the details of the task
+        /// </summary>
+        /// <param name="engineer"> The resulting task for printing </param>
         public static void printEngineer(BO.Engineer engineer)
         {
             Console.WriteLine($"ID: {engineer.id}");
@@ -191,111 +238,154 @@ namespace BlTest
         }
         enum options { EXIT, CREATE, READ, READALL, DELETE, UPDATE};
 
+        /// <summary>
+        /// The actions you can perform for a task
+        /// </summary>
+        /// <exception cref="DalDoesNotExistException"></exception>
         public static void task()
         {
             Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
-            options choice = (options)Enum.Parse(typeof(options), Console.ReadLine());
-            while(choice != 0)
+            options choice = (options)Enum.Parse(typeof(options), Console.ReadLine()!);
+            try
             {
-                int id;
-                switch(choice)
+                while (choice != 0)
                 {
-                    case options.CREATE:
-                        inputForTask(1);
-                        break;
-                    case options.READ:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        BO.Task? task = s_bl.Task!.Read(id);
-                        if (task != null)
-                        {
-                            printTask(task);
-                        }
-                        break;
-                    case options.READALL:
-                        IEnumerable<BO.TaskInList>? tasks = s_bl.Task!.ReadAll();
-                        foreach(BO.TaskInList ta in tasks)
-                        {
-                            PrintTaskInList(ta);
-                        }
-                        break;
-                    case options.DELETE:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        s_bl.Task.Delete(id);
-                        break;
-                    case options.UPDATE:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        inputForTask(2, id);
-                        break;
-                    default:
-                        Console.WriteLine("Wrong answer");
-                        break;
+                    int id;
+                    switch (choice)
+                    {
+                        case options.CREATE:
+                            inputForTask(1);
+                            break;
+                        case options.READ:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            BO.Task? task = s_bl.Task!.Read(id);
+                            if (task != null)
+                            {
+                                printTask(task);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    throw new DalDoesNotExistException($"task with ID={id} not exists");
+                                }
+                                catch
+                                (Exception e)
+                                { Console.WriteLine(e.Message); }
+                            }
+                            break;
+                        case options.READALL:
+                            IEnumerable<BO.TaskInList>? tasks = s_bl.Task!.ReadAll();
+                            foreach (BO.TaskInList ta in tasks)
+                            {
+                                PrintTaskInList(ta);
+                            }
+                            break;
+                        case options.DELETE:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            s_bl.Task.Delete(id);
+                            break;
+                        case options.UPDATE:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine());
+                            inputForTask(2, id);
+                            break;
+                        default:
+                            Console.WriteLine("Wrong answer");
+                            break;
+                    }
+                    Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
+                    choice = (options)Enum.Parse(typeof(options), Console.ReadLine()!);
                 }
-                Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
-                choice = (options)Enum.Parse(typeof(options), Console.ReadLine());
             }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+           
         }
 
+        /// <summary>
+        /// The actions you can perform for a task
+        /// </summary>
+        /// <exception cref="DalDoesNotExistException"></exception>
         public static void engineer()
         {
             Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
-            options choice = (options)Enum.Parse(typeof(options), Console.ReadLine());
-            while (choice != 0)
+            options choice = (options)Enum.Parse(typeof(options), Console.ReadLine()!);
+            try
             {
-                int id;
-                switch (choice)
+                while (choice != 0)
                 {
-                    case options.CREATE:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        inputForEngineer(1, id);
-                        break;
-                    case options.READ:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        BO.Engineer? engineer = s_bl.Engineer!.Read(id);
-                        if (task != null)
-                        {
-                            printEngineer(engineer);
-                        }
-                        break;
-                    case options.READALL:
-                        IEnumerable<BO.Engineer>? engineers = s_bl.Engineer!.ReadAll();
-                        foreach (BO.Engineer en in engineers)
-                        {
-                            printEngineer(en);
-                        }
-                        break;
-                    case options.DELETE:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        s_bl.Engineer.Delete(id);
-                        break;
-                    case options.UPDATE:
-                        Console.WriteLine("Press an id");
-                        id = int.Parse(Console.ReadLine());
-                        inputForEngineer(2, id);
-                        break;
-                    default:
-                        Console.WriteLine("Wrong answer");
-                        break;
+                    int id;
+                    switch (choice)
+                    {
+                        case options.CREATE:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            inputForEngineer(1, id);
+                            break;
+                        case options.READ:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            BO.Engineer? engineer = s_bl.Engineer!.Read(id);
+                            if (engineer != null)
+                            {
+                                printEngineer(engineer);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    throw new DalDoesNotExistException($"task with ID={id} not exists");
+                                }
+                                catch
+                                (Exception e)
+                                { Console.WriteLine(e.Message); }
+                            }
+                            break;
+                        case options.READALL:
+                            IEnumerable<BO.Engineer>? engineers = s_bl.Engineer!.ReadAll();
+                            foreach (BO.Engineer en in engineers)
+                            {
+                                printEngineer(en);
+                            }
+                            break;
+                        case options.DELETE:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            s_bl.Engineer.Delete(id);
+                            break;
+                        case options.UPDATE:
+                            Console.WriteLine("Press an id");
+                            id = int.Parse(Console.ReadLine()!);
+                            inputForEngineer(2, id);
+                            break;
+                        default:
+                            Console.WriteLine("Wrong answer");
+                            break;
+                    }
+                    Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
+                    choice = (options)Enum.Parse(typeof(options), Console.ReadLine()!);
                 }
-                Console.WriteLine("Press a number:\n0 for Exit\n1 for Create\n2 for Read\n3 for ReadAll\n4 for Delete\n5 for Update");
-                choice = (options)Enum.Parse(typeof(options), Console.ReadLine());
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
         }
-        enum menu { EXIT, TASK, ENGINEER};
+        enum menu { EXIT, TASK, ENGINEER, START};
         static void Main(string[] args)
         {
             Console.Write("Would you like to create Initial data? (Y/N)");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
                 DalTest.Initialization.Do();
-            Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer");
-            menu choice = (menu)Enum.Parse(typeof(menu), Console.ReadLine());
+            Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer\n3 for select date to start the project");
+            menu choice = (menu)Enum.Parse(typeof(menu), Console.ReadLine()!);
             while (choice != 0) 
             {
                 switch (choice)
@@ -306,13 +396,19 @@ namespace BlTest
                     case menu.ENGINEER:
                         engineer();
                         break;
+                    case menu.START:
+                        Console.WriteLine("Press the start date");
+                        DateTime start = DateTime.Parse(Console.ReadLine()!);
+                        s_bl.Clock.SetStartOfProject(start);
+                        Console.WriteLine($"The project wiil start on: {s_bl.Clock.GetStartOfProject()}");
+                        break;
                     default:
                         Console.WriteLine("Wrong answer");
                         break;
 
                 }
                 Console.WriteLine("Press a number:\n0 for Exit\n1 for Task\n2 for Engineer");
-                choice = (menu)Enum.Parse(typeof(menu), Console.ReadLine());
+                choice = (menu)Enum.Parse(typeof(menu), Console.ReadLine()!);
             }
             
         }
