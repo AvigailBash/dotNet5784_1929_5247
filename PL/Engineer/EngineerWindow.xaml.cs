@@ -45,7 +45,6 @@ namespace PL.Engineer
             get { return (BO.Engineer)GetValue(EngineerProperty); }
             set { SetValue(EngineerProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for EngineerList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EngineerProperty =
             DependencyProperty.Register(nameof(Engineer), typeof(BO.Engineer), typeof(EngineerWindow));
