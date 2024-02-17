@@ -45,7 +45,7 @@ namespace PL.Engineer
         }
         private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
         {
-            new EngineerWindow().Show();
+            new EngineerWindow().ShowDialog();
         }
 
         private void clickOpenEngineerWindowForUptade(object sender, MouseButtonEventArgs e)
@@ -53,6 +53,11 @@ namespace PL.Engineer
             BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
             EngineerWindow ew = new EngineerWindow(en!.id);
             ew.ShowDialog();
+        }
+
+        private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
