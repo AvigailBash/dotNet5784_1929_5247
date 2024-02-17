@@ -48,6 +48,7 @@ namespace PL.Engineer
             new EngineerWindow().Show();
         }
 
+
         private void clickOpenEngineerWindowForUptade(object sender, MouseButtonEventArgs e)
         {
             BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
