@@ -52,13 +52,10 @@ namespace PL.Engineer
         private void clickOpenEngineerWindowForUptade(object sender, MouseButtonEventArgs e)
         {
             BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
-            EngineerWindow ew = new EngineerWindow(en!.id);
-            ew.ShowDialog();
-        }
-
-        private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
-        {
+            new EngineerWindow(en!.id).ShowDialog();
 
         }
+
+      
     }
 }

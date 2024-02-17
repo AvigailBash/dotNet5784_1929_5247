@@ -80,9 +80,6 @@ namespace PL.Engineer
             catch (Exception ex) { Console.WriteLine(ex); };
         }
 
-        private void clickForUpdateOrAdd(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }
