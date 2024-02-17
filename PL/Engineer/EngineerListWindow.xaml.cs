@@ -46,6 +46,7 @@ namespace PL.Engineer
         private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
         {
             new EngineerWindow().ShowDialog();
+            EngineerList = s_bl?.Engineer.ReadAll()!;
         }
 
 
@@ -53,9 +54,9 @@ namespace PL.Engineer
         {
             BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
             new EngineerWindow(en!.id).ShowDialog();
+            EngineerList = s_bl?.Engineer.ReadAll()!;
 
         }
 
-      
     }
 }

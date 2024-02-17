@@ -20,15 +20,15 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public int Create(BO.Task boTask)
     {
-
+      
         //if (statusForProject() == BO.StatusOfProject.Start)
         //{
-        //    if (boTask.schedualedDate != null || boTask.engineer != null)  
+        //    if (boTask.schedualedDate != null || boTask.engineer != null)
         //    {
         //        throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the planning stage");
         //    }
         //}
-        //if (statusForProject == BO.StatusOfProject.End) 
+        //if (statusForProject == BO.StatusOfProject.End)
         //{
         //    throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the end stage");
         //}

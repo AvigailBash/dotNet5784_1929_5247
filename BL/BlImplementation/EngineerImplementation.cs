@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using DO;
+using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
@@ -153,6 +154,11 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public bool CheckEmail(string email)//בדיקת תקינות מייל
     {
-        return true;
+
+        // Regular expression pattern for validating email addresses
+        string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+        // Check if the email matches the pattern
+        return Regex.IsMatch(email, pattern);
     }
 }
