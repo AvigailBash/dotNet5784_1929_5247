@@ -39,6 +39,7 @@ namespace PL.Engineer
             }
 
         }
+       
 
         public BO.Engineer Engineer
         {
@@ -63,8 +64,10 @@ namespace PL.Engineer
         private void clickForUpdateOrAdd(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
+
             try
             {
+               
                 if (button is { Content: "Add"})
                 {
                     s_bl.Engineer.Create(Engineer);
@@ -76,7 +79,9 @@ namespace PL.Engineer
                 MessageBox.Show("success");
                 this.Close();
             }
-            catch (Exception ex) { Console.WriteLine(ex); };
+            catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
         }
+
+       
     }
 }

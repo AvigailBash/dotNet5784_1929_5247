@@ -21,10 +21,11 @@ public class EngineerInTask
     /// <summary>
     /// A method that overrides the To string and prints in a different format
     /// </summary>
-    public void ToString()
-    {
-        Console.WriteLine($"Id: {this.id}");
-        Console.WriteLine($"Name: {this.name}");
-    }
+    //public void ToString()
+    //{
+    //    Console.WriteLine($"Id: {this.id}");
+    //    Console.WriteLine($"Name: {this.name}");
+    //}
+    public override string ToString() => this.ToStringProperty();
 }
 

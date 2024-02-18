@@ -192,12 +192,13 @@ namespace BlTest
                 BO.Engineerlevel? Level = (BO.Engineerlevel)int.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press how much he paid");
                 double? Cost = double.Parse(Console.ReadLine()!);
+                if(Cost == 0) { Cost = null; }
                 Console.WriteLine("Press if it active true or false");
                 bool IsActive = bool.Parse(Console.ReadLine()!);
                 Console.WriteLine("press the details of the task");
                 Console.WriteLine("press the id");
                 int idTask = int.Parse(Console.ReadLine()!);
-                Console.WriteLine("press thr alias");
+                Console.WriteLine("press the alias");
                 string Alias = Console.ReadLine()!;
                 BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer(idTask, Alias);
                 if(num == 2)

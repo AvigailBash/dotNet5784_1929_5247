@@ -45,15 +45,18 @@ namespace PL.Engineer
         }
         private void clickOpenEngineerWindowForCreate(object sender, RoutedEventArgs e)
         {
-            new EngineerWindow().Show();
+            new EngineerWindow().ShowDialog();
+            EngineerList = s_bl?.Engineer.ReadAll()!;
         }
 
 
         private void clickOpenEngineerWindowForUptade(object sender, MouseButtonEventArgs e)
         {
             BO.Engineer? en = (sender as ListView)?.SelectedItem as BO.Engineer;
-            EngineerWindow ew = new EngineerWindow(en!.id);
-            ew.ShowDialog();
+            new EngineerWindow(en!.id).ShowDialog();
+            EngineerList = s_bl?.Engineer.ReadAll()!;
+
         }
+
     }
 }
