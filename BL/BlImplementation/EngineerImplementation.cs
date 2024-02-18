@@ -8,7 +8,7 @@ namespace BlImplementation;
 internal class EngineerImplementation : IEngineer
 {
     /// <summary>
-    /// A call to the method that fetches the data
+    /// A call to  the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
     private IClock _clock = new ClockImplementation();
