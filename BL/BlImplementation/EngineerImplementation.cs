@@ -10,7 +10,8 @@ internal class EngineerImplementation : IEngineer
     /// A call to the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
-   // BO.StatusOfProject status;
+    private IClock _clock = new ClockImplementation();
+    // BO.StatusOfProject status;
 
     /// <summary>
     /// A method that creates a new engineer
@@ -19,10 +20,6 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public int Create(BO.Engineer boEngineer)
     {
-        //if(_dal.Clock.)
-        //{
-
-        //}
         if (boEngineer.id <= 0 || boEngineer.name == null || boEngineer.cost <= 0 || CheckEmail(boEngineer.email) == false)
             throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
 
@@ -45,13 +42,13 @@ internal class EngineerImplementation : IEngineer
     public void Delete(int id)
     {
         BO.Engineer? boEngineer=Read(id);
-        //if (statusForProject() == BO.StatusOfProject.End) 
-        //{
-        //    if(boEngineer.task != null)
-        //    {
-        //        throw new BO.Exceptions.BlCannotDeleteThisEngineerException("The project is in the end stage");
-        //    }
-        //}
+        if (_clock.statusForProject() == BO.StatusOfProject.End)
+        {
+            if (boEngineer.task != null)
+            {
+                throw new BO.Exceptions.BlCannotDeleteThisEngineerException("The project is in the end stage");
+            }
+        }
         if (boEngineer != null && boEngineer.task != null) 
         { 
             throw new BO.Exceptions.BlCannotDeleteThisEngineerException("Cannot Delete This Engineer");
@@ -135,7 +132,7 @@ internal class EngineerImplementation : IEngineer
         }
         catch(DO.DalDoesNotExistException ex)
         {
-            throw new BO.Exceptions.BlDoesNotExistException($"Engineer with ID={doEngineer!.id} does Not exist");
+            throw new BO.Exceptions.BlDoesNotExistException($"Engineer with ID={doEngineer!.id} does Not exist", ex);
         }
     }
 

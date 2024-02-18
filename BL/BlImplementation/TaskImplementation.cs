@@ -12,7 +12,7 @@ internal class TaskImplementation : ITask
     /// A call to the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
-
+    private IClock _clock = new ClockImplementation();
     /// <summary>
     /// A method that creates a new task
     /// </summary>
@@ -21,17 +21,17 @@ internal class TaskImplementation : ITask
     public int Create(BO.Task boTask)
     {
 
-        //if (statusForProject() == BO.StatusOfProject.Start)
-        //{
-        //    if (boTask.schedualedDate != null || boTask.engineer != null)  
-        //    {
-        //        throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the planning stage");
-        //    }
-        //}
-        //if (statusForProject == BO.StatusOfProject.End) 
-        //{
-        //    throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the end stage");
-        //}
+        if (_clock.statusForProject() == BO.StatusOfProject.Start)
+        {
+            if (boTask.schedualedDate != null || boTask.engineer != null)
+            {
+                throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the planning stage");
+            }
+        }
+        if (_clock.statusForProject() == BO.StatusOfProject.End)
+        {
+            throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the end stage");
+        }
         DO.Task doTask = new DO.Task(boTask.id, boTask.createdAtDate, boTask.alias, boTask.description,
             boTask.isMilestone, boTask.schedualedDate,boTask.requiredEffortTime, boTask.deadlineDate, 
             boTask.startDate, boTask.completeDate, boTask.deliverables, boTask.remarks, boTask.engineer?.id,
