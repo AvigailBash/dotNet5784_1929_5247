@@ -205,8 +205,16 @@ internal class TaskImplementation : ITask
         BO.EngineerInTask engineerInTask = new BO.EngineerInTask() { id = engineer!.id, name = engineer.name };
         return engineerInTask;
     }
-    
-    
+
+
+
+    public List<BO.TaskInList> findDependencies(BO.Task task)
+    {
+        IEnumerable<DO.Task?> newList = from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask == task.id select _dal.Task.Read(doDependency.dependsOnTask ?? 0);
+        List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
+        return taskInLists;
+    }
+
 }
 
 

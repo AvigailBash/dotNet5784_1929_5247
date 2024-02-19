@@ -64,4 +64,6 @@ public interface ITask
     /// <param name="id"> The engineer's identity card </param>
     /// <returns></returns>
     public BO.EngineerInTask convertFromEngineerToEngineerInTask(int? id);
+
+    public List<BO.TaskInList> findDependencies(BO.Task task);
 }

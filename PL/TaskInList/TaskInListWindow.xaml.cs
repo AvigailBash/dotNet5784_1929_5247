@@ -48,5 +48,18 @@ namespace PL.TaskInList
             TaskList = (Status == BO.Status.None) ?
             s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => item.status == Status)!;
         }
+
+        private void clickOpenTaskWindowForCreate(object sender, RoutedEventArgs e)
+        {
+            new TaskWindow().ShowDialog();
+            TaskList = s_bl?.Task.ReadAll()!;
+        }
+
+        private void clickOpenTaskWindowForUptade(object sender, MouseButtonEventArgs e)
+        {
+            BO.Task? t = (sender as ListView)?.SelectedItem as BO.Task;
+            new TaskWindow(t!.id).ShowDialog();
+            TaskList = s_bl?.Task.ReadAll()!;
+        }
     }
 }
