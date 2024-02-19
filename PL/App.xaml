@@ -5,8 +5,16 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:EngineerCollection x:Key="EngineerCollectionKey" />
+        <local:TaskInListCollection x:Key="TaskInListCollectionKey" />
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:ConvertIdToIsEnabled x:Key="ConvertIdToIsEnabledKey"/>
-
+        <Style x:Key="myLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="300, 0,0,0" />
+        </Style>
     </Application.Resources>
 </Application>

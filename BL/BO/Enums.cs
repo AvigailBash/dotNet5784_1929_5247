@@ -13,7 +13,7 @@ public enum Engineerlevel
 /// </summary>
 public enum Status
 {
-    Unscheduled, Scheduled, OnTrack, Done
+    Unscheduled, Scheduled, OnTrack, Done,None
 }
 
 /// <summary>

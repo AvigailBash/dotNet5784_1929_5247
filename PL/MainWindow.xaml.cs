@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Manager;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,6 +39,11 @@ namespace PL
                 DalTest.Initialization.Do();
 
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new ManagerWindow().Show();
         }
     }
 }
