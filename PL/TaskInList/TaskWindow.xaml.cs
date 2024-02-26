@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Dependencies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -26,7 +27,7 @@ namespace PL.TaskInList
             InitializeComponent();
             try
             {
-                Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id))!;
+                Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id)!)!;
             }
             catch (Exception ex)
             {
@@ -115,6 +116,11 @@ namespace PL.TaskInList
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
+        }
+
+        private void OpenDependenciesWindow(object sender, RoutedEventArgs e)
+        {
+            new DependenciesListWindow().ShowDialog();
         }
     }
 }

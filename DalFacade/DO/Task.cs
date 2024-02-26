@@ -18,26 +18,6 @@
 ///// <param name="engineerId"> The identity card of the engineer of the assignment </param>
 ///// <param name="coplexity"> The difficulty of the assignment </param>
 ///// <param name="isActive"> Is the assignment active? </param>
-//public record Task
-//(
-//    int id,
-//    DateTime createdAtDate,
-//    string? alias = null,
-//    string? description = null,
-//    bool isMilestone = false,
-//    DateTime? schedualedDate = null,
-//    TimeSpan? requiredEffortTime = null,
-//    DateTime? deadlineDate = null,
-//    DateTime? startDate = null,
-//    DateTime? completeDate = null,
-//    string? deliverables = null,
-//    string? remarks = null,
-//    int? engineerId = null,
-//    DO.Engineerlevel? coplexity = null,
-//    bool isActive = false
-
-//)
-//{
 //    /// <summary>
 //    /// Empty constructive action for an entity
 //    /// </summary>
