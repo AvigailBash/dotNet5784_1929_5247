@@ -8,7 +8,7 @@ public interface IBl
     /// <summary>
     /// Engineer property
     /// </summary>
-    public IEngineer Engineer{ get; }
+    public IEngineer Engineer { get; }
 
     /// <summary>
     /// Engineer in task property
@@ -46,6 +46,15 @@ public interface IBl
     /// </summary>
     public IClock Clock { get; }
 
+    public DateTime clock { get; }
 
+    void addClockObserver(Action clockObserver);
+    void removeClockObserver(Action clockObserver);
+    void clockNextDay();
+    void clockForwardYear();
+    void clockForwardDay();
+    void clockForwardHour();
+    void clockSetDateTime(DateTime time);
+    void clockInit();
     public void reset();
 }

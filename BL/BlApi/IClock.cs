@@ -34,6 +34,7 @@ public interface IClock
     /// <returns></returns>
     public BO.StatusOfProject statusForProject();
 
+
     /// <summary>
     /// A method that returns the minimum date for planning a task
     /// </summary>
