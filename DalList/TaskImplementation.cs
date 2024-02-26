@@ -55,8 +55,9 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public Task? Read(Func<Task, bool> filter)
     {
-        return (DataSource.Tasks?.Select(item => item).Where(filter).FirstOrDefault()) ?? throw new DalDoesNotExistException("Task not exists");
+        return (DataSource.Tasks?.Select(item => item).Where(filter).FirstOrDefault())  ?? throw new DalDoesNotExistException("Task not exists");
     }
+
 
     /// <summary>
     /// Returns a collection of objects according to a certain search condition

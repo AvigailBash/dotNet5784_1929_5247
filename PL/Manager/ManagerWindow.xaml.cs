@@ -21,6 +21,7 @@ namespace PL.Manager
     /// </summary>
     public partial class ManagerWindow : Window
     {
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
         public ManagerWindow()
         {
             InitializeComponent();
@@ -35,6 +36,17 @@ namespace PL.Manager
         private void ClickForTaskInList(object sender, RoutedEventArgs e)
         {
             new TaskInListWindow().Show();
+        }
+
+        private void ClickForAddTask(object sender, RoutedEventArgs e)
+        {
+            new TaskWindow().Show();
+        }
+
+        private void ClickForReset(object sender, RoutedEventArgs e)
+        {
+            s_bl.reset();
+            MessageBox.Show("The reset was completed successfully");
         }
     }
 }

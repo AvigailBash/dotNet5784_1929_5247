@@ -41,25 +41,30 @@ namespace PL.TaskInList
         // Using a DependencyProperty as the backing store for TaskList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskInListWindow));
-        public BO.Status Status { get; set; } = BO.Status.None;
+            
+        public BO.Status status { get; set; } = BO.Status.None;
 
         private void SelectStatus(object sender, SelectionChangedEventArgs e)
         {
-            TaskList = (Status == BO.Status.None) ?
-            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => item.status == Status)!;
+            TaskList = (status == BO.Status.None) ?
+            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => item.status == status)!;
+
+
         }
 
         private void clickOpenTaskWindowForCreate(object sender, RoutedEventArgs e)
         {
             new TaskWindow().ShowDialog();
             TaskList = s_bl?.Task.ReadAll()!;
+
         }
 
         private void clickOpenTaskWindowForUptade(object sender, MouseButtonEventArgs e)
         {
-            BO.Task? t = (sender as ListView)?.SelectedItem as BO.Task;
-            new TaskWindow(t!.id).ShowDialog();
+            BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
+            new TaskWindow(en!.id).ShowDialog();
             TaskList = s_bl?.Task.ReadAll()!;
+
         }
     }
 }

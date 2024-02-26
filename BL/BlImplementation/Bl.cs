@@ -46,4 +46,7 @@ internal class Bl:IBl
     /// Creating the clock property
     /// </summary>
     public IClock Clock => new ClockImplementation();
+
+    public void reset() => DalTest.Initialization.reset();
+
 }

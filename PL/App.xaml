@@ -25,5 +25,22 @@
             <Setter Property="Margin" Value="300,0,0,0" />
             <!--<Setter Property="DisplayDate" Value="" />-->
         </Style>
+        <Style x:Key="myButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Margin" Value="300, 0,0,0" />
+        </Style>
+        <Style x:Key="myTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Margin" Value="300, 0,0,0" />
+        </Style>
+
     </Application.Resources>
 </Application>

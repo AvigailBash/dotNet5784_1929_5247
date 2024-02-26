@@ -79,7 +79,7 @@ namespace BlTest
                     string dAlias = Console.ReadLine();
                     Console.WriteLine("press for stutus: \n0 for Unscheduled \n 1 for Scheduled \n 2 for OnTrack \n 3 for Done");
                     BO.Status dStatus = (BO.Status)int.Parse(Console.ReadLine());
-                    BO.TaskInList taskInList = new BO.TaskInList(dId, dAlias, dDescription, dStatus);
+                    BO.TaskInList taskInList = new BO.TaskInList { id = dId, alias = dAlias, description = dDescription, status = dStatus };
                     taskList.Add(taskInList);
                 }
                 BO.Task t;

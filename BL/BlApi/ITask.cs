@@ -7,7 +7,7 @@ public interface ITask
     /// </summary>
     /// <param name="filter"> The filter by which to search </param>
     /// <returns></returns>
-    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null);
+    public IEnumerable<BO.TaskInList> ReadAll(Func <BO.Task, bool>? filter = null);
 
     /// <summary>
     /// A method that returns an task by ID

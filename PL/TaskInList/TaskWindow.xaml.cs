@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,12 +21,12 @@ namespace PL.TaskInList
     public partial class TaskWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        public TaskWindow(int Id = 0)
+        public TaskWindow(int Id = 0,bool arriveFromEngineer=false)
         {
             InitializeComponent();
             try
             {
-                dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id))!;
+                Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id))!;
             }
             catch (Exception ex)
             {
@@ -48,6 +49,7 @@ namespace PL.TaskInList
         }
         
 
+        
 
         public BO.Task Task
         {
@@ -63,19 +65,57 @@ namespace PL.TaskInList
 
 
 
-
-
-        public IEnumerable<BO.TaskInList> dependencies
+        public IEnumerable<BO.TaskInList> Dependencies
         {
             get { return (IEnumerable<BO.TaskInList>)GetValue(dependenciesProperty); }
             set { SetValue(dependenciesProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for dependencies.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for Dependencies.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty dependenciesProperty =
-            DependencyProperty.Register("dependencies", typeof(IEnumerable<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("Dependencies", typeof(IEnumerable<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
 
+        private void ClickForUpdateOrAdd(object sender, RoutedEventArgs e)
+        {
+            //var button = sender as Button;
 
+            //try
+            //{
 
+            //    if (button is { Content: "Add" })
+            //    {
+            //        s_bl.Task.Create(Task);
+            //    }
+            //    else
+            //    {
+            //        s_bl.Task.Update(Task);
+            //    }
+            //    MessageBox.Show("success");
+            //    this.Close();
+            //}
+            //catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            try
+            {
+
+                if (button is { Content: "Add" })
+                {
+                    s_bl.Task.Create(Task);
+                }
+                else
+                {
+                    s_bl.Task.Update(Task);
+                }
+                MessageBox.Show("success");
+                this.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
+        }
     }
 }
+

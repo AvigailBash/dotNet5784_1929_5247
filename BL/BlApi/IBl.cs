@@ -45,4 +45,6 @@ public interface IBl
     /// Clock property
     /// </summary>
     public IClock Clock { get; }
+
+    public void reset();
 }

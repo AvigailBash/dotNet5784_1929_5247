@@ -107,7 +107,7 @@ public static class Initialization
             }
             DateTime? _schedualedDate = null;
             DateTime _createdAtDate = DateTime.Today;
-            DateTime _startDate = DateTime.Today;
+            DateTime? _startDate = null;
 
 
             DateTime today = DateTime.Today;
@@ -117,28 +117,30 @@ public static class Initialization
             int randomNumberOfDays = random.Next(range);
             DateTime randomDate = today.AddDays(randomNumberOfDays);
 
-            TimeSpan _requiredEffortTime = randomDate - today;
+            TimeSpan? _requiredEffortTime = randomDate - today;
 
-            DateTime _completeDate, _deadlineDate;
-            do
-            {
-                DateTime tenMonthFromNow = today.AddMonths(10);
-                DateTime yearFromNow = today.AddMonths(12);
-                int range2 = (yearFromNow - tenMonthFromNow).Days;
-                randomNumberOfDays = random.Next(range2);
-                _deadlineDate = today.AddDays(randomNumberOfDays);
+            DateTime? _completeDate=null, _deadlineDate=null;
+            //do
+            //{
+            //    DateTime tenMonthFromNow = today.AddMonths(10);
+            //    DateTime yearFromNow = today.AddMonths(12);
+            //    int range2 = (yearFromNow - tenMonthFromNow).Days;
+            //    randomNumberOfDays = random.Next(range2);
+            //    _deadlineDate = today.AddDays(randomNumberOfDays);
 
 
 
-                int range3 = (tenMonthFromNow - sixMonthsFromNow).Days;
-                randomNumberOfDays = random.Next(range3);
-                _completeDate = today.AddDays(randomNumberOfDays);
-            } while (_completeDate > _deadlineDate);
+            //    int range3 = (tenMonthFromNow - sixMonthsFromNow).Days;
+            //    randomNumberOfDays = random.Next(range3);
+            //    _completeDate = today.AddDays(randomNumberOfDays);
+            //} while (_completeDate > _deadlineDate);
 
             bool _isActive = true;
             int engineerId = arr[i];
             i = (i + 1) % 5;
             level = s_dal.Engineer.Read(engineerId)!.level!.Value;
+            _deadlineDate = null;
+            _requiredEffortTime = null;
             Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, engineerId, level, true);
             s_dal!.Task.Create(newTask);
 
@@ -232,5 +234,10 @@ public static class Initialization
         createTasks();
     }
    
+
+    public static void reset()
+    {
+        deleteAll();
+    }
    
 }
