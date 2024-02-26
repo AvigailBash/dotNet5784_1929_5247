@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+
+
     <Grid>
         <Button Content="Engineer" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
         <Button Content="Initialization" HorizontalAlignment="Left" Margin="495,119,0,0" VerticalAlignment="Top" Width="93" Click="DoInitialization"/>
         <Button Content="Manager" HorizontalAlignment="Left" Margin="71,231,0,0" VerticalAlignment="Top" Width="99" Click="Button_Click"/>
+        <Label Content="{Binding CurrentTime ,Mode=TwoWay}" HorizontalAlignment="Left" Margin="507,241,0,0" VerticalAlignment="Top" Width="173" Height="34"/>
+        <Button Content="Init" HorizontalAlignment="Left" Margin="713,312,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock"/>
+        <Button Content="NextDay" HorizontalAlignment="Left" Margin="449,312,0,0" VerticalAlignment="Top" Click="AddDayClick"/>
+        <Button Content="NextHour" HorizontalAlignment="Left" Margin="542,312,0,0" VerticalAlignment="Top" Click="AddHourClick"/>
+        <Button Content="NextYear" HorizontalAlignment="Left" Margin="635,312,0,0" VerticalAlignment="Top" Click="AddYearClick"/>
     </Grid>
 </Window>
