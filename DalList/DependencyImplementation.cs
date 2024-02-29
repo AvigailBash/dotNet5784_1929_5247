@@ -55,7 +55,7 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter);//?? throw new DalDoesNotExistException("Dependency not exists");
+        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter)?? throw new DalDoesNotExistException("Dependency not exists");
     }
 
     /// <summary>
@@ -97,6 +97,12 @@ internal class DependencyImplementation : IDependency
     public void deleteAll()
     {
         DataSource.Dependencies!.Clear();
+    }
+
+
+    public Dependency? ReadForUpdate(Dependency dependency)
+    {
+        return (DataSource.Dependencies?.FirstOrDefault(t => (t != null && t.dependsOnTask == dependency.dependsOnTask && t.dependentTask==dependency.dependentTask && t.isActive == true))) ?? null;
     }
 }
 

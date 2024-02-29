@@ -1,6 +1,7 @@
 ﻿namespace Dal;
 using DalApi;
 using DO;
+using System.Data.Common;
 using System.Xml.Linq;
 
 /// <summary>
@@ -140,4 +141,9 @@ internal class DependencyImplementation : IDependency
     isActive = (bool?)x.Element("isActive") ?? false
 };
 
+
+    public Dependency? ReadForUpdate(Dependency dependency) => Read(d => d.dependentTask == dependency.dependentTask && d.dependsOnTask == dependency.dependsOnTask && d != null && d.isActive == true) ?? null;
+
 }
+
+
