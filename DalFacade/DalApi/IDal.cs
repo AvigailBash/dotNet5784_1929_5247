@@ -21,4 +21,6 @@ public interface IDal
     IDependency Dependency { get; }
 
     IClock Clock { get; }
+
+    IUser User { get; }
 }

@@ -2,7 +2,7 @@
 
 namespace DalApi;
 
-public interface IUserName: ICrud<User>
+public interface IUser: ICrud<User>
 {
 
 }

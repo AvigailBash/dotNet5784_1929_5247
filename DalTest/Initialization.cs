@@ -4,6 +4,7 @@ using DO;
 using Dal;
 using System.Data.Common;
 using System.IO.Pipes;
+using System.Security.Cryptography;
 
 public static class Initialization
 {
@@ -218,6 +219,22 @@ public static class Initialization
         }
     }
 
+    private static void createUser()
+    {
+        IEnumerable<Engineer> engineers = s_dal!.Engineer.ReadAll();
+        int id, password = 1000;
+        foreach (Engineer engineer in engineers) 
+        {
+            id = engineer.id;
+            password++;
+            User user = new(id, password, true);
+            s_dal!.User.Create(user);
+        }
+        id = 1234;
+        password = 1234;
+        User manager = new User(id, password, true);
+        s_dal !.User.Create(manager);
+    }
 
     /// <summary>
     /// Checks whether the objects exist properly, if not sends an error and calls for initialization
@@ -232,6 +249,7 @@ public static class Initialization
         createEngineer();
         createDependency();
         createTasks();
+        createUser();
     }
    
 

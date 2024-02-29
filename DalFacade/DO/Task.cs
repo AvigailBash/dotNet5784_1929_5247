@@ -66,7 +66,7 @@ public record Task
     /// <summary>
     /// Empty constructive action for an entity
     /// </summary>
-    public Task();
+    //public Task();
 
 }
 
