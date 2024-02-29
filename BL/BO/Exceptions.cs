@@ -91,4 +91,11 @@ internal class Exceptions
     {
         public BlCannotUpdateThisTaskException(string? message) : base(message) { }
     }
+
+
+    [Serializable]
+    public class BlWrongPasswordException : Exception
+    {
+        public BlWrongPasswordException(string? message) : base(message) { }
+    }
 }

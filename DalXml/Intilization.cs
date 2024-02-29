@@ -166,9 +166,14 @@ internal class Intilization
             int _id;
             int minValue = 200000000;
             int maxValue = 400000000;
+            int password;
+            int minValueForPassword = 20000;
+            int maxValueForPassword = 70000;
             do
                 _id = new Random().Next(minValue, maxValue);
             while (s_dal!.Engineer.Read(_id) != null);
+            password = new Random().Next(minValueForPassword, maxValueForPassword);
+
             DO.Engineerlevel level;
             switch (i)
             {
@@ -193,7 +198,7 @@ internal class Intilization
             }
             double _cost = new Random().Next(10000, 20000);
             bool _isActive = true;
-            Engineer newEngineer = new Engineer(_id, name, "engineer12@gmail.com", level, _cost, _isActive);
+            Engineer newEngineer = new Engineer(_id, password, name, "engineer12@gmail.com", level, _cost, _isActive);
             s_dal!.Engineer.Create(newEngineer);
             i++;
         }
@@ -244,6 +249,9 @@ internal class Intilization
     public static void reset()
     {
         deleteAll();
+        Config.resetDependencyId();
+        Config.resetTaskId();
+
     }
 
 }

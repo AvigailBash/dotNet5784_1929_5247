@@ -121,8 +121,10 @@ namespace DalTest
             {
                 Console.WriteLine("Enter the details:");
                 Console.WriteLine("Press a id");
-                int id = int.Parse(Console.ReadLine());
+                int id = int.Parse(Console.ReadLine()!);
                 Engineer? temp = s_dal.Engineer.Read(id);
+                Console.WriteLine("Press a password");
+                int password = int.Parse(Console.ReadLine()!);
                 Console.WriteLine("Press a name");
                 string? name = Console.ReadLine();
                 Console.WriteLine("Press an email");
@@ -130,7 +132,7 @@ namespace DalTest
                 Console.WriteLine("Press how much he paid");
                 double? cost = double.Parse(Console.ReadLine());
                 Console.WriteLine("Press if it active true or false");
-                bool isActive = bool.Parse(Console.ReadLine());
+                bool isActive = bool.Parse(Console.ReadLine()!);
                 if (num == 2)
                 {
                     if (name == "")
@@ -146,7 +148,7 @@ namespace DalTest
                         cost = temp.cost;
                     }
                 }
-                engineer = new DO.Engineer(id, name, email, DO.Engineerlevel.Expert, cost, isActive);
+                engineer = new DO.Engineer(id, password, name, email, DO.Engineerlevel.Expert, cost, isActive);
                 if (num == 1)
                     s_dal.Engineer!.Create(engineer);
                 else
