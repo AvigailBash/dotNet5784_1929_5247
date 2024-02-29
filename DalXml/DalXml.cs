@@ -16,4 +16,6 @@ sealed internal class DalXml : IDal
     public IDependency Dependency => new DependencyImplementation();
     public IClock Clock => new ClockImplementation();
     public IUser User => new UserImplementation();
+
+    public IHelp Help => new HelpImplementation();
 }

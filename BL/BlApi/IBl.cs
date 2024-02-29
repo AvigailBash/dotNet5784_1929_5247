@@ -47,6 +47,7 @@ public interface IBl
     public IClock Clock { get; }
     
     public DateTime clock { get; }
+    public IHelp Help { get; }
 
 
     void addClockObserver(Action clockObserver);

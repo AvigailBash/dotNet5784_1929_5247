@@ -45,7 +45,7 @@ namespace PL.Manager
 
         private void ClickForReset(object sender, RoutedEventArgs e)
         {
-            s_bl.reset();
+            s_bl.Help.reset();
             MessageBox.Show("The reset was completed successfully");
         }
     }

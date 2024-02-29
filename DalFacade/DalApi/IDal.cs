@@ -22,5 +22,6 @@ public interface IDal
 
     IClock Clock { get; }
 
-    IDal help { get; }
+    IHelp Help { get; }
+    IUser User { get; }
 }

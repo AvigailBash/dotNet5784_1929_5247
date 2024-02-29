@@ -1,18 +1,14 @@
-﻿
-using DalApi;
+﻿using BlApi;
 using DO;
 
 namespace BlImplementation;
 
-internal class HelpImplementation:Ihelp
+internal class HelpImplementation:IHelp
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    public void init()=>
+    public void init() => _dal.Help.init();
 
 
-    public void reset()
-    {
-        throw new NotImplementedException();
-    }
+    public void reset() => _dal.Help.reset();
 }
