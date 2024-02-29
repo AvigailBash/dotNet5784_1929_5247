@@ -65,7 +65,8 @@ internal class EngineerImplementation: IEngineer
     public Engineer? Read(int id)
     {
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
-        return engineers.FirstOrDefault(it => it.id == id && it.isActive == true) ?? throw new DalDoesNotExistException($"Engineer with ID={id} already exists");
+        if(engineers.Count == 0) return null;
+        return engineers.FirstOrDefault(it => it.id == id && it.isActive == true); //?? throw new DalDoesNotExistException($"Engineer with ID={id} already exists");
     }
 
     /// <summary>
