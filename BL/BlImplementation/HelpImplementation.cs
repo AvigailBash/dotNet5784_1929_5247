@@ -8,7 +8,7 @@ internal class HelpImplementation:Ihelp
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    public void init()=>_dal.
+    public void init()=>
 
 
     public void reset()
