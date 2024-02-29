@@ -1,6 +1,6 @@
 ﻿namespace DalApi;
 
-public  interface Ihelp
+public  interface IHelp
 {
     public void init();
 

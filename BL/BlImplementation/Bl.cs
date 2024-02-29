@@ -48,7 +48,8 @@ internal class Bl:IBl
     public IClock Clock => new ClockImplementation();
     public IBl bl => this;
 
-    public void reset() => DalTest.Initialization.reset();
+    //public void reset() => DalTest.Initialization.reset();
+
 
     private static readonly TimeSpan s_oneHour = new(1, 0, 0);
     private static readonly TimeSpan s_oneDay = new (1, 0, 0, 0);
@@ -70,6 +71,8 @@ internal class Bl:IBl
         } 
     }
 
+    public IHelp Help => new HelpImplementation();
+
     public void addClockObserver(Action clockObserver) => s_clockObserver += clockObserver;
     public void removeClockObserver(Action clockObserver) => s_clockObserver -= clockObserver;
     public void clockNextDay() => clock = (clock + s_oneDay).Date;
@@ -79,4 +82,9 @@ internal class Bl:IBl
     public void clockForwardYear() => clock += s_oneYear;
 
     public void clockInit() => clock  =DateTime.Now;
+
+    public void reset()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -3,7 +3,7 @@ using DalApi;
 
 namespace Dal;
 
-internal class HelpImplementation : Ihelp
+internal class HelpImplementation : IHelp
 {
     public void init()
     {

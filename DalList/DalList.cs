@@ -28,4 +28,6 @@ sealed internal class DalList : IDal
 
     public IClock Clock => new ClockImplementation();
     public IUser User => new UserImplementation();
+
+    public IHelp Help => new HelpImplementation();
 }
