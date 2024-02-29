@@ -118,9 +118,14 @@ namespace PL.TaskInList
             catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
         }
 
-        private void OpenDependenciesWindow(object sender, RoutedEventArgs e)
+        private void ClickForAddDependencies(object sender, RoutedEventArgs e)
         {
-            new DependenciesListWindow().ShowDialog();
+            new AddDependenciesWIindow(Task.id).ShowDialog();
+        }
+
+        private void ClickForViewDependencies(object sender, RoutedEventArgs e)
+        {
+            new DependenciesListWindow(Task.id).ShowDialog();
         }
     }
 }

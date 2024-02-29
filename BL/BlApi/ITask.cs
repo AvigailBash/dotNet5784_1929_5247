@@ -66,4 +66,6 @@ public interface ITask
     public BO.EngineerInTask convertFromEngineerToEngineerInTask(int? id);
 
     public List<BO.TaskInList> findDependencies(BO.Task task);
+
+    public void AddDependencies(int id, BO.TaskInList taskInList);
 }

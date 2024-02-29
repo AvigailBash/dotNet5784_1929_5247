@@ -12,6 +12,11 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public int Create(Dependency item)
     {
+        Dependency temp=Read(t=>t.dependentTask==item.dependentTask&&t.dependsOnTask==item.dependsOnTask)!;
+        if(temp!=null)
+        {
+            throw new DalAlreadyExistsException("this dependency already exist");
+        }
         int newId = DataSource.Config.NextDependencyId;
         Dependency copyItem = item with { id = newId };
         DataSource.Dependencies?.Add(copyItem);
@@ -50,7 +55,7 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter) ?? throw new DalDoesNotExistException("Dependency not exists");
+        return DataSource.Dependencies?.Select(item => item).FirstOrDefault(filter);//?? throw new DalDoesNotExistException("Dependency not exists");
     }
 
     /// <summary>

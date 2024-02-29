@@ -22,10 +22,13 @@ namespace PL.Dependencies
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-        public DependenciesListWindow()
+        public DependenciesListWindow(int id=0 )
         {
             InitializeComponent();
-            Dependencies = s_bl?.Task.ReadAll(item => item.dependencies !=null)!;
+            if (id == 0)
+                Dependencies = null;
+            else
+            Dependencies = s_bl?.Task.Read(id)!.dependencies!;
 
         }
 

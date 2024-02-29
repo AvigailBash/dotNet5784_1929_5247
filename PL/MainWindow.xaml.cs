@@ -56,7 +56,7 @@ namespace PL
             // Check the user's response
             if (result == MessageBoxResult.Yes)
             {
-                DalTest.Initialization.Do();
+               
 
             }
         }

@@ -1,11 +1,9 @@
-﻿namespace DalTest;
-using DalApi;
+﻿using DalApi;
 using DO;
-using Dal;
-using System.Data.Common;
-using System.IO.Pipes;
 
-public static class Initialization
+namespace Dal;
+
+internal class Intilization
 {
     private static IDal? s_dal;
     private static readonly Random s_rand = new();
@@ -15,7 +13,7 @@ public static class Initialization
     /// </summary>
     private static void deleteAll()
     {
-        
+
         s_dal!.Engineer.deleteAll();
         s_dal!.Dependency.deleteAll();
         s_dal!.Task.deleteAll();
@@ -36,10 +34,11 @@ public static class Initialization
         int[] arr = new int[5];
         int i = 0;
         DO.Engineerlevel level;
-        foreach(DO.Engineer engineer in engineers)
+        foreach (DO.Engineer engineer in engineers)
         {
             arr[i++] = engineer.id;
-        }i = 0;
+        }
+        i = 0;
         foreach (var _alias in aliasNames)
         {
             switch (_alias)
@@ -76,7 +75,7 @@ public static class Initialization
                     break;
                 case "Database Design":
                     _description = "Plan and create the database schema, considering data storage, retrieval, and relationships";
-                        break;
+                    break;
                 case "Technology Stack Selection":
                     _description = "Choose the appropriate programming languages, frameworks, libraries, and tools for the project";
                     break;
@@ -119,7 +118,7 @@ public static class Initialization
 
             TimeSpan? _requiredEffortTime = randomDate - today;
 
-            DateTime? _completeDate=null, _deadlineDate=null;
+            DateTime? _completeDate = null, _deadlineDate = null;
             //do
             //{
             //    DateTime tenMonthFromNow = today.AddMonths(10);
@@ -141,7 +140,7 @@ public static class Initialization
             level = s_dal.Engineer.Read(engineerId)!.level!.Value;
             _deadlineDate = null;
             _requiredEffortTime = null;
-            Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, engineerId, level, true);
+            DO.Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, engineerId, level, true);
             s_dal!.Task.Create(newTask);
 
         }
@@ -165,7 +164,7 @@ public static class Initialization
             int minValue = 200000000;
             int maxValue = 400000000;
             do
-            _id = new Random().Next(minValue, maxValue);
+                _id = new Random().Next(minValue, maxValue);
             while (s_dal!.Engineer.Read(_id) != null);
             DO.Engineerlevel level;
             switch (i)
@@ -189,7 +188,7 @@ public static class Initialization
                     level = Engineerlevel.Beginner;
                     break;
             }
-                    double _cost = new Random().Next(10000, 20000);
+            double _cost = new Random().Next(10000, 20000);
             bool _isActive = true;
             Engineer newEngineer = new Engineer(_id, name, "engineer12@gmail.com", level, _cost, _isActive);
             s_dal!.Engineer.Create(newEngineer);
@@ -233,11 +232,10 @@ public static class Initialization
         createDependency();
         createTasks();
     }
-   
 
     public static void reset()
     {
         deleteAll();
     }
-   
+
 }

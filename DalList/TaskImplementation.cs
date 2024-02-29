@@ -13,6 +13,7 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public int Create(Task item)
     {
+
         int newId = DataSource.Config.NextTaskId;
         Task copyItem = item with { id = newId};
         DataSource.Tasks?.Add(copyItem);

@@ -64,7 +64,7 @@ namespace PL.TaskInList
             BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
             new TaskWindow(en!.id).ShowDialog();
             TaskList = s_bl?.Task.ReadAll()!;
-
+            
         }
     }
 }

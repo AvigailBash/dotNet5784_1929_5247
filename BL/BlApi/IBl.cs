@@ -45,8 +45,9 @@ public interface IBl
     /// Clock property
     /// </summary>
     public IClock Clock { get; }
-
+    
     public DateTime clock { get; }
+
 
     void addClockObserver(Action clockObserver);
     void removeClockObserver(Action clockObserver);

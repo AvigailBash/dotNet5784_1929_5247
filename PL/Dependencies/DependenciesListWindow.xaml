@@ -8,7 +8,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Title="DependenciesListWindow" Height="450" Width="800">
     <Grid>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="120,78,120,77" SelectionChanged="ListView_SelectionChanged">
+        <ListView ItemsSource="{Binding Dependencies}" Margin="120,78,120,77" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
