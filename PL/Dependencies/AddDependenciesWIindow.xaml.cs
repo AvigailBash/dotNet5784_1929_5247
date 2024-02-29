@@ -25,6 +25,7 @@ namespace PL.Dependencies
             InitializeComponent();
             TaskList= s_bl?.Task.ReadAll()!;
             task = s_bl?.Task.Read(id)!;
+           
         }
 
 
@@ -60,7 +61,8 @@ namespace PL.Dependencies
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.TaskInList? en = (sender as ListBox)?.SelectedItem as BO.TaskInList;
-            if (en != null) { s_bl.Task.AddDependencies(task.id, en); }
+            if (en != null) { task.dependencies!.Add(en);s_bl.Task.Update(task); }
+           
         }
     }
 }

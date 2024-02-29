@@ -149,9 +149,6 @@ internal class TaskImplementation : ITask
         {
             DO.Task? doTask = _dal.Task.Read(task.id);
             BO.Task? boTask = Read(task.id);
-            //int count=  boTask.dependencies!.Count;
-            //int i = 0;
-            //task.dependencies!.RemoveRange(0, count); 
             if (_clock.statusForProject() == BO.StatusOfProject.End)
             {
                 if (task.requiredEffortTime != doTask.requiredEffortTime || task.startDate != doTask.startDate)
@@ -159,14 +156,13 @@ internal class TaskImplementation : ITask
                     throw new BO.Exceptions.BlCannotUpdateThisTaskException("The project is in the end stage");
                 }
             }
-            //if (doTask != null)
-            //{
-            //    doTask = doTask with {alias = task.alias, description = task.description, isMilestone = task.isMilestone, deliverables = task.deliverables, createdAtDate = task.createdAtDate, remarks = task.remarks, schedualedDate = task.schedualedDate, completeDate = task.completeDate, deadlineDate = task.deadlineDate, requiredEffortTime = task.requiredEffortTime, startDate = task.startDate, isActive = task.isActive, engineerId = task.engineer!.id, coplexity = (DO.Engineerlevel)task.coplexity! };
-            //    _dal.Task.Update(doTask);
-            //    //foreach (BO.TaskInList dependency in task.dependencies) { DO.Dependency = new DO.Dependency(0, task.id, dependency.id); }
-            //      //  _dal.Dependency.Create()}
-              
-            //}
+            foreach(BO.TaskInList taskInList in task.dependencies!)
+            {
+                DO.Dependency d=new DO.Dependency(0,taskInList.id,task.id);
+                DO.Dependency d2 = _dal.Dependency.ReadForUpdate(d)!;
+                if(d2 == null) { _dal.Dependency.Create(d); }
+            }
+           
         }
         catch (DO.DalAlreadyExistsException ex)
         {
