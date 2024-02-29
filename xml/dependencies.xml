@@ -79,12 +79,6 @@
     <isActive>true</isActive>
   </dependency>
   <dependency>
-    <id>1013</id>
-    <dependentTask>1009</dependentTask>
-    <dependsOnTask>1004</dependsOnTask>
-    <isActive>true</isActive>
-  </dependency>
-  <dependency>
     <id>1014</id>
     <dependentTask>1007</dependentTask>
     <dependsOnTask>1000</dependsOnTask>
@@ -148,18 +142,6 @@
     <id>1024</id>
     <dependentTask>1002</dependentTask>
     <dependsOnTask>1007</dependsOnTask>
-    <isActive>true</isActive>
-  </dependency>
-  <dependency>
-    <id>1025</id>
-    <dependentTask>1009</dependentTask>
-    <dependsOnTask>1007</dependsOnTask>
-    <isActive>true</isActive>
-  </dependency>
-  <dependency>
-    <id>1026</id>
-    <dependentTask>1007</dependentTask>
-    <dependsOnTask>1009</dependsOnTask>
     <isActive>true</isActive>
   </dependency>
   <dependency>
@@ -238,6 +220,66 @@
     <id>1039</id>
     <dependentTask>1008</dependentTask>
     <dependsOnTask>1007</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1000</id>
+    <dependentTask>1000</dependentTask>
+    <dependsOnTask>1001</dependsOnTask>
+    <isActive>false</isActive>
+  </dependency>
+  <dependency>
+    <id>1001</id>
+    <dependentTask>1002</dependentTask>
+    <dependsOnTask>1001</dependsOnTask>
+    <isActive>false</isActive>
+  </dependency>
+  <dependency>
+    <id>1002</id>
+    <dependentTask>1019</dependentTask>
+    <dependsOnTask>1001</dependsOnTask>
+    <isActive>false</isActive>
+  </dependency>
+  <dependency>
+    <id>1004</id>
+    <dependentTask>1001</dependentTask>
+    <dependsOnTask>1019</dependsOnTask>
+    <isActive>false</isActive>
+  </dependency>
+  <dependency>
+    <id>1005</id>
+    <dependentTask>1001</dependentTask>
+    <dependsOnTask>1019</dependsOnTask>
+    <isActive>false</isActive>
+  </dependency>
+  <dependency>
+    <id>1009</id>
+    <dependentTask>1001</dependentTask>
+    <dependsOnTask>1019</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1026</id>
+    <dependentTask>1007<dependsOnTask>1009<isActive />false</dependsOnTask></dependentTask>
+  </dependency>
+  <dependency>
+    <id>1025</id>
+    <dependentTask>1009<dependsOnTask>1007<isActive />false</dependsOnTask></dependentTask>
+  </dependency>
+  <dependency>
+    <id>1010</id>
+    <dependentTask>1009</dependentTask>
+    <dependsOnTask>1000</dependsOnTask>
+    <isActive>true</isActive>
+  </dependency>
+  <dependency>
+    <id>1013</id>
+    <dependentTask>1009<dependsOnTask>1004<isActive />false</dependsOnTask></dependentTask>
+  </dependency>
+  <dependency>
+    <id>1011</id>
+    <dependentTask>1009</dependentTask>
+    <dependsOnTask>1004</dependsOnTask>
     <isActive>true</isActive>
   </dependency>
 </ArrayOfDependency>

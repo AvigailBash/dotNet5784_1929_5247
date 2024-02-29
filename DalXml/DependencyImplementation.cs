@@ -60,7 +60,7 @@ internal class DependencyImplementation : IDependency
     /// <param name="filter"> By what to search for the object </param>
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
-   => ReadAll(filter).FirstOrDefault() ?? throw new DalDoesNotExistException("Dependency not exists");
+   => ReadAll(filter).FirstOrDefault() ?? null;/* throw new DalDoesNotExistException("Dependency not exists");*/
 
     /// <summary>
     /// Gets an ID and prints the dependency if it exists and is active
@@ -78,7 +78,6 @@ internal class DependencyImplementation : IDependency
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
         => XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements()
         .Select(d => getDependency(d)).Where(dependency => !dependency.isActive ? false : filter is null ? true : filter!(dependency));
-
 
     /// <summary>
     /// Receives details of a dependency and updates it

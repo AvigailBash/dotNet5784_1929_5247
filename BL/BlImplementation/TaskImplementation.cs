@@ -148,7 +148,6 @@ internal class TaskImplementation : ITask
         try
         {
             DO.Task? doTask = _dal.Task.Read(task.id);
-            BO.Task? boTask = Read(task.id);
             if (_clock.statusForProject() == BO.StatusOfProject.End)
             {
                 if (task.requiredEffortTime != doTask.requiredEffortTime || task.startDate != doTask.startDate)
@@ -158,7 +157,7 @@ internal class TaskImplementation : ITask
             }
             foreach(BO.TaskInList taskInList in task.dependencies!)
             {
-                DO.Dependency d=new DO.Dependency(0,taskInList.id,task.id);
+                DO.Dependency d=new DO.Dependency(0,task.id, taskInList.id,true);
                 DO.Dependency d2 = _dal.Dependency.ReadForUpdate(d)!;
                 if(d2 == null) { _dal.Dependency.Create(d); }
             }
@@ -261,6 +260,13 @@ internal class TaskImplementation : ITask
         BO.Task temp = Read(id)!;
         temp.dependencies.Add(taskInList);
         Update(temp);
+    }
+
+    public void RemoveDependencies(BO.Task boTask, BO.TaskInList taskInList)
+    {
+        DO.Dependency temp = new DO.Dependency(0,boTask.id, taskInList.id,true);
+        DO.Dependency temp2 = _dal.Dependency.Read(t => t.dependsOnTask == taskInList.id && t.dependentTask == boTask.id&&t.isActive==true);
+        _dal.Dependency.Delete(temp2.id);
     }
 
 }

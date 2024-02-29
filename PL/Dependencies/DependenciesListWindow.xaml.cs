@@ -1,4 +1,5 @@
 ﻿using BO;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,28 @@ namespace PL.Dependencies
             if (id == 0)
                 Dependencies = null;
             else
-            Dependencies = s_bl?.Task.Read(id)!.dependencies!;
+            {
+                Dependencies = s_bl?.Task.Read(id)!.dependencies!;
+                task = s_bl!.Task.Read(id)!;
+            }
+           
 
         }
 
 
 
+
+
+
+        public BO.Task task
+        {
+            get { return (BO.Task)GetValue(taskProperty); }
+            set { SetValue(taskProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for task.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty taskProperty =
+            DependencyProperty.Register("task", typeof(BO.Task), typeof(DependenciesListWindow), new PropertyMetadata(null));
 
 
 
@@ -50,7 +67,13 @@ namespace PL.Dependencies
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
+            if (en != null) {s_bl.Task.RemoveDependencies(task,en); } 
+        }
 
+        private void ClickForDeleteDependency(object sender, RoutedEventArgs e)
+        {
+          this.Close();
         }
     }
 }
