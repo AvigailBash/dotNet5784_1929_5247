@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using PL.Engineer;
 using PL.Manager;
+using PL.Password;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -99,6 +100,11 @@ namespace PL
         private void ClickForResetClock(object sender, RoutedEventArgs e)
         {
             s_bl.clockInit();
+        }
+
+        private void ClickForEnter(object sender, RoutedEventArgs e)
+        {
+            new PasswordWindow().ShowDialog();
         }
     }
 }

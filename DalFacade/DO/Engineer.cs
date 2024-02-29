@@ -12,6 +12,7 @@
 public record Engineer
 (
     int id,
+    int password,
     string? name = null,
     string? email = null,
     DO.Engineerlevel? level = null,
@@ -22,7 +23,7 @@ public record Engineer
     /// <summary>
     /// Empty constructive action for an entity
     /// </summary>
-    public Engineer() : this(0) { }
+    public Engineer() : this(0, 0) { }
 
 }
 

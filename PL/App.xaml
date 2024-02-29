@@ -8,6 +8,7 @@
         <local:TaskInListCollection x:Key="TaskInListCollectionKey" />
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:ConvertIdToIsEnabled x:Key="ConvertIdToIsEnabledKey"/>
+        <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />

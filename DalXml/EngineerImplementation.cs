@@ -40,7 +40,7 @@ internal class EngineerImplementation: IEngineer
         {
             throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
-        Engineer temp = new Engineer(en.id, en.name, en.email, en.level, en.cost, false);
+        Engineer temp = new Engineer(en.id, en.password, en.name, en.email, en.level, en.cost, false);
         engineers.Remove(en);
         engineers.Add(temp);
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);

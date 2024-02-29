@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PL.Engineer;
+using PL.Manager;
+using PL.TaskInList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,11 @@ namespace PL.Password
     public partial class PasswordWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
         public PasswordWindow()
         {
             InitializeComponent();
+            User = new BO.User();
         }
 
 
@@ -37,6 +42,21 @@ namespace PL.Password
         public static readonly DependencyProperty UserProperty =
             DependencyProperty.Register("User", typeof(BO.User), typeof(PasswordWindow), new PropertyMetadata(null));
 
-
+        private void ClickForEnter(object sender, RoutedEventArgs e)
+        {
+            if (User.Id == 1234 && User.Password == 1234)
+            {
+                new ManagerWindow().ShowDialog();
+            }
+            else
+            {
+                try
+                {
+                    BO.TaskInEngineer? et = s_bl.Engineer.ReadForPassword(User.Id, User.Password);
+                    new TaskWindow(et.id).ShowDialog();
+                }
+                catch(Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
     }
 }

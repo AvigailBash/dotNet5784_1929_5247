@@ -6,6 +6,7 @@
 public class Engineer
 {
     public int id { get;init; }
+    public int password { get; init; } 
     public string? name { get; set; }
     public string? email { get; set; }
     public Engineerlevel? level { get; set; }
@@ -20,6 +21,7 @@ public class Engineer
     public Engineer()
     {
         this.id = 0;
+        this.password = 0;
         this.name = null;
         this.email = null;
         this.level = BO.Engineerlevel.Beginner;

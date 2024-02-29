@@ -35,4 +35,6 @@ public interface IEngineer
     /// </summary>
     /// <param name="engineer"> Getting an object to update </param>
     public void Update(BO.Engineer engineer);
+
+    public BO.TaskInEngineer? ReadForPassword(int id, int password);
 }

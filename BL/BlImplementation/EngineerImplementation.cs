@@ -24,7 +24,7 @@ internal class EngineerImplementation : IEngineer
         if (boEngineer.id <= 0 || boEngineer.name == null || boEngineer.cost <= 0 || CheckEmail(boEngineer.email) == false)
             throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
 
-        DO.Engineer doEngineer = new DO.Engineer(boEngineer.id, boEngineer.name, boEngineer.email,(DO.Engineerlevel?)boEngineer.level, boEngineer.cost, boEngineer.isActive);
+        DO.Engineer doEngineer = new DO.Engineer(boEngineer.id, boEngineer.password, boEngineer.name, boEngineer.email,(DO.Engineerlevel?)boEngineer.level, boEngineer.cost, boEngineer.isActive);
         try
         {
             int idEn = _dal.Engineer.Create(doEngineer);
@@ -157,5 +157,19 @@ internal class EngineerImplementation : IEngineer
 
         // Check if the email matches the pattern
         return Regex.IsMatch(email, pattern);
+    }
+
+    public BO.TaskInEngineer? ReadForPassword(int id, int password)
+    {
+        BO.Engineer en = Read(id)!;
+        if (en == null)
+        {
+            throw new BO.Exceptions.BlDoesNotExistException($"Enginner with {id} id dosent exist");
+        }
+        if (en.password != password) 
+        {
+            throw new BO.Exceptions.BlWrongPasswordException("Worng password");
+        }
+        return en.task;
     }
 }
