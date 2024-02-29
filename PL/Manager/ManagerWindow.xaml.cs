@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Schedule;
 using PL.TaskInList;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,11 @@ namespace PL.Manager
         {
             s_bl.Help.reset();
             MessageBox.Show("The reset was completed successfully");
+        }
+
+        private void ClickForSetStartAndEndDates(object sender, RoutedEventArgs e)
+        {
+            new SetStartAndEndProject().ShowDialog();
         }
     }
 }
