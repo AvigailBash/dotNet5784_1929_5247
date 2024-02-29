@@ -219,8 +219,6 @@ internal class Intilization
             } while (_dependsOnTask == _dependentTask);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
             s_dal!.Dependency.Create(newDependency);
-
-            XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
         }
     }
 
