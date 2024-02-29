@@ -213,14 +213,12 @@ internal class Intilization
             Random rand = new Random();
             do
             {
-                _dependentTask = new Random().Next(1000, 1020);
-                _dependsOnTask = new Random().Next(1000, 1020);
+                _dependentTask = new Random().Next(1000, 1010);
+                _dependsOnTask = new Random().Next(1000, 1010);
 
             } while (_dependsOnTask == _dependentTask);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
             s_dal!.Dependency.Create(newDependency);
-
-            XMLTools.SaveListToXMLElement(dependencyRoot, s_dependencies_xml);
         }
     }
 
@@ -238,6 +236,8 @@ internal class Intilization
         createEngineer();
         createDependency();
         createTasks();
+        Config.resetDependencyId();
+        Config.resetTaskId();
     }
 
 
