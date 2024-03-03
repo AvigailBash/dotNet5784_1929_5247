@@ -32,7 +32,8 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Height" Value="26" />
             <Setter Property="Width" Value="160" />
-            <Setter Property="Margin" Value="300, 0,0,0" />
+            <!--<Setter Property="Margin" Value="300, 0,0,0" />-->
+            <Setter Property="Background" Value="White" />
         </Style>
         <Style x:Key="myTextBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="13" />
