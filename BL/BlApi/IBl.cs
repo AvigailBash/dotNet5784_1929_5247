@@ -42,7 +42,7 @@ public interface IBl
     public ITaskInList TaskInList { get; }
 
     /// <summary>
-    /// Clock property
+    /// Clock  property
     /// </summary>
     public IClock Clock { get; }
     
