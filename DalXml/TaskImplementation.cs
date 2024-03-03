@@ -49,7 +49,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it)) ?? null/*throw new DalDoesNotExistException("Task not exists")*/;
+        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it)) ?? throw new DalDoesNotExistException("Task not exists");
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(int id)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true) ?? null;/*throw new DalDoesNotExistException($"Engineer with ID={id} not exists");*/
+        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true) ?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
     }
 
     /// <summary>
