@@ -79,12 +79,13 @@ internal class EngineerImplementation : IEngineer
             return new BO.Engineer()
             {
                 id = doEngineer.id,
+                password = doEngineer.password,
                 name = doEngineer.name,
                 email = doEngineer.email,
                 level = (BO.Engineerlevel?)doEngineer.level,
                 cost = doEngineer.cost,
                 isActive = doEngineer.isActive,
-                task = _dal.Task.ReadAll().Where(t => t.id == doEngineer.id).Select(t => new BO.TaskInEngineer(t.id, t.alias)).FirstOrDefault()!
+                task = _dal.Task.ReadAll().Where(t => t.engineerId == doEngineer.id).Select(t => new BO.TaskInEngineer(t.id, t.alias)).FirstOrDefault()!
             };
     }
 
@@ -99,6 +100,7 @@ internal class EngineerImplementation : IEngineer
         select new BO.Engineer
         {
           id = doEngineer.id,
+          password=doEngineer.password,
           name = doEngineer.name,
           email = doEngineer.email,
           level = (BO.Engineerlevel?)doEngineer.level,
@@ -127,7 +129,7 @@ internal class EngineerImplementation : IEngineer
             {
                 if (engineer.name == null || engineer.cost <= 0 || CheckEmail(engineer.email) == false ||engineer.level< (BO.Engineerlevel)doEngineer.level!)
                     throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
-                doEngineer = doEngineer with { name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
+                doEngineer = doEngineer with {password=engineer.password, name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
                 _dal.Engineer.Update(doEngineer);
             }
         }

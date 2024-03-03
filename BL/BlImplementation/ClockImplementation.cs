@@ -20,7 +20,7 @@ internal class ClockImplementation : IClock
     /// Getting a start date for the project
     /// </summary>
     /// <returns></returns>
-    public DateTime? GetStartOfProject()=> _dal.Clock.GetStartOfProject();
+    public DateTime GetStartOfProject()=> _dal.Clock.GetStartOfProject();
 
     /// <summary>
     /// Changing the end date of the project

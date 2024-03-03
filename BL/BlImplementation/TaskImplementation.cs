@@ -278,6 +278,39 @@ internal class TaskImplementation : ITask
         boTask.schedualedDate = minimum;
         s_bl.Task.Update(boTask);
     }
+    public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null)
+    {
+        var task = from DO.Task doTask in _dal.Task.ReadAll()
+                   select new BO.Task
+                   {
+                       id = doTask.id,
+                       alias = doTask.alias,
+                       description = doTask.description,
+                       isMilestone = doTask.isMilestone,
+                       schedualedDate = doTask.schedualedDate,
+                       requiredEffortTime = doTask.requiredEffortTime,
+                       deadlineDate = doTask.deadlineDate,
+                       createdAtDate = doTask.createdAtDate,
+                       startDate = doTask.startDate,
+                       completeDate = doTask.completeDate,
+                       deliverables = doTask.deliverables,
+                       remarks = doTask.remarks,
+                       forecastDate = findForecastDate(doTask.schedualedDate, doTask.startDate, doTask.requiredEffortTime),
+                       engineer = convertFromEngineerToEngineerInTask(doTask.engineerId),
+                       coplexity = (BO.Engineerlevel?)doTask.coplexity,
+                       dependencies = findDependencies(doTask),
+                       isActive = doTask.isActive,
+                       status = findStatus(doTask)
+                   };
+
+        if (filter != null)
+        {
+            task = task.Where(filter);
+        }
+
+        return task;
+    }
+
 }
 
 

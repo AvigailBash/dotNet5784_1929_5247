@@ -53,7 +53,9 @@ namespace PL.Password
                 try
                 {
                     BO.TaskInEngineer? et = s_bl.Engineer.ReadForPassword(User.Id, User.Password);
-                    new TaskWindow(et.id).ShowDialog();
+                    if(et == null) { new TaskInListWindow(true).Show(); }
+                    else
+                    new TaskWindow(et.id, true).ShowDialog();
                 }
                 catch(Exception ex) { MessageBox.Show(ex.Message); }
             }

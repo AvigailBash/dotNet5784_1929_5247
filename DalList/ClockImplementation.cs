@@ -18,9 +18,9 @@ internal class ClockImplementation : IClock
     /// Getting a start date for the project
     /// </summary>
     /// <returns></returns>
-    public DateTime? GetStartOfProject()
+    public DateTime GetStartOfProject()
     {
-        DateTime? startProject = DataSource.Config.startProject;
+        DateTime startProject = DataSource.Config.startProject;
         return startProject;
     }
 

@@ -24,10 +24,13 @@ namespace PL.TaskInList
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
 
-        public TaskInListWindow()
+        public TaskInListWindow(bool f=false)
         {
             InitializeComponent();
+            if(!f)
             TaskList = s_bl?.Task.ReadAll()!;
+            else
+                TaskList = s_bl?.Task.ReadAll(t=>t.engineer==null)!;
         }
 
 
