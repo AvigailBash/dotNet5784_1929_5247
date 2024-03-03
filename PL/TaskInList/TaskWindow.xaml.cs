@@ -127,6 +127,11 @@ namespace PL.TaskInList
         {
             new DependenciesListWindow(Task.id).ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 

@@ -55,12 +55,6 @@
     <isActive>true</isActive>
   </dependency>
   <dependency>
-    <id>1009</id>
-    <dependentTask>1006</dependentTask>
-    <dependsOnTask>1007</dependsOnTask>
-    <isActive>true</isActive>
-  </dependency>
-  <dependency>
     <id>1010</id>
     <dependentTask>1006</dependentTask>
     <dependsOnTask>1003</dependsOnTask>
@@ -239,12 +233,6 @@
     <dependentTask>1001</dependentTask>
     <dependsOnTask>1019</dependsOnTask>
     <isActive>false</isActive>
-  </dependency>
-  <dependency>
-    <id>1009</id>
-    <dependentTask>1001</dependentTask>
-    <dependsOnTask>1019</dependsOnTask>
-    <isActive>true</isActive>
   </dependency>
   <dependency>
     <id>1026</id>
