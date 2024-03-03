@@ -1,162 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
-    <id>1000</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>planning</alias>
-    <description>planning the event</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>244916697</engineerId>
-    <coplexity>Beginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1001</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>design</alias>
-    <description>design the project</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>358719747</engineerId>
-    <coplexity>AdvancedBeginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1002</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>write</alias>
-    <description>write the project code</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>394964002</engineerId>
-    <coplexity>Intermediate</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1003</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>check</alias>
-    <description>search for errors in the project</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>317350875</engineerId>
-    <coplexity>Advanced</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1004</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>correction</alias>
-    <description>correction errors in the project</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>383003340</engineerId>
-    <coplexity>Expert</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1005</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>update</alias>
-    <description>update the project</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>244916697</engineerId>
-    <coplexity>Beginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1006</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>upgrades</alias>
-    <description>upgrades the code</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>358719747</engineerId>
-    <coplexity>AdvancedBeginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1007</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>budget</alias>
-    <description>how much money you have</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>394964002</engineerId>
-    <coplexity>Intermediate</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1008</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>Requirements Gathering</alias>
-    <description>Collect and document the functional and non-functional requirements of the software</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>317350875</engineerId>
-    <coplexity>Advanced</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
-    <id>1009</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>System Architecture Design</alias>
-    <description>Design the overall structure and architecture of the software system</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>383003340</engineerId>
-    <coplexity>Expert</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
     <id>1010</id>
     <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
     <alias>Database Design</alias>
     <description>Plan and create the database schema, considering data storage, retrieval, and relationships</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-03T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -171,7 +21,7 @@
     <alias>Technology Stack Selection</alias>
     <description>Choose the appropriate programming languages, frameworks, libraries, and tools for the project</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-03T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -186,7 +36,7 @@
     <alias>Code Planning and Organization</alias>
     <description>Define coding conventions, project structure, and overall organization of the source code</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-01T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -201,7 +51,7 @@
     <alias>User Interface (UI) Design</alias>
     <description>Create wireframes or mockups to design the user interface and user experience</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-06T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -216,7 +66,7 @@
     <alias>Backend Developmen</alias>
     <description>Implement the server-side logic, business rules, and data processing</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-08T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -231,7 +81,7 @@
     <alias>Integration Testing</alias>
     <description>Test the interaction between different modules and components to ensure seamless integration</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-02T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -246,7 +96,7 @@
     <alias>Security Implementation</alias>
     <description>Incorporate security measures to protect against potential vulnerabilities and attacks</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-05T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -261,7 +111,7 @@
     <alias>Documentation</alias>
     <description>Generate comprehensive documentation, including code comments, user manuals, and technical documentation</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-07T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -276,7 +126,7 @@
     <alias>Version Control</alias>
     <description>Set up and manage version control systems (e.g., Git) to track changes and collaborate effectively</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
@@ -291,13 +141,163 @@
     <alias>User Acceptance Testing</alias>
     <description>User Acceptance Testing</description>
     <isMilestone>true</isMilestone>
-    <schedualedDate xsi:nil="true" />
+    <schedualedDate>2024-03-02T00:00:00+02:00</schedualedDate>
     <requiredEffortTime xsi:nil="true" />
     <deadlineDate xsi:nil="true" />
     <startDate xsi:nil="true" />
     <completeDate xsi:nil="true" />
     <engineerId>383003340</engineerId>
     <coplexity>Expert</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1000</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>planning</alias>
+    <description>planning the event</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>244916697</engineerId>
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1001</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>design</alias>
+    <description>design the project</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>358719747</engineerId>
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1002</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>write</alias>
+    <description>write the project code</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>394964002</engineerId>
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1003</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>check</alias>
+    <description>search for errors in the project</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>317350875</engineerId>
+    <coplexity>Advanced</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1004</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>correction</alias>
+    <description>correction errors in the project</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>383003340</engineerId>
+    <coplexity>Expert</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1005</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>update</alias>
+    <description>update the project</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>244916697</engineerId>
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1006</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>upgrades</alias>
+    <description>upgrades the code</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>358719747</engineerId>
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1008</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>Requirements Gathering</alias>
+    <description>Collect and document the functional and non-functional requirements of the software</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>317350875</engineerId>
+    <coplexity>Advanced</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1009</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>System Architecture Design</alias>
+    <description>Design the overall structure and architecture of the software system</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>383003340</engineerId>
+    <coplexity>Expert</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1007</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>budget</alias>
+    <description>how much money you have</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>394964002</engineerId>
+    <coplexity>Intermediate</coplexity>
     <isActive>true</isActive>
   </Task>
 </ArrayOfTask>

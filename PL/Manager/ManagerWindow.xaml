@@ -12,6 +12,7 @@
         <Button Content="Add Task" HorizontalAlignment="Left" Margin="129,217,0,0" VerticalAlignment="Top" Click="ClickForAddTask"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="549,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="8.126,-5.497" Width="69" Click="ClickForReset"/>
         <Button Content="Set Dates" HorizontalAlignment="Left" Margin="135,309,0,0" VerticalAlignment="Top" Width="103" Click="ClickForSetStartAndEndDates"/>
+        <Button Content="Automatic Schedual" HorizontalAlignment="Left" Margin="514,319,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale"/>
 
     </Grid>
 </Window>

@@ -54,5 +54,11 @@ namespace PL.Manager
         {
             new SetStartAndEndProject().ShowDialog();
         }
+
+        private void ClickForAutomaticScheduale(object sender, RoutedEventArgs e)
+        {
+            s_bl.Help.AutomaticScheduale();
+            MessageBox.Show("success");
+        }
     }
 }

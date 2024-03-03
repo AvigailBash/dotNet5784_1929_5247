@@ -14,6 +14,7 @@ internal class TaskImplementation : ITask
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
     private IClock _clock = new ClockImplementation();
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     /// <summary>
     /// A method that creates a new task
     /// </summary>
@@ -161,7 +162,8 @@ internal class TaskImplementation : ITask
                 DO.Dependency d2 = _dal.Dependency.ReadForUpdate(d)!;
                 if(d2 == null) { _dal.Dependency.Create(d); }
             }
-           
+           doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=task.engineer.id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
+            _dal.Task.Update(doTask);
         }
         catch (DO.DalAlreadyExistsException ex)
         {
@@ -258,7 +260,7 @@ internal class TaskImplementation : ITask
     {
 
         BO.Task temp = Read(id)!;
-        temp.dependencies.Add(taskInList);
+        temp.dependencies!.Add(taskInList);
         Update(temp);
     }
 
@@ -269,6 +271,13 @@ internal class TaskImplementation : ITask
         _dal.Dependency.Delete(temp2.id);
     }
 
+    public void FindTheMinimumDate(BO.Task boTask)
+    {
+        DateTime? minimum = s_bl.clock;
+        foreach(BO.TaskInList boTaskInList in boTask.dependencies!) { BO.Task task = s_bl.Task.Read(boTask.id)!; if (minimum < task.forecastDate) minimum = task.forecastDate; }
+        boTask.schedualedDate = minimum;
+        s_bl.Task.Update(boTask);
+    }
 }
 
 

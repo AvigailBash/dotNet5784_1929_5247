@@ -69,4 +69,5 @@ public interface ITask
 
     public void AddDependencies(int id, BO.TaskInList taskInList);
     public void RemoveDependencies(BO.Task boTask, BO.TaskInList taskInList);
+    public void FindTheMinimumDate(BO.Task boTask);
 }
