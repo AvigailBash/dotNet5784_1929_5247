@@ -37,7 +37,7 @@ public interface IBl
     public ITaskInEngineer TaskInEngineer { get; }
 
     /// <summary>
-    /// Task in list property
+    /// Task in  list property
     /// </summary>
     public ITaskInList TaskInList { get; }
 
