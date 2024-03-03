@@ -31,7 +31,7 @@ namespace PL.TaskInList
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
 
             if (Id == 0)
@@ -44,7 +44,7 @@ namespace PL.TaskInList
                 {
                     Task = s_bl.Task.Read(Id)!;
                 }
-                catch (Exception ex) { Console.WriteLine(ex); }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             }
         }
@@ -97,7 +97,7 @@ namespace PL.TaskInList
             //catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ClickForAddOrUpdate(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 

@@ -8,6 +8,7 @@ internal class ClockImplementation : IClock
     /// A call to the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
     /// <summary>
     /// Getting a end date for the project
@@ -71,7 +72,7 @@ internal class ClockImplementation : IClock
     public DateTime? minimumDateForSceduale(BO.Task t)
     {
         DateTime? minDate = null;
-        DateTime tempDate = DateTime.MinValue;
+        DateTime? tempDate = _dal.Clock.GetStartOfProject();
         if (t.dependencies == null)
         {
             minDate = _dal.Clock.GetStartOfProject();
