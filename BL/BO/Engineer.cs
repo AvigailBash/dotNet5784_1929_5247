@@ -6,7 +6,7 @@
 public class Engineer
 {
     public int id { get;init; }
-    public int password { get; init; } 
+    public int password { get; set; } 
     public string? name { get; set; }
     public string? email { get; set; }
     public Engineerlevel? level { get; set; }

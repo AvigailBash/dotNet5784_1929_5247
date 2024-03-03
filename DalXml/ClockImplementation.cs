@@ -25,12 +25,12 @@ internal class ClockImplementation : IClock
     /// Getting the project start date by extracting it from an XML file
     /// </summary>
     /// <returns></returns>
-    public DateTime? GetStartOfProject()
+    public DateTime GetStartOfProject()
     {
         XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml).Element("startProject")!;
         if (clockRoot.Value == "")
         {
-            return null;
+           return DateTime.Today;
         }
         return DateTime.Parse(clockRoot.Value);
     }

@@ -13,7 +13,7 @@ public interface IClock
     /// Getting a start date for the project
     /// </summary>
     /// <returns></returns>
-    public DateTime? GetStartOfProject();
+    public DateTime GetStartOfProject();
 
     /// <summary>
     /// Changing the end date of the project

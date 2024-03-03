@@ -13,6 +13,7 @@
         <Button Content="Reset" HorizontalAlignment="Left" Margin="549,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="8.126,-5.497" Width="69" Click="ClickForReset"/>
         <Button Content="Set Dates" HorizontalAlignment="Left" Margin="135,309,0,0" VerticalAlignment="Top" Width="103" Click="ClickForSetStartAndEndDates"/>
         <Button Content="Automatic Schedual" HorizontalAlignment="Left" Margin="514,319,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale"/>
+        <Button Content="Gant" HorizontalAlignment="Left" Margin="354,329,0,0" VerticalAlignment="Top" Height="39" Width="46" Click="ClickForOpenGant"/>
 
     </Grid>
 </Window>

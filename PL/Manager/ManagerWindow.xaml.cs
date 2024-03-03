@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Gantt_chart;
 using PL.Schedule;
 using PL.TaskInList;
 using System;
@@ -59,6 +60,11 @@ namespace PL.Manager
         {
             s_bl.Help.AutomaticScheduale();
             MessageBox.Show("success");
+        }
+
+        private void ClickForOpenGant(object sender, RoutedEventArgs e)
+        {
+            new GantChartWindow().Show();
         }
     }
 }
