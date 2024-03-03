@@ -256,21 +256,6 @@
     <isActive>true</isActive>
   </Task>
   <Task>
-    <id>1007</id>
-    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
-    <alias>budget</alias>
-    <description>how much money you have</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
-    <requiredEffortTime xsi:nil="true" />
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId>394964002</engineerId>
-    <coplexity>Intermediate</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
     <id>1008</id>
     <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
     <alias>Requirements Gathering</alias>
@@ -298,6 +283,21 @@
     <completeDate xsi:nil="true" />
     <engineerId>383003340</engineerId>
     <coplexity>Expert</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1007</id>
+    <createdAtDate>2024-02-29T00:00:00+02:00</createdAtDate>
+    <alias>budget</alias>
+    <description>how much money you have</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-02-29T00:00:00+02:00</schedualedDate>
+    <requiredEffortTime xsi:nil="true" />
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId>394964002</engineerId>
+    <coplexity>Intermediate</coplexity>
     <isActive>true</isActive>
   </Task>
 </ArrayOfTask>
