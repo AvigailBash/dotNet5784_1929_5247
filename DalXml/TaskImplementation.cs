@@ -60,7 +60,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(int id)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true) ?? throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
+        return tasks.FirstOrDefault(it => it.id == id && it.isActive == true) ?? null;//throw new DalDoesNotExistException($"Task with ID={id} not exists");
     }
 
     /// <summary>

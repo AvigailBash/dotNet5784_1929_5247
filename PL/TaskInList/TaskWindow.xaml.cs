@@ -27,6 +27,7 @@ namespace PL.TaskInList
             InitializeComponent();
             try
             {
+                if(Id != 0)
                 Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id)!)!;
             }
             catch (Exception ex)
@@ -76,28 +77,20 @@ namespace PL.TaskInList
         public static readonly DependencyProperty dependenciesProperty =
             DependencyProperty.Register("Dependencies", typeof(IEnumerable<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
 
-        private void ClickForUpdateOrAdd(object sender, RoutedEventArgs e)
+       
+
+       
+        private void ClickForAddDependencies(object sender, RoutedEventArgs e)
         {
-            //var button = sender as Button;
-
-            //try
-            //{
-
-            //    if (button is { Content: "Add" })
-            //    {
-            //        s_bl.Task.Create(Task);
-            //    }
-            //    else
-            //    {
-            //        s_bl.Task.Update(Task);
-            //    }
-            //    MessageBox.Show("success");
-            //    this.Close();
-            //}
-            //catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
+            new AddDependenciesWIindow(Task.id).ShowDialog();
         }
 
-        private void ClickForAddOrUpdate(object sender, RoutedEventArgs e)
+        private void ClickForViewDependencies(object sender, RoutedEventArgs e)
+        {
+            new DependenciesListWindow(Task.id).ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
@@ -116,38 +109,22 @@ namespace PL.TaskInList
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
-        }
-
-        private void ClickForAddDependencies(object sender, RoutedEventArgs e)
-        {
-            new AddDependenciesWIindow(Task.id).ShowDialog();
-        }
-
-        private void ClickForViewDependencies(object sender, RoutedEventArgs e)
-        {
-            new DependenciesListWindow(Task.id).ShowDialog();
-        }
-
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
         }
-
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+
+
+
+
+       
+
+
     }
 }
 

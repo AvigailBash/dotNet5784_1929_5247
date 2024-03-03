@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
-
+﻿using BlApi;
+using BlImplementation;
+using System.Collections.Generic;
 namespace BO;
 /// <summary>
 /// An task entity that contains details about the task
 /// </summary>
+
+
 public class Task
 {
+    private IClock _clock = new ClockImplementation();
     public int id { get; init; }
     public string? alias { get; set; }
     public bool isMilestone { get; set; }
@@ -37,7 +41,7 @@ public class Task
         this.description = null;
         this.status = BO.Status.Unscheduled;
         this.dependencies = null;
-        this.createdAtDate = DateTime.MinValue;
+        this.createdAtDate = DateTime.Now;
         this.schedualedDate = null;
         this.startDate = null;
         this.forecastDate = null;
