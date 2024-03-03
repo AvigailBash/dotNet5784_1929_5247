@@ -23,15 +23,16 @@ internal class HelpImplementation:IHelp
         Random random = new Random(); // Initialize a random number generator
 
         IEnumerable<DO.Task> task = _dal.Task.ReadAll();
-
-        foreach( BO.TaskInList boTaskInList in tasks) {
+        if (tasks != null && task != null) 
+        {
+            foreach (BO.TaskInList boTaskInList in tasks)
+            {
                 int daysToAdd = random.Next(0, 9);
                 BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
                 boTask!.schedualedDate = minimumDate.AddDays(daysToAdd);
                 s_bl.Task.Update(boTask);
+            }
         }
-
-
         tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
         foreach (BO.TaskInList boTaskInList in tasks)
         {
