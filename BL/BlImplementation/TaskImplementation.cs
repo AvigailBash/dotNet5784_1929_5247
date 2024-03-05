@@ -148,6 +148,7 @@ internal class TaskImplementation : ITask
     {
         try
         {
+            int? id = null;
             DO.Task? doTask = _dal.Task.Read(task.id);
             if (_clock.statusForProject() == BO.StatusOfProject.End)
             {
@@ -162,7 +163,11 @@ internal class TaskImplementation : ITask
                 DO.Dependency d2 = _dal.Dependency.ReadForUpdate(d)!;
                 if(d2 == null) { _dal.Dependency.Create(d); }
             }
-           doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=task.engineer.id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
+            if(task.engineer != null)
+            {
+                id = task.engineer.id;
+            }
+           doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
             _dal.Task.Update(doTask);
         }
         catch (DO.DalAlreadyExistsException ex)
@@ -274,7 +279,7 @@ internal class TaskImplementation : ITask
     public void FindTheMinimumDate(BO.Task boTask)
     {
         DateTime? minimum = s_bl.clock;
-        foreach(BO.TaskInList boTaskInList in boTask.dependencies!) { BO.Task task = s_bl.Task.Read(boTask.id)!; if (minimum < task.forecastDate) minimum = task.forecastDate; }
+        foreach(BO.TaskInList boTaskInList in boTask.dependencies!) { BO.Task task = s_bl.Task.Read(boTaskInList.id)!; if (minimum < task.forecastDate) minimum = task.forecastDate; }
         boTask.schedualedDate = minimum;
         s_bl.Task.Update(boTask);
     }

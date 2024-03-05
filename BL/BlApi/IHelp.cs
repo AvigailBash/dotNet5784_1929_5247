@@ -8,4 +8,5 @@ public interface IHelp
     public void reset();
 
     public void AutomaticScheduale();
+    public void SetNullInScheduale();
 }

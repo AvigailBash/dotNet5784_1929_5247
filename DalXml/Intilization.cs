@@ -241,16 +241,16 @@ internal class Intilization
         createEngineer();
         createDependency();
         createTasks();
-        Config.resetDependencyId();
-        Config.resetTaskId();
+        Config.resetDependencyId(false);
+        Config.resetTaskId(false);
     }
 
 
     public static void reset()
     {
         deleteAll();
-        Config.resetDependencyId();
-        Config.resetTaskId();
+        Config.resetDependencyId(true);
+        Config.resetTaskId(true);
 
     }
 

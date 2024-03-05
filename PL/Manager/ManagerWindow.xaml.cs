@@ -66,5 +66,11 @@ namespace PL.Manager
         {
             new GantChartWindow().Show();
         }
+
+        private void SetSchedualeToNull(object sender, RoutedEventArgs e)
+        {
+            s_bl.Help.SetNullInScheduale();
+            MessageBox.Show("success");
+        }
     }
 }
