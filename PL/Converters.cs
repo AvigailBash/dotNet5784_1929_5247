@@ -79,5 +79,19 @@ class ConvertDaTteTimeToIsEnabled : IValueConverter
 
 }
 
+class ConvertStatusToIsColor : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if(((BO.Status) value )== BO.Status.Scheduled) { return Colors.BlueViolet; }
+        if(((BO.Status) value )== BO.Status.Done) { return Colors.Red; }
+        if(((BO.Status) value )== BO.Status.None) { return Colors.Green; }
+        return Colors.White;
+    }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
 
+}

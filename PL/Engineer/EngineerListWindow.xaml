@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <Label  Grid.Column="0" Content="Engineer experience" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
-            <ComboBox ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
+            <ComboBox Style="{StaticResource myComboBoxBoxStyle}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}"
                  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedValue="{Binding Level, Mode=TwoWay}" SelectionChanged="SelectEngineerLevelInCombobox"/>
 
         </Grid>

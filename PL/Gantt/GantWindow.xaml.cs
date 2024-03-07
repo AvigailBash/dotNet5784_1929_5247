@@ -22,7 +22,6 @@ namespace PL.Gantt
         public GantWindow()
         {
             InitializeComponent();
-
         }
     }
 }
