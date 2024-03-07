@@ -50,11 +50,21 @@ static class XMLTools
         return nextId;
     }
     #endregion
-    public static int ResetId(string data_config_xml, string elemName)
+    public static int ResetId(string data_config_xml, string elemName, bool flag, string from)
     {
         XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
         int nextId = root.ToIntNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
-        root.Element(elemName)?.SetValue((1000).ToString());
+        if (flag)
+            root.Element(elemName)?.SetValue((1000).ToString());
+        else
+        {
+            if (from == "Task")
+            {
+                root.Element(elemName)?.SetValue((1020).ToString());
+            }
+            else
+                root.Element(elemName)?.SetValue((1040).ToString());
+        }
         XMLTools.SaveListToXMLElement(root, data_config_xml);
         return nextId;
     }
