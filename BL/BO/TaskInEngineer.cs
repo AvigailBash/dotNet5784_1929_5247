@@ -17,4 +17,5 @@ public class TaskInEngineer
         this.id = 0;
         this.alias = null;
     }
+    public override string ToString() => this.ToStringProperty();
 }

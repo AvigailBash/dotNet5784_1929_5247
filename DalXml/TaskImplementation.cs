@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Dal;
 
@@ -49,7 +50,7 @@ internal class TaskImplementation: ITask
     public DO.Task? Read(Func<DO.Task, bool> filter)
     {
         List<DO.Task> tasks = XMLTools.LoadListFromXMLSerializer<DO.Task>(s_tasks_xml);
-        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it)) ?? throw new DalDoesNotExistException("Task not exists");
+        return tasks.FirstOrDefault(it => !it.isActive ? false : filter is null ? true : filter(it)) ?? null; /*throw new DalDoesNotExistException("Task not exists");*/
     }
 
     /// <summary>
