@@ -47,22 +47,25 @@ class ConvertTextToUserId : IValueConverter
 
 }
 
-public class StatusToStringConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (value is BO.Status status)
-        {
-            return status.ToString(); // שים לב שניתן לשנות את התצוגה בהתאם לצורך
-        }
+//public class StatusToColorConverter : IValueConverter
+//{
+//    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        if (value is BO.Status status)
+//        {
+//            return colorMapping[status];
+//        }
 
-        return string.Empty;
-    }
+//        return Brushes.Transparent;
+//    }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-}
+//    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
+
+
+
 
 

@@ -19,9 +19,17 @@ namespace PL.Gantt_chart
     /// Interaction logic for GantChartWindow.xaml
     /// </summary>
     public partial class GantChartWindow : Window
+
     {
+        Dictionary<BO.Status, Brush> colorMapping = new Dictionary<BO.Status, Brush>()
+                {
+                  { BO.Status.None, Brushes.White }, // צבע מותאם אישית
+                  { BO.Status.Scheduled,  new SolidColorBrush(Color.FromRgb(70, 137, 130)) }, // צבע מותאם אישית
+                  { BO.Status.Done,Brushes.LightGray },
+                };
+
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-      
+
         public GantChartWindow()
         {
             InitializeComponent();
@@ -114,10 +122,10 @@ namespace PL.Gantt_chart
 
         //    }
         //}
-       
+
 
         private void DataGrid_Initialized(object sender, EventArgs e)
-        
+
         {
             DataGrid? dataGrid = sender as DataGrid; //the graphic container
 
@@ -132,6 +140,7 @@ namespace PL.Gantt_chart
                 dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Name", Binding = new Binding("[1]") });
                 dataTable.Columns.Add("Task Name", typeof(string));
 
+                
                 //dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Engineer Id", Binding = new Binding("[2]") });
                 //dataTable.Columns.Add("Engineer Id", typeof(int));
 
@@ -181,10 +190,10 @@ namespace PL.Gantt_chart
             }
         }
     }
-    }
+}
 
-        
-    
+
+
 
 
 

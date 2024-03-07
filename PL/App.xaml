@@ -9,7 +9,7 @@
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:ConvertIdToIsEnabled x:Key="ConvertIdToIsEnabledKey"/>
         <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
-        <local:StatusToStringConverter x:Key="StatusToStringConverter"/>
+        <local:ConvertStatusToColor x:Key="ConvertStatusToColorKey" />
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />

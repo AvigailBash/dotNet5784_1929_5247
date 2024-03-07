@@ -108,7 +108,7 @@ internal class Intilization
                     break;
             }
             DateTime? _schedualedDate = null;
-            DateTime _createdAtDate = DateTime.Today;
+            DateTime _createdAtDate = s_dal.Clock.GetStartOfProject();
             DateTime? _startDate = null;
 
 
@@ -219,9 +219,9 @@ internal class Intilization
             do
             {
                 _dependentTask = new Random().Next(1000, 1010);
-                _dependsOnTask = new Random().Next(1000, 1010);
+                _dependsOnTask = new Random().Next(1000, 1020);
 
-            } while (_dependsOnTask == _dependentTask);
+            } while (_dependsOnTask == _dependentTask || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependentTask && t.dependentTask == _dependsOnTask).Count() != 0 || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependsOnTask && t.dependentTask == _dependentTask).Count() != 0);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
             s_dal!.Dependency.Create(newDependency);
         }
