@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace PL.Schedule
 {
     /// <summary>
-    /// Interaction logic for SetStartAndEndProject.xaml
+    /// Interaction logic for  SetStartAndEndProject.xaml
     /// </summary>
     public partial class SetStartAndEndProject : Window
     {
