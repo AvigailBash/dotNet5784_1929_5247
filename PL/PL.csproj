@@ -15,8 +15,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Manager\ManagerWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\DalList\DalList.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Manager\ManagerWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Image\" />
   </ItemGroup>
 
 </Project>

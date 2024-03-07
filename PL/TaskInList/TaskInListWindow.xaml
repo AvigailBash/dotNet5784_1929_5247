@@ -33,6 +33,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Task" HorizontalAlignment="Left" Margin="59,9,0,0" Grid.Row="2" Click="Button_Click"/>
 
     </Grid>
 </Window>

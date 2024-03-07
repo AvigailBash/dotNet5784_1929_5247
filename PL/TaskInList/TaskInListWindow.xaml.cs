@@ -69,5 +69,10 @@ namespace PL.TaskInList
             TaskList = s_bl?.Task.ReadAll()!;
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TaskList = s_bl.Task.GetTasksGroupedByTaskIdSafe();
+        }
     }
 }
