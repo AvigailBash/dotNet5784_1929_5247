@@ -5,46 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.TaskInList"
         mc:Ignorable="d"
-         Title="TaskWindow" Height="650" Width="800"
+         Title="TaskWindow" Height="646" Width="800"
          DataContext="{Binding Task, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
     <Grid>
         <Label  Style="{StaticResource myLabelStyle}" Content="ID" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.639,0.719"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Alias" HorizontalAlignment="Left" Margin="20,66,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Descriptiom" HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.321,0.192"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Status" HorizontalAlignment="Left" Margin="20,177,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Dependencies" HorizontalAlignment="Left" Margin="20,373,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Created at date" HorizontalAlignment="Left" Margin="450,120,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Schedualed date" HorizontalAlignment="Left" Margin="450,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.042,-5.688"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Start date" HorizontalAlignment="Left" Margin="450,244,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Forecast" HorizontalAlignment="Left" Margin="450,308,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Deadline date" HorizontalAlignment="Left" Margin="450,373,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Complete date" HorizontalAlignment="Left" Margin="450,441,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Required effort time" HorizontalAlignment="Left" Margin="450,61,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Dependencies" HorizontalAlignment="Left" Margin="10,515,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Created at date" HorizontalAlignment="Left" Margin="443,24,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Schedualed date" HorizontalAlignment="Left" Margin="443,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.042,-5.688"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Start date" HorizontalAlignment="Left" Margin="443,148,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Forecast" HorizontalAlignment="Left" Margin="443,211,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Deadline date" HorizontalAlignment="Left" Margin="443,276,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Complete date" HorizontalAlignment="Left" Margin="443,345,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Required effort time" HorizontalAlignment="Left" Margin="20,361,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Deliverables" HorizontalAlignment="Left" Margin="20,244,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Remarks" HorizontalAlignment="Left" Margin="20,308,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="20,441,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Complexity" HorizontalAlignment="Left" Margin="22,558,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Active" HorizontalAlignment="Left" Margin="459,509,0,0" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="201,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox HorizontalAlignment="Left" Margin="201,74,0,0" TextWrapping="Wrap" Text="{Binding alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="201,133,0,0" TextWrapping="Wrap" Text="{Binding description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="201,252,0,0" TextWrapping="Wrap" Text="{Binding deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="201,312,0,0" TextWrapping="Wrap" Text="{Binding remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        
-        <CheckBox  IsChecked="{Binding isActive}" Content="" HorizontalAlignment="Left" Margin="640,510,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding startDate}" HorizontalAlignment="Left" Margin="641,249,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding createdAtDate}" HorizontalAlignment="Left" Margin="641,122,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding schedualedDate}" HorizontalAlignment="Left" Margin="641,178,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding forecastDate}" HorizontalAlignment="Left" Margin="641,308,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding deadlineDate}" HorizontalAlignment="Left" Margin="641,371,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding completeDate}" HorizontalAlignment="Left" Margin="641,439,0,0" VerticalAlignment="Top"/>
-        <TextBox  Text="{Binding requiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="641,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox  Text="{Binding engineer.name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,481,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox SelectedValue="{Binding coplexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" HorizontalAlignment="Left" Margin="202,549,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Style="{StaticResource myTextBoxStyle}" IsEnabled="False" Margin="201,190,479,0"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="add dependencies" HorizontalAlignment="Left" Margin="200,376,0,0" VerticalAlignment="Top" Width="121" Click="ClickForAddDependencies"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="view dependencies" HorizontalAlignment="Left" Margin="202,410,0,0" VerticalAlignment="Top" Width="120" Click="ClickForViewDependencies"/>
-        <Button  Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="539,584,0,0" VerticalAlignment="Top" Click="Button_Click" />
-        <TextBox HorizontalAlignment="Left" Margin="201,454,0,0" TextWrapping="Wrap" Text="{Binding engineer.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="20,413,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Complexity" HorizontalAlignment="Left" Margin="443,403,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Active" HorizontalAlignment="Left" Margin="452,469,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="201,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,74,0,0" TextWrapping="Wrap" Text="{Binding alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,133,0,0" TextWrapping="Wrap" Text="{Binding description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,252,0,0" TextWrapping="Wrap" Text="{Binding deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,312,0,0" TextWrapping="Wrap" Text="{Binding remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+
+        <CheckBox  IsChecked="{Binding isActive}" BorderBrush="Gray" BorderThickness="3" Content="" HorizontalAlignment="Left" Margin="634,474,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding startDate}" HorizontalAlignment="Left" Margin="634,153,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding createdAtDate}" HorizontalAlignment="Left" Margin="634,26,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding schedualedDate}" HorizontalAlignment="Left" Margin="634,82,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding forecastDate}" HorizontalAlignment="Left" Margin="634,211,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding deadlineDate}" HorizontalAlignment="Left" Margin="634,274,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding completeDate}" HorizontalAlignment="Left" Margin="634,343,0,0" VerticalAlignment="Top"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding requiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding engineer.name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Style="{StaticResource myComboBoxBoxStyle}" SelectedValue="{Binding coplexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="634,407,0,0" VerticalAlignment="Top"  >
+            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        </ComboBox>
+        <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" IsEnabled="False" Margin="201,190,479,0"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="add dependencies" HorizontalAlignment="Left" Margin="201,510,0,0" VerticalAlignment="Top" Width="121" Click="ClickForAddDependencies"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="view dependencies" HorizontalAlignment="Left" Margin="201,558,0,0" VerticalAlignment="Top" Width="120" Click="ClickForViewDependencies"/>
+        <Button  Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="443,558,0,0" VerticalAlignment="Top" Click="Button_Click" />
+        <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="202,417,0,0" TextWrapping="Wrap" Text="{Binding engineer.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+      
     </Grid>
 </Window>

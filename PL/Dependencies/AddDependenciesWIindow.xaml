@@ -9,7 +9,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <ListBox ItemsSource="{Binding TaskList}" Margin="103,80,103,79" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Add Dependencies" HorizontalAlignment="Left" Margin="612,379,0,0" VerticalAlignment="Top" Click="ClickForAddDependencies"/>
+        <Button Style="{StaticResource myButtonStyle}"  Content="Add Dependencies" HorizontalAlignment="Left" Margin="612,379,0,0" VerticalAlignment="Top" Click="ClickForAddDependencies"/>
 
     </Grid>
 </Window>

@@ -27,8 +27,4 @@
     <Resource Include="Manager\ManagerWindow.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Image\" />
-  </ItemGroup>
-
 </Project>

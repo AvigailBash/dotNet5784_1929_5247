@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="504" Width="799"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="495,119,0,0" VerticalAlignment="Top" Width="93" Click="DoInitialization"/>
-        <Button Content="Manager" HorizontalAlignment="Left" Margin="71,231,0,0" VerticalAlignment="Top" Width="99" Click="Button_Click"/>
-        <Label Content="{Binding CurrentTime ,Mode=TwoWay}" HorizontalAlignment="Left" Margin="507,241,0,0" VerticalAlignment="Top" Width="173" Height="34"/>
-        <Button Content="Init" HorizontalAlignment="Left" Margin="713,312,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock"/>
-        <Button Content="NextDay" HorizontalAlignment="Left" Margin="449,312,0,0" VerticalAlignment="Top" Click="AddDayClick"/>
-        <Button Content="NextHour" HorizontalAlignment="Left" Margin="542,312,0,0" VerticalAlignment="Top" Click="AddHourClick"/>
-        <Button  Content="NextYear" HorizontalAlignment="Left" Margin="635,312,0,0" VerticalAlignment="Top" Click="AddYearClick"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="120,332,0,0" VerticalAlignment="Top" Click="ClickForEnter"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="60,112,0,0" VerticalAlignment="Top" Width="93" Click="DoInitialization"/>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
+        <Label Content="{Binding CurrentTime ,Mode=TwoWay}" Style="{StaticResource myLabelStyle}" FontSize="20" HorizontalAlignment="Left" Margin="447,259,0,0" VerticalAlignment="Top" Width="190" Height="40" RenderTransformOrigin="0.483,0.576"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="Init" HorizontalAlignment="Left" Margin="652,337,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextDay" HorizontalAlignment="Left" Margin="301,337,0,0" VerticalAlignment="Top" Click="AddDayClick"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextHour" HorizontalAlignment="Left" Margin="420,337,0,0" VerticalAlignment="Top" Click="AddHourClick"/>
+        <Button  Style="{StaticResource mySmallButtonStyle}" Content="NextYear" HorizontalAlignment="Left" Margin="534,337,0,0" VerticalAlignment="Top" Click="AddYearClick"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="30,389,0,0" VerticalAlignment="Top" Click="ClickForEnter"/>
+        <Rectangle Stroke="Black" Margin="280,198,38,64" StrokeThickness="5"  />
     </Grid>
 </Window>
