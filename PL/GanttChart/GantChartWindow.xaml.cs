@@ -124,80 +124,12 @@ namespace PL.Gantt_chart
         //}
 
 
-        //private void DataGrid_Initialized(object sender, EventArgs e)
-
-        //{
-        //    DataGrid? dataGrid = sender as DataGrid; //the graphic container
-
-        //    DataTable dataTable = new DataTable(); //the logic container
-
-        //    //add COLUMNS to datagrid and datatable
-        //    if (dataGrid != null)
-        //    {
-        //        dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Id", Binding = new Binding("[0]") });
-        //        dataTable.Columns.Add("Task Id", typeof(int));
-
-        //        dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Name", Binding = new Binding("[1]") });
-        //        dataTable.Columns.Add("Task Name", typeof(string));
-
-
-        //        //dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Engineer Id", Binding = new Binding("[2]") });
-        //        //dataTable.Columns.Add("Engineer Id", typeof(int));
-
-        //        //dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Engineer Name", Binding = new Binding("[3]") });
-        //        //dataTable.Columns.Add("Engineer Name", typeof(string));
-
-        //        int col = 2;
-        //        for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
-        //        {
-        //            string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
-        //            dataGrid.Columns.Add(new DataGridTextColumn() { Header = strDay, Binding = new Binding($"[{col}]") });
-        //            dataTable.Columns.Add(strDay, typeof(BO.Status));// typeof(System.Windows.Media.Color));
-        //            col++;
-
-        //        }
-        //    }
-
-        //    //add ROWS to logic container (data table)
-        //    IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.id);
-        //    foreach (BO.Task task in orderedListTasksSchedule)
-        //    {
-        //        //dataGrid.CellStyle
-
-        //        DataRow row = dataTable.NewRow();
-        //        row[0] = task.id;
-        //        row[1] = task.alias;
-        //        //row[2] = task.EngineerId;
-        //        //row[3] = task.EngineerName;
-
-        //        for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
-        //        {
-        //            string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
-
-        //            if (day < task.schedualedDate || day > task.forecastDate)
-        //                row[strDay] = BO.Status.None; //"EMPTY";
-        //            else
-        //            {
-
-        //                row[strDay] = task.status; //BO.TaskStatus.TaskIsSchedualed; //"FULL";
-
-        //            }
-        //        }
-        //        dataTable.Rows.Add(row);
-        //    }
-
-        //    if (dataGrid != null)
-        //    {
-        //        dataGrid.ItemsSource = dataTable.DefaultView;
-        //    }
-        //}
-
-
         private void DataGrid_Initialized(object sender, EventArgs e)
-        {
-            DataGrid? dataGrid = sender as DataGrid;
 
-            DataTable dataTable = new DataTable();
+        {
+            DataGrid? dataGrid = sender as DataGrid; //the graphic container
+
+            DataTable dataTable = new DataTable(); //the logic container
 
             //add COLUMNS to datagrid and datatable
             if (dataGrid != null)
@@ -216,63 +148,53 @@ namespace PL.Gantt_chart
                 //dataTable.Columns.Add("Engineer Name", typeof(string));
 
                 int col = 2;
-
                 for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
-                    string strDay = $"{day.Day}/{day.Month}/{day.Year}";
-                    var templateColumn = new DataGridTemplateColumn();
-                    templateColumn.Header = strDay;
+                    string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
+                    dataGrid.Columns.Add(new DataGridTextColumn() { Header = strDay, Binding = new Binding($"[{col}]") });
+                    dataTable.Columns.Add(strDay, typeof(BO.Status));// typeof(System.Windows.Media.Color));
+                    col++;
 
-                    // Create a data template with a Rectangle bound to the status using a converter
-                    var dataTemplate = new DataTemplate();
-                    var rectangleFactory = new FrameworkElementFactory(typeof(Rectangle));
-                    rectangleFactory.SetBinding(Rectangle.FillProperty, new Binding(strDay)
-                    {
-                        Converter = (IValueConverter)FindResource("StatusToColorConverter")
-                    });
-                    dataTemplate.VisualTree = rectangleFactory;
-                    templateColumn.CellTemplate = dataTemplate;
-
-                    dataGrid.Columns.Add(templateColumn);
-                    dataTable.Columns.Add(strDay, typeof(BO.Status));
-                }
-                //add ROWS to logic container(data table)
-                    IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.id);
-                foreach (BO.Task task in orderedListTasksSchedule)
-                {
-                    //dataGrid.CellStyle
-
-                    DataRow row = dataTable.NewRow();
-                    row[0] = task.id;
-                    row[1] = task.alias;
-                    //row[2] = task.EngineerId;
-                    //row[3] = task.EngineerName;
-
-                    for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
-                    {
-                        string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
-
-                        if (day < task.schedualedDate || day > task.forecastDate)
-                            row[strDay] = BO.Status.None; //"EMPTY";
-                        else
-                        {
-
-                            row[strDay] = task.status; //BO.TaskStatus.TaskIsSchedualed; //"FULL";
-
-                        }
-                    }
-                    dataTable.Rows.Add(row);
-                }
-
-                if (dataGrid != null)
-                {
-                    dataGrid.ItemsSource = dataTable.DefaultView;
                 }
             }
 
+            //add ROWS to logic container (data table)
+            IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.id);
+            foreach (BO.Task task in orderedListTasksSchedule)
+            {
+                //dataGrid.CellStyle
 
+                DataRow row = dataTable.NewRow();
+                row[0] = task.id;
+                row[1] = task.alias;
+                //row[2] = task.EngineerId;
+                //row[3] = task.EngineerName;
+
+                for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                {
+                    string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
+
+                    if (day < task.schedualedDate || day > task.forecastDate)
+                        row[strDay] = BO.Status.None; //"EMPTY";
+                    else
+                    {
+
+                        row[strDay] = task.status; //BO.TaskStatus.TaskIsSchedualed; //"FULL";
+
+                    }
+                }
+                dataTable.Rows.Add(row);
+            }
+
+            if (dataGrid != null)
+            {
+                dataGrid.ItemsSource = dataTable.DefaultView;
+            }
         }
-        }  }
+
+
+    }
+}
 
 
 

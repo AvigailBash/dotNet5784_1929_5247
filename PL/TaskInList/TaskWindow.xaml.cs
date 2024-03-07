@@ -75,7 +75,7 @@ namespace PL.TaskInList
             set { SetValue(EngineerInTaskProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for EngineerInTask.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing  store for EngineerInTask.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EngineerInTaskProperty =
             DependencyProperty.Register("EngineerInTask", typeof(BO.EngineerInTask), typeof(TaskWindow), new PropertyMetadata(null));
 
