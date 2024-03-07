@@ -108,11 +108,11 @@ internal class Intilization
                     break;
             }
             DateTime? _schedualedDate = null;
-            DateTime _createdAtDate = DateTime.Today;
+            DateTime _createdAtDate = s_dal.Clock.GetStartOfProject();
             DateTime? _startDate = null;
 
 
-            DateTime today = DateTime.Today;
+            DateTime today =s_dal.Clock.GetStartOfProject();///////////
             DateTime sixMonthsFromNow = today.AddMonths(6);
             Random random = new Random();
             int range = (sixMonthsFromNow - today).Days;
@@ -219,9 +219,9 @@ internal class Intilization
             do
             {
                 _dependentTask = new Random().Next(1000, 1010);
-                _dependsOnTask = new Random().Next(1000, 1010);
+                _dependsOnTask = new Random().Next(1000, 1020);
 
-            } while (_dependsOnTask == _dependentTask);
+            } while (_dependsOnTask == _dependentTask || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependentTask && t.dependentTask == _dependsOnTask).Count() != 0 || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependsOnTask && t.dependentTask == _dependentTask).Count() != 0);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);
             s_dal!.Dependency.Create(newDependency);
         }
@@ -238,11 +238,11 @@ internal class Intilization
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         s_dal = DalApi.Factory.Get;
         deleteAll();
+        Config.resetDependencyId(false);
+        Config.resetTaskId(false);
         createEngineer();
         createDependency();
         createTasks();
-        Config.resetDependencyId(false);
-        Config.resetTaskId(false);
     }
 
 

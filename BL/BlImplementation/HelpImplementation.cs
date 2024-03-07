@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using DO;
+using System;
 using System.Security.Cryptography;
 
 namespace BlImplementation;
@@ -17,35 +18,52 @@ internal class HelpImplementation:IHelp
 
     public void AutomaticScheduale()
     {
+        Random random = new Random(); // Initialize a random number generator
         IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(item => item.dependencies.Count == 0 && item.schedualedDate == null);
-        if (tasks.Count() != 0)
-        {
-            DateTime minimumDate = s_bl.clock;
-            DateTime maximumDate = s_bl.clock.AddDays(8);
-            Random random = new Random(); // Initialize a random number generator
-
-            //IEnumerable<DO.Task> task = _dal.Task.ReadAll();
-
-            foreach (BO.TaskInList boTaskInList in tasks)
+            if (tasks.Count() != 0)
             {
-                int daysToAdd = random.Next(0, 9);
-                BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
+                DateTime minimumDate = s_bl.Clock.GetStartOfProject();
+                //DateTime maximumDate = s_bl.clock.AddDays(3);
+               
+            TimeSpan require= TimeSpan.FromDays(5);
+            //IEnumerable<DO.Task> task = _dal.Task.ReadAll();
+            int daysToAdd;
+                foreach (BO.TaskInList boTaskInList in tasks)
+                {
+                   
+                    BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
+                if (boTask.requiredEffortTime == null)
+                {
+                    daysToAdd = random.Next(3, 7);
+                    boTask.requiredEffortTime = TimeSpan.FromDays(Math.Max(daysToAdd, 0));
+                }
+                s_bl.Task.Update(boTask);
+                daysToAdd = random.Next(0, 4);
                 boTask!.schedualedDate = minimumDate.AddDays(daysToAdd);
                 s_bl.Task.Update(boTask);
+                boTask.forecastDate = s_bl.Task.findForecastDate(boTask.schedualedDate, boTask.schedualedDate, boTask.requiredEffortTime);
+
+                  
+
+                }
             }
-        }
         
 
-        if(tasks.Count()!=0)
+
+        tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
+        foreach (BO.TaskInList boTaskInList in tasks)
         {
-            tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
-            foreach (BO.TaskInList boTaskInList in tasks)
+            BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
+            s_bl.Task.FindTheMinimumDate(boTask);
+            if (boTask.requiredEffortTime == null)
             {
-                BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
-                s_bl.Task.FindTheMinimumDate(boTask);
+                int daysToAdd = random.Next(3, 7);
+                boTask.requiredEffortTime = TimeSpan.FromDays(Math.Max(daysToAdd, 0));
             }
+
+            boTask.forecastDate = s_bl.Task.findForecastDate(boTask.schedualedDate, boTask.schedualedDate, boTask.requiredEffortTime);
+            s_bl.Task.Update(boTask);
         }
-       
     }
 
     public void SetNullInScheduale()

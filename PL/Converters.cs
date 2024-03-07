@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace PL;
 
@@ -44,7 +45,26 @@ class ConvertTextToUserId : IValueConverter
         throw new NotImplementedException();
     }
 
-} 
+}
+
+//public class StatusToColorConverter : IValueConverter
+//{
+//    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        if (value is BO.Status status)
+//        {
+//            return colorMapping[status];
+//        }
+
+//        return Brushes.Transparent;
+//    }
+
+//    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
+
 
 
 

@@ -54,7 +54,7 @@ static class XMLTools
     {
         XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
         int nextId = root.ToIntNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
-        if (flag)
+        if (!flag)
             root.Element(elemName)?.SetValue((1000).ToString());
         else
         {

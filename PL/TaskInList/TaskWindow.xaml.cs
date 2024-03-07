@@ -29,6 +29,7 @@ namespace PL.TaskInList
             {
                 if(Id != 0)
                 Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id)!)!;
+               
             }
             catch (Exception ex)
             {
@@ -38,12 +39,14 @@ namespace PL.TaskInList
             if (Id == 0)
             {
                 Task = new BO.Task();
+              
             }
             else
             {
                 try
                 {
                     Task = s_bl.Task.Read(Id)!;
+                  
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
 
@@ -63,6 +66,18 @@ namespace PL.TaskInList
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("Task", typeof(BO.Task), typeof(TaskWindow), new PropertyMetadata(null));
 
+
+
+
+        public BO.EngineerInTask EngineerInTask
+        {
+            get { return (BO.EngineerInTask)GetValue(EngineerInTaskProperty); }
+            set { SetValue(EngineerInTaskProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EngineerInTask.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EngineerInTaskProperty =
+            DependencyProperty.Register("EngineerInTask", typeof(BO.EngineerInTask), typeof(TaskWindow), new PropertyMetadata(null));
 
 
 

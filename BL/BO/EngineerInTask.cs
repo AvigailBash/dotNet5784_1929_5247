@@ -5,7 +5,7 @@
 /// </summary>
 public class EngineerInTask
 {
-    public int id { get; init; }
+    public int id { get; set; }
     public string? name { get; set; }
 
     /// <summary>
