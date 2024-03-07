@@ -8,8 +8,6 @@
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
-
-
     <Grid>
         <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="495,119,0,0" VerticalAlignment="Top" Width="93" Click="DoInitialization"/>

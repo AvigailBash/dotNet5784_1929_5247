@@ -72,5 +72,16 @@ namespace PL.Manager
             s_bl.Help.SetNullInScheduale();
             MessageBox.Show("success");
         }
+
+        private void ClickForIntilization(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want to do Initialization?", "Initialization", MessageBoxButton.YesNo /*MessageBoxImage.Question*/);
+            // Check the user's response
+            if (result == MessageBoxResult.Yes)
+            {
+                s_bl.Help.init();
+
+            }
+        }
     }
 }

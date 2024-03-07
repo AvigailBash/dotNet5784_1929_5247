@@ -42,7 +42,6 @@
         <TextBox  Text="{Binding engineer.name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,481,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox SelectedValue="{Binding coplexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" HorizontalAlignment="Left" Margin="202,549,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Style="{StaticResource myTextBoxStyle}" IsEnabled="False" Margin="201,190,479,0"/>
-        <Button Content="Select new task" HorizontalAlignment="Left" Margin="52,604,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_1"/>
         <Button Style="{StaticResource myButtonStyle}" Content="add dependencies" HorizontalAlignment="Left" Margin="200,376,0,0" VerticalAlignment="Top" Width="121" Click="ClickForAddDependencies"/>
         <Button Style="{StaticResource myButtonStyle}" Content="view dependencies" HorizontalAlignment="Left" Margin="202,410,0,0" VerticalAlignment="Top" Width="120" Click="ClickForViewDependencies"/>
         <Button  Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="539,584,0,0" VerticalAlignment="Top" Click="Button_Click" />

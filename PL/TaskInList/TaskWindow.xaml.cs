@@ -22,14 +22,14 @@ namespace PL.TaskInList
     public partial class TaskWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        public TaskWindow(int Id = 0,bool arriveFromEngineer=false)
+        public TaskWindow(int Id = 0, bool arriveFromEngineer = false)
         {
             InitializeComponent();
             try
             {
-                if(Id != 0)
-                Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id)!)!;
-               
+                if (Id != 0)
+                    Dependencies = s_bl?.Task.findDependencies(s_bl?.Task.Read(Id)!)!;
+
             }
             catch (Exception ex)
             {
@@ -39,22 +39,22 @@ namespace PL.TaskInList
             if (Id == 0)
             {
                 Task = new BO.Task();
-              
+
             }
             else
             {
                 try
                 {
                     Task = s_bl.Task.Read(Id)!;
-                  
+
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             }
         }
-        
 
-        
+
+
 
         public BO.Task Task
         {
@@ -92,9 +92,9 @@ namespace PL.TaskInList
         public static readonly DependencyProperty dependenciesProperty =
             DependencyProperty.Register("Dependencies", typeof(IEnumerable<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
 
-       
 
-       
+
+
         private void ClickForAddDependencies(object sender, RoutedEventArgs e)
         {
             new AddDependenciesWIindow(Task.id).ShowDialog();
@@ -115,13 +115,32 @@ namespace PL.TaskInList
                 if (button is { Content: "Add" })
                 {
                     s_bl.Task.Create(Task);
+                    MessageBox.Show("success");
+                    this.Close();
                 }
                 else
                 {
                     s_bl.Task.Update(Task);
+                    if (Task.completeDate != null)
+                    {
+                        this.Close();
+                        MessageBoxResult result = MessageBox.Show("Do you want to start a new task", "newTask", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            new TaskInListWindow(true).ShowDialog();
+                          
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("success");
+                        this.Close();
+
+                    }
+
                 }
-                MessageBox.Show("success");
-                this.Close();
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
 
@@ -137,7 +156,7 @@ namespace PL.TaskInList
 
 
 
-       
+
 
 
     }
