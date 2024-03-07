@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace PL;
 
@@ -44,8 +45,24 @@ class ConvertTextToUserId : IValueConverter
         throw new NotImplementedException();
     }
 
-} 
+}
 
+public class StatusToStringConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is BO.Status status)
+        {
+            return status.ToString(); // שים לב שניתן לשנות את התצוגה בהתאם לצורך
+        }
 
+        return string.Empty;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 
 

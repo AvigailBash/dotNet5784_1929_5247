@@ -112,7 +112,7 @@ internal class Intilization
             DateTime? _startDate = null;
 
 
-            DateTime today = DateTime.Today;
+            DateTime today =s_dal.Clock.GetStartOfProject();///////////
             DateTime sixMonthsFromNow = today.AddMonths(6);
             Random random = new Random();
             int range = (sixMonthsFromNow - today).Days;

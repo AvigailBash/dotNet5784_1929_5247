@@ -21,14 +21,14 @@ internal class HelpImplementation:IHelp
         if (tasks.Count() != 0)
         {
             DateTime minimumDate = s_bl.clock;
-            DateTime maximumDate = s_bl.clock.AddDays(8);
+            DateTime maximumDate = s_bl.clock.AddDays(3);
             Random random = new Random(); // Initialize a random number generator
 
             //IEnumerable<DO.Task> task = _dal.Task.ReadAll();
 
             foreach (BO.TaskInList boTaskInList in tasks)
             {
-                int daysToAdd = random.Next(0, 9);
+                int daysToAdd = random.Next(0, 3);
                 BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
                 boTask!.schedualedDate = minimumDate.AddDays(daysToAdd);
                 s_bl.Task.Update(boTask);
