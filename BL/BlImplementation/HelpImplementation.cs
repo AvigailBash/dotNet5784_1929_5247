@@ -36,13 +36,16 @@ internal class HelpImplementation:IHelp
         }
         
 
-
-        tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
-        foreach (BO.TaskInList boTaskInList in tasks)
+        if(tasks.Count()!=0)
         {
-            BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
-            s_bl.Task.FindTheMinimumDate(boTask);
+            tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
+            foreach (BO.TaskInList boTaskInList in tasks)
+            {
+                BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
+                s_bl.Task.FindTheMinimumDate(boTask);
+            }
         }
+       
     }
 
     public void SetNullInScheduale()
