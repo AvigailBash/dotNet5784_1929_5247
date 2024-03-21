@@ -36,12 +36,18 @@
             <!--<Setter Property="DisplayDate" Value="" />-->
         </Style>
         <Style x:Key="myButtonStyle" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White" />
+                    <!--<Setter Property="TextDecorations" Value="Underline" />-->
+                </Trigger>
+            </Style.Triggers>
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Height" Value="35" />
             <Setter Property="Width" Value="160" />
-            <Setter Property="Background" Value="White" />
+            <Setter Property="Background" Value="{StaticResource MyButtonBrush}" />
             <Setter Property="BorderBrush" Value="{StaticResource MyButtonBrush}" />
             <Setter Property="BorderThickness" Value="5" />
         </Style>

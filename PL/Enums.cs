@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PL;
-
+/// <summary>
+/// 
+/// </summary>
 internal class EngineerCollection : IEnumerable
 {
     static readonly IEnumerable<BO.Engineerlevel> s_enums =

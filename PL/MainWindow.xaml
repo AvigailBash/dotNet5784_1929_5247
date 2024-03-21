@@ -9,15 +9,41 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="60,112,0,0" VerticalAlignment="Top" Width="93" Click="DoInitialization"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top"  Click="GoToEngineerWiew"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="60,112,0,0" VerticalAlignment="Top"  Click="DoInitialization"/>
         <Button Content="Manager" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
-        <Label Content="{Binding CurrentTime ,Mode=TwoWay}" Style="{StaticResource myLabelStyle}" FontSize="20" HorizontalAlignment="Left" Margin="447,259,0,0" VerticalAlignment="Top" Width="190" Height="40" RenderTransformOrigin="0.483,0.576"/>
+        <TextBlock Name="lblStyled" Text="{Binding CurrentTime ,Mode=TwoWay}" FontSize="18" HorizontalAlignment="Left"
+VerticalAlignment="Center" Margin="454,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="28" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button Style="{StaticResource mySmallButtonStyle}" Content="Init" HorizontalAlignment="Left" Margin="652,337,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock"/>
         <Button Style="{StaticResource mySmallButtonStyle}" Content="NextDay" HorizontalAlignment="Left" Margin="301,337,0,0" VerticalAlignment="Top" Click="AddDayClick"/>
         <Button Style="{StaticResource mySmallButtonStyle}" Content="NextHour" HorizontalAlignment="Left" Margin="420,337,0,0" VerticalAlignment="Top" Click="AddHourClick"/>
         <Button  Style="{StaticResource mySmallButtonStyle}" Content="NextYear" HorizontalAlignment="Left" Margin="534,337,0,0" VerticalAlignment="Top" Click="AddYearClick"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="30,389,0,0" VerticalAlignment="Top" Click="ClickForEnter"/>
-        <Rectangle Stroke="Black" Margin="280,198,38,64" StrokeThickness="5"  />
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="100" Margin="634,130,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

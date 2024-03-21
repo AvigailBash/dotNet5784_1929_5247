@@ -31,7 +31,21 @@
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,252,0,0" TextWrapping="Wrap" Text="{Binding deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,312,0,0" TextWrapping="Wrap" Text="{Binding remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
 
-        <CheckBox  IsChecked="{Binding isActive}" BorderBrush="Gray" BorderThickness="3" Content="" HorizontalAlignment="Left" Margin="634,474,0,0" VerticalAlignment="Top"/>
+        <CheckBox  IsChecked="{Binding isActive}" BorderBrush="Gray" Name="cbSample" BorderThickness="3" Content="" HorizontalAlignment="Left" Margin="634,474,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="704,474,0,97" FontSize="18" Width="148">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="No" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=cbSample, Path=IsChecked}" Value="True">
+                            <Setter Property="Text" Value="Yes!" />
+                            <Setter Property="Foreground" Value="{StaticResource MyButtonBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding startDate}" HorizontalAlignment="Left" Margin="634,153,0,0" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding createdAtDate}" HorizontalAlignment="Left" Margin="634,26,0,0" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding schedualedDate}" HorizontalAlignment="Left" Margin="634,82,0,0" VerticalAlignment="Top"/>
@@ -48,6 +62,6 @@
         <Button Style="{StaticResource myButtonStyle}" Content="view dependencies" HorizontalAlignment="Left" Margin="201,558,0,0" VerticalAlignment="Top" Width="120" Click="ClickForViewDependencies"/>
         <Button  Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="443,558,0,0" VerticalAlignment="Top" Click="Button_Click" />
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="202,417,0,0" TextWrapping="Wrap" Text="{Binding engineer.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-      
+
     </Grid>
 </Window>
