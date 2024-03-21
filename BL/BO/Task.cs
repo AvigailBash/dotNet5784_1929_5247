@@ -29,29 +29,4 @@ public class Task
     public BO.EngineerInTask? engineer { get; set; }
     public BO.Engineerlevel? coplexity { get; set; }
     public bool isActive { get; set; }
-
-    /// <summary>
-    /// An empty constructor action that initializes an empty object
-    /// </summary>
-    public Task()
-    {
-        this.id = 0;
-        this.alias = null;
-        this.isMilestone = false;
-        this.description = null;
-        this.status = BO.Status.Unscheduled;
-        this.dependencies = null;
-        this.createdAtDate = DateTime.Now;
-        this.schedualedDate = null;
-        this.startDate = null;
-        this.forecastDate = null;
-        this.deadlineDate = null;
-        this.completeDate = null;
-        this.requiredEffortTime = null;
-        this.deliverables = null;
-        this.remarks = null;
-        this.engineer = null;
-        this.coplexity = BO.Engineerlevel.Beginner;
-        this.isActive = false;
-    }
 }

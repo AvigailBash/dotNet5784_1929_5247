@@ -19,22 +19,26 @@ namespace PL.Gantt_chart
     /// Interaction logic for GantChartWindow.xaml
     /// </summary>
     public partial class GantChartWindow : Window
-
     {
-        Dictionary<BO.Status, Brush> colorMapping = new Dictionary<BO.Status, Brush>()
-                {
-                  { BO.Status.None, Brushes.White }, // צבע מותאם אישית
-                  { BO.Status.Scheduled,  new SolidColorBrush(Color.FromRgb(70, 137, 130)) }, // צבע מותאם אישית
-                  { BO.Status.Done,Brushes.LightGray },
-                };
-
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
         public GantChartWindow()
         {
+           // TaskList = s_bl.Task.ReadAll();
             InitializeComponent();
-
         }
+
+
+        public IEnumerable<BO.TaskInList> TaskList
+        {
+            get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
+            set { SetValue(TaskListProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TaskList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TaskListProperty =
+            DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(GantChartWindow), new PropertyMetadata(null));
+
 
 
 
@@ -128,8 +132,8 @@ namespace PL.Gantt_chart
 
         {
             DataGrid? dataGrid = sender as DataGrid; //the graphic container
-
-            DataTable dataTable = new DataTable(); //the logic container
+    
+                DataTable dataTable = new DataTable(); //the logic container
 
             //add COLUMNS to datagrid and datatable
             if (dataGrid != null)
@@ -140,26 +144,22 @@ namespace PL.Gantt_chart
                 dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Name", Binding = new Binding("[1]") });
                 dataTable.Columns.Add("Task Name", typeof(string));
 
-
-                //dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Engineer Id", Binding = new Binding("[2]") });
-                //dataTable.Columns.Add("Engineer Id", typeof(int));
-
-                //dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Engineer Name", Binding = new Binding("[3]") });
-                //dataTable.Columns.Add("Engineer Name", typeof(string));
-
                 int col = 2;
                 for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
                     dataGrid.Columns.Add(new DataGridTextColumn() { Header = strDay, Binding = new Binding($"[{col}]") });
+
                     dataTable.Columns.Add(strDay, typeof(BO.Status));// typeof(System.Windows.Media.Color));
                     col++;
 
                 }
+
             }
 
             //add ROWS to logic container (data table)
             IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.id);
+            int i = 0;  
             foreach (BO.Task task in orderedListTasksSchedule)
             {
                 //dataGrid.CellStyle
@@ -167,23 +167,30 @@ namespace PL.Gantt_chart
                 DataRow row = dataTable.NewRow();
                 row[0] = task.id;
                 row[1] = task.alias;
-                //row[2] = task.EngineerId;
-                //row[3] = task.EngineerName;
+            
 
                 for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
-
+                 
                     if (day < task.schedualedDate || day > task.forecastDate)
+                    {
                         row[strDay] = BO.Status.None; //"EMPTY";
+ 
+                    }
+                       
                     else
                     {
 
                         row[strDay] = task.status; //BO.TaskStatus.TaskIsSchedualed; //"FULL";
-
+                        
                     }
+
                 }
                 dataTable.Rows.Add(row);
+
+          
+              
             }
 
             if (dataGrid != null)
@@ -195,12 +202,6 @@ namespace PL.Gantt_chart
 
     }
 }
-
-
-
-
-
-
 
 
 
