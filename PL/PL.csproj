@@ -15,17 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Image\picture.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Remove="Manager\ManagerWindow.xaml" />
-    <Page Remove="Password\PasswordWindow.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Image\picture.jpg" />
-    <Content Include="Password\PasswordWindow.xaml" />
+    <None Remove="computer.png" />
+    <None Remove="TaskInList\computer.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Manager\ManagerWindow.xaml" />
+    <Resource Include="computer.png" />
+    <Resource Include="TaskInList\computer.png" />
   </ItemGroup>
 
 </Project>
