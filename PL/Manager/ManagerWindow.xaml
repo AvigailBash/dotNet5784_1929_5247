@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL.Manager"
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800">
+
+
+
     <Grid>
         <Button Style="{StaticResource myButtonStyle}" Content="Engineer List" HorizontalAlignment="Left" Margin="49,296,0,0" VerticalAlignment="Top" Click="ClickForEngineerList"/>
         <Button Style="{StaticResource myButtonStyle}" Content="TaskInList" HorizontalAlignment="Left" Margin="49,187,0,0" VerticalAlignment="Top" Click="ClickForTaskInList"/>
