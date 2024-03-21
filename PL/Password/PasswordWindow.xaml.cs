@@ -53,11 +53,11 @@ namespace PL.Password
                 try
                 {
                     BO.TaskInEngineer? et = s_bl.Engineer.ReadForPassword(User.Id, User.Password);
-                    if(et == null) { new TaskInListWindow(true).Show(); }
+                    if (et == null) { new TaskInListWindow(true).Show(); }
                     else
-                    new TaskWindow(et.id, true).ShowDialog();
+                        new TaskWindow(et.id, true).ShowDialog();
                 }
-                catch(Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
     }

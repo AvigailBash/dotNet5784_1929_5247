@@ -19,7 +19,7 @@
             <Setter Property="Margin" Value="300, 0,0,0" />
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,65,2">
+    <Grid Margin="0,0,0,-6">
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -53,12 +53,27 @@
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="269,158,0,0" TextWrapping="Wrap" Text="{Binding email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <ComboBox  Style="{StaticResource myComboBoxBoxStyle}" HorizontalAlignment="Left" Margin="269,208,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="269,262,0,0" TextWrapping="Wrap" Text="{Binding cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <CheckBox BorderBrush="Gray" BorderThickness="3"  Content="" IsChecked="{Binding isActive}" HorizontalAlignment="Left" Margin="369,307,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}"  HorizontalAlignment="Center" Margin="0,469,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654"  Click="clickForUpdateOrAdd"/>
+        <CheckBox  BorderBrush="Gray" BorderThickness="3" Name="cbSample1" Content="" IsChecked="{Binding isActive}" HorizontalAlignment="Left" Margin="369,307,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="328,300,0,212" FontSize="18" Width="36">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="No" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=cbSample1, Path=IsChecked}" Value="True">
+                            <Setter Property="Text" Value="Yes!" />
+                            <Setter Property="Foreground" Value="{StaticResource MyButtonBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button Style="{StaticResource myButtonStyle}" Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}"  HorizontalAlignment="Left" Margin="84,495,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654"  Click="clickForUpdateOrAdd"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" x:Name="ErrorProvider"  HorizontalAlignment="Left"  Margin="269,367,0,0" TextWrapping="Wrap" Text="{Binding task.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Name" HorizontalAlignment="Left" Margin="94,95,0,0" VerticalAlignment="Top"/>
         <Label Style="{StaticResource myLabelStyle}" Content="Password" HorizontalAlignment="Left" Margin="94,395,0,0" VerticalAlignment="Top"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding password, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="269,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="102" Margin="303,456,0,0" VerticalAlignment="Top" Width="155"/>
 
 
         <!--</Grid>-->

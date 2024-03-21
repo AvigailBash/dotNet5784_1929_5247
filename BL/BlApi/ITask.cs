@@ -71,4 +71,5 @@ public interface ITask
     public void RemoveDependencies(BO.Task boTask, BO.TaskInList taskInList);
     public void FindTheMinimumDate(BO.Task boTask);
     public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null);
+    public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe();
 }

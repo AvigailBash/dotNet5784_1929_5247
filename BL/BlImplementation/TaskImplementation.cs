@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 
 namespace BlImplementation;
@@ -172,7 +173,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={task.id} does not exists", ex);
+            throw new BO.Exceptions.BlDoesNotExistException($"Task with ID={task.id} does not exists", ex);
         }
 
     }
@@ -283,6 +284,31 @@ internal class TaskImplementation : ITask
         boTask.schedualedDate = minimum;
         s_bl.Task.Update(boTask);
     }
+
+    public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe()
+    {
+        IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();
+        // ודא שהקלט תקין
+        if (tasks == null)
+        {
+            throw new ArgumentNullException(nameof(tasks));
+        }
+
+        // קבלת משימות עם id חוקי
+        var filteredTasks = tasks.Where(task => task?.id != null);
+
+        // קיבוץ המשימות לפי id
+        IEnumerable<BO.TaskInList> groupedTasks = filteredTasks.GroupBy(task => task.id).Select(group => new BO.TaskInList
+        {
+            id = group.Key
+        });
+            
+
+        // החזרת אוסף הקבוצות
+        return groupedTasks;
+    }
+
+
     public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null)
     {
         var task = from DO.Task doTask in _dal.Task.ReadAll()
