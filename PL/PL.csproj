@@ -15,8 +15,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="computer.png" />
+    <None Remove="TaskInList\computer.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\DalList\DalList.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="computer.png" />
+    <Resource Include="TaskInList\computer.png" />
   </ItemGroup>
 
 </Project>

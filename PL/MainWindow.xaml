@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="504" Width="799"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Icon="/computer.png">
 
     <Grid>
         <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="109" Click="GoToEngineerWiew"/>
