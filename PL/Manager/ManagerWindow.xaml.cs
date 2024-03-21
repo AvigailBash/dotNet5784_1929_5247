@@ -26,7 +26,7 @@ namespace PL.Manager
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
         public ManagerWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
 
         private void ClickForEngineerList(object sender, RoutedEventArgs e)

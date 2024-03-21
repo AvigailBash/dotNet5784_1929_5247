@@ -15,7 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\picture.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Remove="Manager\ManagerWindow.xaml" />
+    <Page Remove="Password\PasswordWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Image\picture.jpg" />
+    <Content Include="Password\PasswordWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
