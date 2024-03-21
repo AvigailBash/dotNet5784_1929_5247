@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.TaskInList"
         mc:Ignorable="d"
         Title="TaskInListWindow" Height="640" Width="800"
-         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Icon="/TaskInList/computer.png">
+         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <!--Extrnal Grid-->
     <Grid Height="624" VerticalAlignment="Top">
