@@ -6,16 +6,18 @@
         xmlns:local="clr-namespace:PL.Dependencies"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-        Title="DependenciesListWindow" Height="450" Width="800">
-    <Grid>
-        <ListView ItemsSource="{Binding Dependencies}" Margin="120,78,120,77" SelectionChanged="ListView_SelectionChanged">
+        Title="DependenciesListWindow" Height="463" Width="639"
+        Icon="\Image\icons8-computer-60.png">
+    <Grid Margin="0,0,10,14">
+        <ListView ItemsSource="{Binding Dependencies}" Margin="29,33,17,87" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Style="{StaticResource myButtonStyle}" Content="delete" HorizontalAlignment="Left" Margin="665,380,0,0" VerticalAlignment="Top" Width="67" Height="29" Click="ClickForDeleteDependency"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="delete" HorizontalAlignment="Left" Margin="29,371,0,0" VerticalAlignment="Top" Width="67" Height="29" Click="ClickForDeleteDependency"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="76" Margin="477,362,0,0" VerticalAlignment="Top" Width="135"/>
 
     </Grid>
 </Window>

@@ -21,7 +21,8 @@
     xmlns:local="clr-namespace:PL.Gantt_chart"
     mc:Ignorable="d"
     Title="GantChartWindow" Height="450" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Icon="\Image\icons8-computer-60.png">
     <!--DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">-->
     <Window.Resources>
         <!-- סגנון לשורת הטבלה -->

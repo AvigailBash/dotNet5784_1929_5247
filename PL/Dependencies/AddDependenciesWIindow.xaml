@@ -5,11 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Dependencies"
         mc:Ignorable="d"
-        Title="AddDependenciesWIindow" Height="450" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-    <Grid>
-        <ListBox ItemsSource="{Binding TaskList}" Margin="103,80,103,79" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button Style="{StaticResource myButtonStyle}"  Content="Add Dependencies" HorizontalAlignment="Left" Margin="612,379,0,0" VerticalAlignment="Top" Click="ClickForAddDependencies"/>
+        Title="AddDependenciesWIindow" Height="432" Width="640"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+        Icon="\Image\icons8-computer-60.png">
+    <Grid Margin="0,0,6,13" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="0.017"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <ListBox ItemsSource="{Binding TaskList}" Margin="33,34,30,86" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button Style="{StaticResource myButtonStyle}"  Content="Add Dependencies" HorizontalAlignment="Left" Margin="33,346,0,0" VerticalAlignment="Top" Click="ClickForAddDependencies"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="99" Margin="479,328,0,0" VerticalAlignment="Top" Width="148"/>
 
     </Grid>
 </Window>

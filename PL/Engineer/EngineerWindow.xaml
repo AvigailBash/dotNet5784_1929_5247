@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
         Title="EngineerWindow" Height="583" Width="495"
-        DataContext="{Binding Engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
+        DataContext="{Binding Engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}"
+        Icon="\Image\icons8-computer-60.png">
 
     <Window.Resources>
         <Style x:Key="myLabelStyle"

@@ -15,10 +15,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\computer-science.png" />
+    <None Remove="Image\computer.png" />
+    <None Remove="Image\icons8-computer-60.png" />
+    <None Remove="Image\icons8-computer-64.png" />
     <None Remove="Image\picture.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Image\computer-science.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\icons8-computer-60.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Image\picture.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -27,6 +37,12 @@
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\DalList\DalList.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Image\computer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

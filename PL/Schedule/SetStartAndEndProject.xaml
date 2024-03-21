@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PL.Schedule"
         mc:Ignorable="d"
         Title="SetStartAndEndProject" Height="400" Width="600"
-         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+        Icon="\Image\icons8-computer-60.png">
 
     <Grid>
         <Label Content="Set start of project" HorizontalAlignment="Left" Margin="41,50,0,0" Style="{StaticResource myLabelStyle}" VerticalAlignment="Top" />

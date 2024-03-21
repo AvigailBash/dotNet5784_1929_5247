@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PL.TaskInList"
         mc:Ignorable="d"
          Title="TaskWindow" Height="646" Width="800"
-         DataContext="{Binding Task, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
+         DataContext="{Binding Task, RelativeSource={RelativeSource Self}, Mode=TwoWay}"
+        Icon="\Image\icons8-computer-60.png">
     <Grid>
         <Label  Style="{StaticResource myLabelStyle}" Content="ID" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.639,0.719"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Alias" HorizontalAlignment="Left" Margin="20,66,0,0" VerticalAlignment="Top"/>

@@ -30,8 +30,7 @@ namespace PL.Password
             User = new BO.User();
         }
 
-
-
+       
         public BO.User User
         {
             get { return (BO.User)GetValue(UserProperty); }
