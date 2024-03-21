@@ -7,13 +7,13 @@
         <SolidColorBrush x:Key="MyButtonBrush" Color="#468982" />
         <SolidColorBrush x:Key="MyTextBoxBrush" Color="Gray"/>
         <!--Color="#EDB71A" />-->
-        <local:EngineerCollection x:Key="EngineerCollectionKey" />
+        <!--<local:EngineerCollection x:Key="EngineerCollectionKey" />
         <local:TaskInListCollection x:Key="TaskInListCollectionKey" />
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:ConvertIdToIsEnabled x:Key="ConvertIdToIsEnabledKey"/>
         <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
         <local:ConvertDaTteTimeToIsEnabled x:Key="ConvertDaTteTimeToIsEnabledK"/>
-        <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />
+        <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />-->
 
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
