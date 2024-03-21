@@ -9,11 +9,14 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top"  Click="GoToEngineerWiew"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="60,112,0,0" VerticalAlignment="Top"  Click="DoInitialization"/>
-        <Button Content="Manager" HorizontalAlignment="Left" Margin="60,35,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="55,166,0,0" VerticalAlignment="Top"  Click="GoToEngineerWiew" Height="35" Width="160"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="55,206,0,0" VerticalAlignment="Top"  Click="DoInitialization" Height="35" Width="160"/>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="55,129,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="20"/>
         <TextBlock Name="lblStyled" Text="{Binding CurrentTime ,Mode=TwoWay}" FontSize="18" HorizontalAlignment="Left"
-VerticalAlignment="Center" Margin="454,0,0,0">
+VerticalAlignment="Top" Margin="400,72,0,0" Height="67" Width="330">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
@@ -39,11 +42,12 @@ VerticalAlignment="Center" Margin="454,0,0,0">
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Style="{StaticResource mySmallButtonStyle}" Content="Init" HorizontalAlignment="Left" Margin="652,337,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock"/>
-        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextDay" HorizontalAlignment="Left" Margin="301,337,0,0" VerticalAlignment="Top" Click="AddDayClick"/>
-        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextHour" HorizontalAlignment="Left" Margin="420,337,0,0" VerticalAlignment="Top" Click="AddHourClick"/>
-        <Button  Style="{StaticResource mySmallButtonStyle}" Content="NextYear" HorizontalAlignment="Left" Margin="534,337,0,0" VerticalAlignment="Top" Click="AddYearClick"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="30,389,0,0" VerticalAlignment="Top" Click="ClickForEnter"/>
-        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="100" Margin="634,130,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="Init" HorizontalAlignment="Left" Margin="674,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.554,1.234" Click="ClickForResetClock" Height="35" Width="100"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextDay" HorizontalAlignment="Left" Margin="329,144,0,0" VerticalAlignment="Top" Click="AddDayClick" Height="35" Width="100"/>
+        <Button Style="{StaticResource mySmallButtonStyle}" Content="NextHour" HorizontalAlignment="Left" Margin="448,144,0,0" VerticalAlignment="Top" Click="AddHourClick" Height="35" Width="100"/>
+        <Button  Style="{StaticResource mySmallButtonStyle}" Content="NextYear" HorizontalAlignment="Left" Margin="556,144,0,0" VerticalAlignment="Top" Click="AddYearClick" Height="35" Width="100"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="606,397,0,0" VerticalAlignment="Top" Click="ClickForEnter" Height="35" Width="160"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="181" Margin="37,296,0,0" VerticalAlignment="Top" Width="315"/>
+        <Rectangle HorizontalAlignment="Left" Height="169" Margin="317,32,0,0" Stroke="Black" VerticalAlignment="Top" Width="472"/>
     </Grid>
 </Window>

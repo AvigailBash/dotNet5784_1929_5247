@@ -24,7 +24,6 @@ internal class TaskInListCollection : IEnumerable
 
     public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
 }
-
 internal class Enums
 {
 

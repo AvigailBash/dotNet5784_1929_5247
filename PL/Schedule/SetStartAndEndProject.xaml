@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Schedule"
         mc:Ignorable="d"
-        Title="SetStartAndEndProject" Height="450" Width="800"
+        Title="SetStartAndEndProject" Height="400" Width="600"
          DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Label Content="Set start of project" HorizontalAlignment="Left" Margin="163,130,0,0" Style="{StaticResource myLabelStyle}" VerticalAlignment="Top" />
-        <Label Content="Set end of project" HorizontalAlignment="Left" Margin="163,199,0,0"  Style="{StaticResource myLabelStyle}" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding start}" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding end}" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top"/>
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="568,321,0,0" Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="SetDates"/>
+        <Label Content="Set start of project" HorizontalAlignment="Left" Margin="41,50,0,0" Style="{StaticResource myLabelStyle}" VerticalAlignment="Top" />
+        <Label Content="Set end of project" HorizontalAlignment="Left" Margin="41,119,0,0"  Style="{StaticResource myLabelStyle}" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding start}" HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding end}" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="41,323,0,0" Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="SetDates"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="117" Margin="314,241,0,0" VerticalAlignment="Top" Width="254"/>
 
     </Grid>
 </Window>

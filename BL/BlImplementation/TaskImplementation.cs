@@ -173,7 +173,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.Exceptions.BlAlreadyExistsException($"Task with ID={task.id} does not exists", ex);
+            throw new BO.Exceptions.BlDoesNotExistException($"Task with ID={task.id} does not exists", ex);
         }
 
     }

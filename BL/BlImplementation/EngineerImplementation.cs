@@ -24,7 +24,12 @@ internal class EngineerImplementation :BlApi.IEngineer
     {
         if (boEngineer.id <= 0 || boEngineer.name == null || boEngineer.cost <= 0 || CheckEmail(boEngineer.email) == false)
             throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
-
+        if(boEngineer.task!=null)
+        {
+            DO.Task doTask = _dal.Task.Read(boEngineer.task.id);
+            doTask = doTask with { engineerId=boEngineer.id };
+            _dal.Task.Update(doTask);
+        }
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.id, boEngineer.password, boEngineer.name, boEngineer.email, (DO.Engineerlevel?)boEngineer.level, boEngineer.cost, boEngineer.isActive);
         try
         {
@@ -125,6 +130,7 @@ internal class EngineerImplementation :BlApi.IEngineer
     public void Update(BO.Engineer engineer)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineer.id);
+        BO.Engineer? boEngineer = Read(engineer.id);
         try
         {
             if (doEngineer != null)
@@ -132,6 +138,19 @@ internal class EngineerImplementation :BlApi.IEngineer
                 if (engineer.name == null || engineer.cost <= 0 || CheckEmail(engineer.email) == false || engineer.level < (BO.Engineerlevel)doEngineer.level!)
                     throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
                 doEngineer = doEngineer with { password = engineer.password, name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
+                if(engineer.task!=null)
+                {
+                    DO.Task doNewTask = _dal.Task.Read(engineer.task!.id)!;
+                    if ((BO.Engineerlevel)doNewTask.coplexity > engineer.level)
+                    {
+                        throw new BO.Exceptions.BlIncorrectInputException($"Engineer ot this level can not work on this task");
+                    }
+                    doNewTask = doNewTask with { engineerId = engineer.id };
+                    _dal.Task.Update(doNewTask);
+                    DO.Task doTask = _dal.Task.Read(boEngineer!.task!.id)!;
+                    doTask = doTask with { engineerId = null };
+                    _dal.Task.Update(doTask);
+                }
                 _dal.Engineer.Update(doEngineer);
             }
         }

@@ -19,7 +19,7 @@
             <Setter Property="Margin" Value="300, 0,0,0" />
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,65,2">
+    <Grid Margin="0,0,0,-6">
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -68,11 +68,12 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Style="{StaticResource myButtonStyle}" Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}"  HorizontalAlignment="Center" Margin="0,469,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654"  Click="clickForUpdateOrAdd"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}"  HorizontalAlignment="Left" Margin="84,495,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.443,1.654"  Click="clickForUpdateOrAdd"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" x:Name="ErrorProvider"  HorizontalAlignment="Left"  Margin="269,367,0,0" TextWrapping="Wrap" Text="{Binding task.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Name" HorizontalAlignment="Left" Margin="94,95,0,0" VerticalAlignment="Top"/>
         <Label Style="{StaticResource myLabelStyle}" Content="Password" HorizontalAlignment="Left" Margin="94,395,0,0" VerticalAlignment="Top"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding password, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="269,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="102" Margin="303,456,0,0" VerticalAlignment="Top" Width="155"/>
 
 
         <!--</Grid>-->
