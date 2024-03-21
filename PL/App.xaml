@@ -5,7 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="MyButtonBrush" Color="#468982" />
-        <SolidColorBrush x:Key="MyTextBoxBrush" Color="Gray"/> <!--Color="#EDB71A" />-->
+        <SolidColorBrush x:Key="MyTextBoxBrush" Color="Gray"/> 
         <local:EngineerCollection x:Key="EngineerCollectionKey" />
         <local:TaskInListCollection x:Key="TaskInListCollectionKey" />
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
