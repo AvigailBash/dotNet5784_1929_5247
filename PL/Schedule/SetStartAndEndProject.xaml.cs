@@ -34,10 +34,15 @@ namespace PL.Schedule
 
         private void SetDates(object sender, RoutedEventArgs e)
         {
-            s_bl.Clock.SetStartOfProject(start);
-            s_bl.Clock.SetEndOfProject(end);
-            MessageBox.Show("Success");
-            this.Close();   
+            try
+            {
+                if (end <= start) { throw new Exception("The dates is incorrect"); }
+                s_bl.Clock.SetStartOfProject(start);
+                s_bl.Clock.SetEndOfProject(end);
+                MessageBox.Show("Success");
+                this.Close();
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

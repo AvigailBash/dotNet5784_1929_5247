@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,10 +71,18 @@ namespace PL.Engineer
                
                 if (button is { Content: "Add"})
                 {
+                    if(!(Engineer.id is  DigitShapes) || Engineer.password==null)
+                    {
+                        throw new Exception("One of the details is incorrect");
+                    }
                     s_bl.Engineer.Create(Engineer);
                 }
                 else
                 {
+                    if (Engineer.id is DigitShapes || Engineer.password == null)
+                    {
+                        throw new Exception("One of the details is incorrect");
+                    }
                     s_bl.Engineer.Update(Engineer);
                 }
                 MessageBox.Show("success");

@@ -28,12 +28,21 @@ internal class TaskImplementation : ITask
         {
             if (boTask.schedualedDate != null || boTask.engineer != null)
             {
-                throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the planning stage");
+                throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the start stage");
             }
         }
         if (_clock.statusForProject() == BO.StatusOfProject.End)
         {
             throw new BO.Exceptions.BlCannotCreateThisTaskException("The project is in the end stage");
+        }
+        if (boTask.engineer != null)
+        {
+            BO.Engineer? boEngineer = s_bl.Engineer.Read(boTask.engineer.id);
+            if (boEngineer == null || boEngineer.name != boTask.engineer.name || boEngineer.task != null)
+            {
+                throw new BO.Exceptions.BlCannotUpdateThisTaskException("The engineer details is incorrect or the engineer already have a task");
+            }
+            boTask.engineer.id = boTask.engineer.id;
         }
         DO.Task doTask = new DO.Task(boTask.id, boTask.createdAtDate, boTask.alias, boTask.description,
             boTask.isMilestone, boTask.schedualedDate, boTask.requiredEffortTime, boTask.deadlineDate,
@@ -166,7 +175,23 @@ internal class TaskImplementation : ITask
             }
             if(task.engineer != null)
             {
-                id = task.engineer.id;
+                if (_clock.statusForProject() == BO.StatusOfProject.Start) 
+                {
+                    throw new BO.Exceptions.BlCannotUpdateThisTaskException("The project is in the start stage");
+                }
+                BO.Engineer? boEngineer = s_bl.Engineer.Read(task.engineer.id);
+                if (task.engineer.id != boEngineer.id) 
+                {
+                    if(boEngineer.level<task.coplexity)
+                    {
+                        throw new BO.Exceptions.BlCannotUpdateThisTaskException("The level of the engineer is less than the complexity of the task");
+                    }
+                    if (boEngineer == null || boEngineer.name != task.engineer.name || boEngineer.task != null)
+                    {
+                        throw new BO.Exceptions.BlCannotUpdateThisTaskException("The engineer details is incorrect or the engineer already have a task");
+                    }
+                    id = task.engineer.id;
+                }
             }
            doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
             _dal.Task.Update(doTask);
