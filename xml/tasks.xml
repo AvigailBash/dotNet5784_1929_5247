@@ -300,4 +300,18 @@
     <coplexity>AdvancedBeginner</coplexity>
     <isActive>true</isActive>
   </Task>
+  <Task>
+    <id>1122</id>
+    <createdAtDate>0001-01-01T00:00:00</createdAtDate>
+    <alias>bla</alias>
+    <isMilestone>false</isMilestone>
+    <schedualedDate>2024-03-14T00:00:00</schedualedDate>
+    <requiredEffortTime>P10D</requiredEffortTime>
+    <deadlineDate>2024-03-30T00:00:00</deadlineDate>
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
 </ArrayOfTask>
