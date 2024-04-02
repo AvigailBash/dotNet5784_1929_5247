@@ -58,6 +58,12 @@ namespace PL.Engineer
 
         }
 
-      
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filterText = (sender as TextBox).Text.ToLower(); // Get the text from the textbox and convert it to lowercase for case-insensitive filtering
+
+            // Filter the EngineerList based on the textbox content
+            EngineerList = s_bl?.Engineer.ReadAll()!.Where(engineer => engineer.name.ToLower().Contains(filterText));
+        }
     }
 }

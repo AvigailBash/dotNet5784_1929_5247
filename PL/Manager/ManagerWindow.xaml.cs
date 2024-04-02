@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Gantt;
 using PL.Gantt_chart;
 using PL.Schedule;
 using PL.TaskInList;
@@ -69,7 +70,7 @@ namespace PL.Manager
 
         private void ClickForOpenGant(object sender, RoutedEventArgs e)
         {
-            new GantChartWindow().Show();
+            new GanttWindow().Show();
         }
 
         private void SetSchedualeToNull(object sender, RoutedEventArgs e)
