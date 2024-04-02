@@ -43,7 +43,7 @@ internal class ClockImplementation : IClock
     public BO.StatusOfProject statusForProject()
     {
         bool flag = true;
-        if (GetStartOfProject == null) 
+        if (GetStartOfProject() == null) 
         {
             return BO.StatusOfProject.Start;
         }

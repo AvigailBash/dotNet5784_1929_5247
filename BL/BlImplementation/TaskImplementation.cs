@@ -264,7 +264,12 @@ internal class TaskImplementation : ITask
         return engineerInTask;
     }
 
-
+    public BO.TaskInEngineer ReadInTaskInEngineerFormat(int id)
+    {
+        DO.Task doTask = _dal.Task.Read(id)!;
+        BO.TaskInEngineer taskInEngineer = new BO.TaskInEngineer() { id = doTask.id, alias = doTask.alias };
+        return taskInEngineer;
+    }
 
     public List<BO.TaskInList> findDependencies(BO.Task task)
     {

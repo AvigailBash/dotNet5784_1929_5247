@@ -18,9 +18,9 @@ internal class ClockImplementation : IClock
     /// Getting a start date for the project
     /// </summary>
     /// <returns></returns>
-    public DateTime GetStartOfProject()
+    public DateTime? GetStartOfProject()
     {
-        DateTime startProject = DataSource.Config.startProject;
+        DateTime? startProject = DataSource.Config.startProject;
         return startProject;
     }
 
@@ -29,7 +29,7 @@ internal class ClockImplementation : IClock
     /// </summary>
     /// <param name="endOfProject"> The end date </param>
     /// <returns></returns>
-    public DateTime? SetEndOfProject(DateTime endOfProject)
+    public DateTime? SetEndOfProject(DateTime? endOfProject)
     {
         DataSource.Config.endProject = endOfProject;
         return endOfProject;
@@ -40,9 +40,14 @@ internal class ClockImplementation : IClock
     /// </summary>
     /// <param name="startOfProject"> The start date </param>
     /// <returns></returns>
-    public DateTime? SetStartOfProject(DateTime startOfProject)
+    public DateTime? SetStartOfProject(DateTime? startOfProject)
     {
         DataSource.Config.startProject = startOfProject;
         return startOfProject;
+    }
+
+    DateTime IClock.GetStartOfProject()
+    {
+        throw new NotImplementedException();
     }
 }
