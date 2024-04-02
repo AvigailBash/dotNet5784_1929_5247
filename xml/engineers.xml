@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
-    <id>378378125</id>
-    <password>53146</password>
-    <name>Yael Levi</name>
-    <email>engineer12@gmail.com</email>
-    <level>Intermediate</level>
-    <cost>14381</cost>
-    <isActive>true</isActive>
-  </Engineer>
-  <Engineer>
-    <id>320103358</id>
-    <password>64796</password>
-    <name>Maor Tal</name>
-    <email>engineer12@gmail.com</email>
-    <level>Advanced</level>
-    <cost>16288</cost>
-    <isActive>true</isActive>
-  </Engineer>
-  <Engineer>
     <id>278789736</id>
     <password>62212</password>
     <name>Dan Bash</name>
@@ -55,21 +37,30 @@
     <isActive>true</isActive>
   </Engineer>
   <Engineer>
-    <id>310310115</id>
+    <id>12345</id>
     <password>123456</password>
-    <name>Sara Drey</name>
-    <email>sara@gmail.com</email>
-    <level>Beginner</level>
-    <cost>100</cost>
+    <name>12345</name>
+    <email>sh@gmail.com</email>
+    <level>AdvancedBeginner</level>
+    <cost>123</cost>
+    <isActive>false</isActive>
+  </Engineer>
+  <Engineer>
+    <id>320103358</id>
+    <password>64796</password>
+    <name>Maor Tal</name>
+    <email>maor@gmail.com</email>
+    <level>Advanced</level>
+    <cost>16288</cost>
     <isActive>true</isActive>
   </Engineer>
   <Engineer>
-    <id>12345679</id>
-    <password>123456</password>
-    <name>ester</name>
-    <email>n@gmail.com</email>
+    <id>378378125</id>
+    <password>53146</password>
+    <name>Yael Levi</name>
+    <email>engineer12@gmail.com</email>
     <level>Intermediate</level>
-    <cost>100</cost>
+    <cost>14381</cost>
     <isActive>true</isActive>
   </Engineer>
 </ArrayOfEngineer>

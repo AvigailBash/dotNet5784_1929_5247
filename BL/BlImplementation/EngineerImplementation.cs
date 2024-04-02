@@ -137,6 +137,13 @@ internal class EngineerImplementation :BlApi.IEngineer
             {
                 if (engineer.name == null || engineer.cost <= 0 || CheckEmail(engineer.email) == false || engineer.level < (BO.Engineerlevel)doEngineer.level!)
                     throw new BO.Exceptions.BlIncorrectInputException($"One of the detail not correct");
+                if (engineer.isActive == false) 
+                {
+                    if (engineer.task != null)
+                    {
+                        throw new BO.Exceptions.BlCannotDeleteThisEngineerException("You can't delete this engineer becuase he has a task");
+                    }
+                }
                 doEngineer = doEngineer with { password = engineer.password, name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
                 if(engineer.task!=null)
                 {

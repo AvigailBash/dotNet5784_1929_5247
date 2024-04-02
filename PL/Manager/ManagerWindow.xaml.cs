@@ -58,8 +58,13 @@ namespace PL.Manager
 
         private void ClickForAutomaticScheduale(object sender, RoutedEventArgs e)
         {
-            s_bl.Help.AutomaticScheduale();
-            MessageBox.Show("success");
+            try
+            {
+                s_bl.Help.AutomaticScheduale();
+                MessageBox.Show("success");
+            }
+            catch(Exception ex)
+            {  MessageBox.Show(ex.Message); }
         }
 
         private void ClickForOpenGant(object sender, RoutedEventArgs e)

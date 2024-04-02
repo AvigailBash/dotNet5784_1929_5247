@@ -19,6 +19,7 @@ internal class HelpImplementation:IHelp
     public void AutomaticScheduale()
     {
         Random random = new Random(); // Initialize a random number generator
+        DateTime? maxDate = DateTime.MinValue;
         IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(item => item.dependencies.Count == 0 && item.schedualedDate == null);
             if (tasks.Count() != 0)
             {
@@ -42,12 +43,18 @@ internal class HelpImplementation:IHelp
                 boTask!.schedualedDate = minimumDate.AddDays(daysToAdd);
                 s_bl.Task.Update(boTask);
                 boTask.forecastDate = s_bl.Task.findForecastDate(boTask.schedualedDate, boTask.schedualedDate, boTask.requiredEffortTime);
-
-                  
-
+                if (boTask.forecastDate > maxDate)
+                {
+                    maxDate = boTask.forecastDate;
                 }
+
+
             }
-        
+            }
+        if (maxDate > s_bl.Clock.GetEndOfProject())
+        {
+            throw new BO.Exceptions.BlCannotCreateTheScheduleException("The date of the end date of the project is not enough, you must choose further");
+        }
 
 
         tasks = s_bl.Task.ReadAll(item => item.schedualedDate == null && item.dependencies.Count != 0);
@@ -55,6 +62,7 @@ internal class HelpImplementation:IHelp
         {
             BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
             s_bl.Task.FindTheMinimumDate(boTask);
+           
             if (boTask.requiredEffortTime == null)
             {
                 int daysToAdd = random.Next(3, 7);
@@ -62,7 +70,15 @@ internal class HelpImplementation:IHelp
             }
 
             boTask.forecastDate = s_bl.Task.findForecastDate(boTask.schedualedDate, boTask.schedualedDate, boTask.requiredEffortTime);
+            if (boTask.forecastDate > maxDate)
+            {
+                maxDate = boTask.forecastDate;
+            }
             s_bl.Task.Update(boTask);
+        }
+        if(maxDate>s_bl.Clock.GetEndOfProject())
+        {
+            throw new BO.Exceptions.BlCannotCreateTheScheduleException("The date of the end date of the project is not enough, you must choose further");
         }
     }
 
@@ -77,6 +93,20 @@ internal class HelpImplementation:IHelp
                 _dal.Task.Update(doTask with { schedualedDate = null });
             }
         }
-      
+
+        //IEnumerable<BO.TaskInList> task = s_bl.Task.ReadAll();
+        //if (tasks.Count() != 0)
+        //{
+        //    BO.Task newTask;
+        //    foreach (BO.TaskInList boTask in task)
+        //    {
+        //        newTask = s_bl.Task.Read(boTask.id);
+        //        if(newTask != null)
+        //        {
+        //            s_bl.Task.Update(newTask  with { schedualedDate = null, forecastDate = null });
+
+        //        }
+        //    }
+        //}
     }
 }
