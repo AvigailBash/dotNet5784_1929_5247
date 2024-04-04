@@ -45,16 +45,20 @@ namespace PL.Password
         {
             if (User.Id == 1234 && User.Password == 1234)
             {
-                new ManagerWindow().ShowDialog();
+                new ManagerWindow().Show();
+                this.Close();
             }
             else
             {
                 try
                 {
                     BO.TaskInEngineer? et = s_bl.Engineer.ReadForPassword(User.Id, User.Password);
-                    if (et == null) { new TaskInListWindow(true).Show(); }
+                    if (et == null) { new TaskInListWindow(true).Show(); this.Close(); }
                     else
+                    {
                         new TaskWindow(et.id, true).ShowDialog();
+                        this.Close();
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
