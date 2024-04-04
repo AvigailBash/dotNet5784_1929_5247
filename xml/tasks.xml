@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
-    <id>1010</id>
-    <createdAtDate>2024-04-02T22:12:32.2084771+03:00</createdAtDate>
-    <alias>Database Design</alias>
-    <description>Plan and create the database schema, considering data storage, retrieval, and relationships</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate>2024-04-04T22:14:00.0271364+03:00</schedualedDate>
-    <requiredEffortTime>P4D</requiredEffortTime>
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId xsi:nil="true" />
-    <coplexity>Beginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
     <id>1011</id>
     <createdAtDate>2024-04-02T22:12:32.2250619+03:00</createdAtDate>
     <alias>Technology Stack Selection</alias>
@@ -151,21 +136,6 @@
     <isActive>true</isActive>
   </Task>
   <Task>
-    <id>1000</id>
-    <createdAtDate>2024-04-02T22:12:32.0001957+03:00</createdAtDate>
-    <alias>planning</alias>
-    <description>planning the event</description>
-    <isMilestone>true</isMilestone>
-    <schedualedDate>2024-04-10T22:14:00.0271364+03:00</schedualedDate>
-    <requiredEffortTime>P6D</requiredEffortTime>
-    <deadlineDate xsi:nil="true" />
-    <startDate xsi:nil="true" />
-    <completeDate xsi:nil="true" />
-    <engineerId xsi:nil="true" />
-    <coplexity>Beginner</coplexity>
-    <isActive>true</isActive>
-  </Task>
-  <Task>
     <id>1001</id>
     <createdAtDate>2024-04-02T22:12:32.0211745+03:00</createdAtDate>
     <alias>design</alias>
@@ -298,6 +268,36 @@
     <completeDate xsi:nil="true" />
     <engineerId xsi:nil="true" />
     <coplexity>Expert</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1010</id>
+    <createdAtDate>2024-04-02T22:12:32.2084771+03:00</createdAtDate>
+    <alias>Database Design</alias>
+    <description>Plan and create the database schema, considering data storage, retrieval, and relationships</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-04-04T22:14:00.0271364+03:00</schedualedDate>
+    <requiredEffortTime>P4D</requiredEffortTime>
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate>2024-04-05T00:00:00</completeDate>
+    <engineerId>255331158</engineerId>
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1000</id>
+    <createdAtDate>2024-04-02T22:12:32.0001957+03:00</createdAtDate>
+    <alias>planning</alias>
+    <description>planning the event</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-04-10T22:14:00.0271364+03:00</schedualedDate>
+    <requiredEffortTime>P6D</requiredEffortTime>
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate>2024-04-05T00:00:00</completeDate>
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
     <isActive>true</isActive>
   </Task>
 </ArrayOfTask>

@@ -10,6 +10,7 @@ internal class EngineerImplementation :BlApi.IEngineer
     /// A call to  the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     private BlApi.IClock _clock = new ClockImplementation();
     // BO.StatusOfProject status;
 
@@ -143,14 +144,14 @@ internal class EngineerImplementation :BlApi.IEngineer
                     }
                 }
                 doEngineer = doEngineer with { password = engineer.password, name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
-                if(engineer.task!=null)
+                if (engineer.task!=null)
                 {
                     if (_clock.statusForProject() == BO.StatusOfProject.Start)
                     {
                         throw new BO.Exceptions.BlCannotUpdateThisTaskException("The project is in the start stage");
                     }
                     DO.Task doNewTask = _dal.Task.Read(engineer.task!.id)!;
-                    if(doNewTask.startDate!= null)
+                    if (doNewTask.startDate!= null)
                     {
                         throw new BO.Exceptions.BlCannotUpdateThisTaskException("This engineer already started a task and he needs to complete it first");
                     }

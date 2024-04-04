@@ -166,13 +166,6 @@ internal class TaskImplementation : ITask
             }
             DO.Task? doTask = _dal.Task.Read(task.id);
             BO.Task? boTask = s_bl.Task.Read(task.id);
-            if (task.startDate != null) 
-            {
-                if (task.engineer == null) 
-                {
-                    throw new BO.Exceptions.BlCannotUpdateThisTaskException("Unable to set a start date before choosing an engineer");
-                }
-            }
             if (_clock.statusForProject() == BO.StatusOfProject.End)
             {
                 if (task.requiredEffortTime != doTask.requiredEffortTime || task.startDate != doTask.startDate)
@@ -186,7 +179,7 @@ internal class TaskImplementation : ITask
                 DO.Dependency d2 = _dal.Dependency.ReadForUpdate(d)!;
                 if(d2 == null) { _dal.Dependency.Create(d); }
             }
-            if(task.engineer != null && task.engineer.id != boTask!.engineer!.id)
+            if(task.engineer != null)
             {
                 if (_clock.statusForProject() == BO.StatusOfProject.Start) 
                 {
@@ -214,7 +207,23 @@ internal class TaskImplementation : ITask
                 }
                 id = task.engineer.id;
             }
-           doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
+            if (task.startDate != null && task.engineer == null)
+            {
+                if (task.engineer == null)
+                {
+                    throw new BO.Exceptions.BlCannotUpdateThisTaskException("Unable to set a start date before choosing an engineer");
+                }
+            }
+            if (task.completeDate != null)
+            {
+                //if (task.startDate == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without start date"); }
+                //if (task.engineer == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without engineer"); }
+                BO.Engineer boEngineer = s_bl.Engineer.Read(task.engineer.id);
+                boEngineer.task = null;
+                id = null;
+                s_bl.Engineer.Update(boEngineer);
+            }
+            doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
             _dal.Task.Update(doTask);
         }
         catch (DO.DalAlreadyExistsException ex)
