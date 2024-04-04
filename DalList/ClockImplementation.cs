@@ -46,7 +46,7 @@ internal class ClockImplementation : IClock
         return startOfProject;
     }
 
-    DateTime IClock.GetStartOfProject()
+    DateTime? IClock.GetStartOfProject()
     {
         throw new NotImplementedException();
     }

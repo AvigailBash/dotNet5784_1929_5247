@@ -23,7 +23,7 @@ internal class HelpImplementation:IHelp
         IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(item => item.dependencies.Count == 0 && item.schedualedDate == null);
             if (tasks.Count() != 0)
             {
-                DateTime minimumDate = s_bl.Clock.GetStartOfProject();
+                DateTime minimumDate = s_bl.Clock.GetStartOfProject() ?? DateTime.Now;
                 //DateTime maximumDate = s_bl.clock.AddDays(3);
                
             TimeSpan require= TimeSpan.FromDays(5);

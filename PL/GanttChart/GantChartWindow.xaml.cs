@@ -145,7 +145,7 @@ namespace PL.Gantt_chart
                 dataTable.Columns.Add("Task Name", typeof(string));
 
                 int col = 2;
-                for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                for (DateTime day = s_bl.Clock.GetStartOfProject() ?? DateTime.Now; day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
                     dataGrid.Columns.Add(new DataGridTextColumn() { Header = strDay, Binding = new Binding($"[{col}]") });
@@ -169,7 +169,7 @@ namespace PL.Gantt_chart
                 row[1] = task.alias;
             
 
-                for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                for (DateTime day = s_bl.Clock.GetStartOfProject() ?? DateTime.Now; day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}"; //"21/2/2024"
                  

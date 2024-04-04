@@ -60,15 +60,15 @@ namespace PL.Engineer
         public static readonly DependencyProperty EngineerProperty =
             DependencyProperty.Register(nameof(Engineer), typeof(BO.Engineer), typeof(EngineerWindow));
 
-        public IEnumerable<BO.TaskInList> TaskInLists
-        {
-            get { return (IEnumerable<BO.TaskInList>)GetValue(taskInListsProperty); }
-            set { SetValue(taskInListsProperty, value); }
-        }
+        //public IEnumerable<BO.TaskInList> TaskInLists
+        //{
+        //    get { return (IEnumerable<BO.TaskInList>)GetValue(taskInListsProperty); }
+        //    set { SetValue(taskInListsProperty, value); }
+        //}
 
-        // Using a DependencyProperty as the backing store for TaskInLists.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty taskInListsProperty =
-            DependencyProperty.Register(nameof(TaskInLists), typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
+        //// Using a DependencyProperty as the backing store for TaskInLists.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty taskInListsProperty =
+        //    DependencyProperty.Register(nameof(TaskInLists), typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
 
 
         public BO.Task Task

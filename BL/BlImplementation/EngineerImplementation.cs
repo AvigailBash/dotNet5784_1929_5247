@@ -1,7 +1,5 @@
 ﻿using BlApi;
-using BO;
 using DalApi;
-using DO;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
@@ -200,6 +198,13 @@ internal class EngineerImplementation :BlApi.IEngineer
         return Regex.IsMatch(email, pattern);
     }
 
+    public BO.EngineerInTask? ReadInTaskInEngineerFormat(int id)
+    {
+        DO.Engineer doEnginner = _dal.Engineer.Read(id)!;
+        BO.EngineerInTask engineerInTask = new BO.EngineerInTask() { id = doEnginner.id, name = doEnginner.name };
+        return engineerInTask;
+    }
+
     public BO.TaskInEngineer? ReadForPassword(int id, int password)
     {
         BO.Engineer en = Read(id)!;
@@ -217,7 +222,7 @@ internal class EngineerImplementation :BlApi.IEngineer
     {
         DO.Task doTask = _dal.Task.Read(t => (t?.engineerId == boEngineer.id));
         if (doTask == null) return null;
-        BO.TaskInEngineer boTaskInEngineer = new TaskInEngineer() { id = doTask.id, alias = doTask.alias };
+        BO.TaskInEngineer boTaskInEngineer = new BO.TaskInEngineer() { id = doTask.id, alias = doTask.alias };
         return boTaskInEngineer;
     }
 }

@@ -108,11 +108,11 @@ internal class Intilization
                     break;
             }
             DateTime? _schedualedDate = null;
-            DateTime _createdAtDate = s_dal.Clock.GetStartOfProject();
+            DateTime _createdAtDate = s_dal.Clock.GetStartOfProject()?? DateTime.Now;
             DateTime? _startDate = null;
 
 
-            DateTime today =s_dal.Clock.GetStartOfProject();///////////
+            DateTime today =s_dal.Clock.GetStartOfProject()?? DateTime.Now;
             DateTime sixMonthsFromNow = today.AddMonths(6);
             Random random = new Random();
             int range = (sixMonthsFromNow - today).Days;
