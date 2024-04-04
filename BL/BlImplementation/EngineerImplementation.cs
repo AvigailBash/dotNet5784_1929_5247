@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using DalApi;
 using System.Text.RegularExpressions;
 
@@ -10,6 +11,7 @@ internal class EngineerImplementation :BlApi.IEngineer
     /// A call to  the method that fetches the data
     /// </summary>
     private DalApi.IDal _dal = DalApi.Factory.Get;
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     private BlApi.IClock _clock = new ClockImplementation();
     // BO.StatusOfProject status;
 
@@ -224,5 +226,13 @@ internal class EngineerImplementation :BlApi.IEngineer
         if (doTask == null) return null;
         BO.TaskInEngineer boTaskInEngineer = new BO.TaskInEngineer() { id = doTask.id, alias = doTask.alias };
         return boTaskInEngineer;
+    }
+
+
+    public IEnumerable< BO.EngineerInTask> ReadInTaskInEngineerFormatWithFilter(int id)
+    {
+       IEnumerable< BO.Engineer> boEnginnerlist = s_bl.Engineer.ReadAll(e=>e.task==null||e.task.id==id);
+        IEnumerable<BO.EngineerInTask> newList = from engineerInList in boEnginnerlist select new BO.EngineerInTask() { id = engineerInList.id,name = engineerInList.name };
+        return newList;
     }
 }

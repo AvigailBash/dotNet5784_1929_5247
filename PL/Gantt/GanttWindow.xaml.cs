@@ -147,7 +147,10 @@ namespace PL.Gantt
                 dataTable.Columns.Add("Dependencies", typeof(string));
 
                 int col = 3;
-                for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                //////////////////////////////////////////////////////////////////////////////////
+                DateTime startDate = s_bl.Clock.GetStartOfProject() ?? DateTime.MinValue;
+                for (DateTime day = startDate; day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                //for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}";
                     DataGridTemplateColumn column = new DataGridTemplateColumn() { Header = strDay };
@@ -177,8 +180,10 @@ namespace PL.Gantt
                 IEnumerable<BO.TaskInList> dependencies = s_bl.Task.findDependenciesId(task.id);
                 string dependenciesString = string.Join(", ", dependencies.Select(d => d.id));
                 row[2] = dependenciesString;
-
-                for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                DateTime startDate = s_bl.Clock.GetStartOfProject() ?? DateTime.MinValue;
+                for (DateTime day = startDate; day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+                    ////////////////////////////////////////////////////////////////////////////////////////
+                //for (DateTime day = s_bl.Clock.GetStartOfProject!(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}";
 

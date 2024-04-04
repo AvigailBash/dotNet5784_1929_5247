@@ -133,7 +133,7 @@ namespace PL.TaskInList
 
                 if (button is { Content: "Add" })
                 {
-                    
+
                     s_bl.Task.Create(Task);
                     MessageBox.Show("success");
                     this.Close();
@@ -148,7 +148,7 @@ namespace PL.TaskInList
                         if (result == MessageBoxResult.Yes)
                         {
                             new TaskInListWindow(true).ShowDialog();
-                          
+
 
                         }
                     }
@@ -181,4 +181,3 @@ namespace PL.TaskInList
 
     }
 }
-

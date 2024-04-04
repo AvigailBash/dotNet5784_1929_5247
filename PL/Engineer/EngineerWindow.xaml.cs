@@ -92,7 +92,7 @@ namespace PL.Engineer
                
                 if (button is { Content: "Add"})
                 {
-                    if(!(Engineer.id is  DigitShapes) || Engineer.password==null)
+                    if((Engineer.id is  DigitShapes) || Engineer.password==null)
                     {
                         throw new Exception("One of the details is incorrect");
                     }

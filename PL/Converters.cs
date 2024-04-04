@@ -159,3 +159,26 @@ public class TaskDelayedToRowBackgroundConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class EngineerNameConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (values.Length < 2)
+            return "";
+
+        // values[0] יהיה ה-ID של המהנדס
+        // values[1] יהיה השם של המהנדס
+        string engineerId = values[0]?.ToString();
+        string engineerName = values[1]?.ToString();
+
+        // יישום הלוגיקה שלך להחזרת הערך הנכון
+        // לדוגמה, יכול להחזיר שם מהנדס עם זיהוי כמו כזה: "123 - John Doe"
+        return $"{engineerId} - {engineerName}";
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

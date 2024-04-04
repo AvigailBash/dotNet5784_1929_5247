@@ -38,6 +38,7 @@ public interface IEngineer
 
     public BO.TaskInEngineer? ReadForPassword(int id, int password);
     public BO.EngineerInTask? ReadInTaskInEngineerFormat(int id);
+    public IEnumerable<BO.EngineerInTask> ReadInTaskInEngineerFormatWithFilter(int id);
 
 
 }

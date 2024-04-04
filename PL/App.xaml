@@ -16,8 +16,7 @@
         <local:TaskDelayedToRowBackgroundConverter x:Key="TaskDelayedToRowBackgroundConverter"/>
         <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
         <local:EngineerConverter x:Key="EngineerConverterKey"/>
-      
-       
+        <local:EngineerNameConverter x:Key="EngineerNameConverter" />
 
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
