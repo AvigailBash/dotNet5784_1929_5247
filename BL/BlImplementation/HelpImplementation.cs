@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace BlImplementation;
 
-internal class HelpImplementation:IHelp
+internal class HelpImplementation : IHelp
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -21,18 +21,18 @@ internal class HelpImplementation:IHelp
         Random random = new Random(); // Initialize a random number generator
         DateTime? maxDate = DateTime.MinValue;
         IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(item => item.dependencies.Count == 0 && item.schedualedDate == null);
-            if (tasks.Count() != 0)
-            {
-                DateTime minimumDate = s_bl.Clock.GetStartOfProject();
-                //DateTime maximumDate = s_bl.clock.AddDays(3);
-               
-            TimeSpan require= TimeSpan.FromDays(5);
+        if (tasks.Count() != 0)
+        {
+            DateTime minimumDate = s_bl.Clock.GetStartOfProject();
+            //DateTime maximumDate = s_bl.clock.AddDays(3);
+
+            TimeSpan require = TimeSpan.FromDays(5);
             //IEnumerable<DO.Task> task = _dal.Task.ReadAll();
             int daysToAdd;
-                foreach (BO.TaskInList boTaskInList in tasks)
-                {
-                   
-                    BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
+            foreach (BO.TaskInList boTaskInList in tasks)
+            {
+
+                BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
                 if (boTask.requiredEffortTime == null)
                 {
                     daysToAdd = random.Next(3, 7);
@@ -50,7 +50,7 @@ internal class HelpImplementation:IHelp
 
 
             }
-            }
+        }
         if (maxDate > s_bl.Clock.GetEndOfProject())
         {
             throw new BO.Exceptions.BlCannotCreateTheScheduleException("The date of the end date of the project is not enough, you must choose further");
@@ -62,7 +62,7 @@ internal class HelpImplementation:IHelp
         {
             BO.Task boTask = s_bl.Task.Read(boTaskInList.id)!;
             s_bl.Task.FindTheMinimumDate(boTask);
-           
+
             if (boTask.requiredEffortTime == null)
             {
                 int daysToAdd = random.Next(3, 7);
@@ -76,7 +76,7 @@ internal class HelpImplementation:IHelp
             }
             s_bl.Task.Update(boTask);
         }
-        if(maxDate>s_bl.Clock.GetEndOfProject())
+        if (maxDate > s_bl.Clock.GetEndOfProject())
         {
             throw new BO.Exceptions.BlCannotCreateTheScheduleException("The date of the end date of the project is not enough, you must choose further");
         }
@@ -85,7 +85,7 @@ internal class HelpImplementation:IHelp
     public void SetNullInScheduale()
     {
         IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();
-        if(tasks.Count() != 0)
+        if (tasks.Count() != 0)
         {
             foreach (DO.Task doTask in tasks)
             {

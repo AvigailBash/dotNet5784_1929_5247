@@ -143,7 +143,10 @@ namespace PL.Gantt
                 dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Name", Binding = new Binding("[1]") });
                 dataTable.Columns.Add("Task Name", typeof(string));
 
-                int col = 2;
+                dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Dependencies", Binding = new Binding("[2]") });
+                dataTable.Columns.Add("Dependencies", typeof(string));
+
+                int col = 3;
                 for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
                     string strDay = $"{day.Day}/{day.Month}/{day.Year}";
@@ -163,12 +166,17 @@ namespace PL.Gantt
                 }
             }
 
-            IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.id);
+            IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.schedualedDate);
             foreach (BO.Task task in orderedListTasksSchedule)
             {
                 DataRow row = dataTable.NewRow();
                 row[0] = task.id;
                 row[1] = task.alias;
+
+                // Get the dependencies of the current task
+                IEnumerable<BO.TaskInList> dependencies = s_bl.Task.findDependenciesId(task.id);
+                string dependenciesString = string.Join(", ", dependencies.Select(d => d.id));
+                row[2] = dependenciesString;
 
                 for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
                 {
@@ -190,8 +198,67 @@ namespace PL.Gantt
             {
                 dataGrid.ItemsSource = dataTable.DefaultView;
             }
+            //DataGrid? dataGrid = sender as DataGrid;
+
+            //DataTable dataTable = new DataTable();
+
+            //if (dataGrid != null)
+            //{
+            //    dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Id", Binding = new Binding("[0]") });
+            //    dataTable.Columns.Add("Task Id", typeof(int));
+
+            //    dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Name", Binding = new Binding("[1]") });
+            //    dataTable.Columns.Add("Task Name", typeof(string));
+
+            //    int col = 2;
+            //    for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+            //    {
+            //        string strDay = $"{day.Day}/{day.Month}/{day.Year}";
+            //        DataGridTemplateColumn column = new DataGridTemplateColumn() { Header = strDay };
+
+            //        FrameworkElementFactory textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+            //        textBlockFactory.SetBinding(TextBlock.BackgroundProperty, new Binding($"[{col}]") { Converter = (IValueConverter)dataGrid.FindResource("StatusToColorConverter") });
+
+            //        DataTemplate cellTemplate = new DataTemplate();
+            //        cellTemplate.VisualTree = textBlockFactory;
+            //        column.CellTemplate = cellTemplate;
+
+            //        dataGrid.Columns.Add(column);
+
+            //        dataTable.Columns.Add(strDay, typeof(BO.Status));
+            //        col++;
+            //    }
+            //}
+
+            //IEnumerable<BO.Task> orderedListTasksSchedule = s_bl.Task.ReadFullTask().OrderBy(t => t.schedualedDate);
+            //foreach (BO.Task task in orderedListTasksSchedule)
+            //{
+            //    DataRow row = dataTable.NewRow();
+            //    row[0] = task.id;
+            //    row[1] = task.alias;
+
+            //    for (DateTime day = s_bl.Clock.GetStartOfProject(); day <= s_bl.Clock.GetEndOfProject(); day = day.AddDays(1))
+            //    {
+            //        string strDay = $"{day.Day}/{day.Month}/{day.Year}";
+
+            //        if (day < task.schedualedDate || day > task.forecastDate)
+            //        {
+            //            row[strDay] = BO.Status.None;
+            //        }
+            //        else
+            //        {
+            //            row[strDay] = task.status;
+            //        }
+            //    }
+            //    dataTable.Rows.Add(row);
+            //}
+
+            //if (dataGrid != null)
+            //{
+            //    dataGrid.ItemsSource = dataTable.DefaultView;
+            //}
         }
-        }
+    }
 
 }
 

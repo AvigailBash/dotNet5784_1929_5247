@@ -17,7 +17,7 @@
         <Button Style="{StaticResource myButtonStyle}" Content="Add Task" HorizontalAlignment="Left" Margin="49,245,0,0" VerticalAlignment="Top" Click="ClickForAddTask"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Reset" HorizontalAlignment="Left" Margin="613,188,0,0" VerticalAlignment="Top" RenderTransformOrigin="8.126,-5.497"  Click="ClickForReset"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Set Dates" HorizontalAlignment="Left" Margin="613,38,0,0" VerticalAlignment="Top"  Click="ClickForSetStartAndEndDates"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Automatic Schedual" HorizontalAlignment="Left" Margin="613,138,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Automatic Schedual" HorizontalAlignment="Left" Margin="613,138,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale" />
         <Button Style="{StaticResource myButtonStyle}" Content="Gant" HorizontalAlignment="Left" Margin="49,356,0,0" VerticalAlignment="Top" Click="ClickForOpenGant"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Set scheduale null" HorizontalAlignment="Left" Margin="613,92,0,0" VerticalAlignment="Top" Click="SetSchedualeToNull" />
         <Button Style="{StaticResource myButtonStyle}" Content="Intilization" HorizontalAlignment="Left" Margin="49,128,0,0" VerticalAlignment="Top" Click="ClickForIntilization"/>
@@ -25,3 +25,4 @@
 
     </Grid>
 </Window>
+

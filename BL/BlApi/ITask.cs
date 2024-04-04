@@ -73,4 +73,5 @@ public interface ITask
     public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null);
     public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe();
     public BO.TaskInEngineer ReadInTaskInEngineerFormat(int id);
+    public List<BO.TaskInList> findDependenciesId(int id);
 }

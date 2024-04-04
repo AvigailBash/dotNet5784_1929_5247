@@ -1,4 +1,27 @@
-﻿namespace Dal;
+﻿//namespace Dal;
+//using DalApi;
+
+///// <summary>
+///// A class that invokes each of the classes that implement the entities
+///// </summary>
+//sealed internal class DalList : IDal
+//{
+
+//    public static IDal Instance { get; } = new DalList();
+//    private DalList() { }
+//    public ITask Task => new TaskImplementation();
+
+//    public IEngineer Engineer => new EngineerImplementation();
+
+//    public IDependency Dependency => new DependencyImplementation();
+
+//    public IClock Clock => new ClockImplementation();
+//    public IUser User => new UserImplementation();
+
+//    public IHelp Help => new HelpImplementation();
+//}
+namespace Dal;
+
 using DalApi;
 
 /// <summary>
@@ -6,28 +29,27 @@ using DalApi;
 /// </summary>
 sealed internal class DalList : IDal
 {
-    //public static IDal Instance = null;
-    //public static IDal GetInstance()
-    //{
-    //    //This is not thread-safe
-    //    if (Instance == null)
-    //    {
-    //        Instance = new DalList();
-    //    }
-    //    //Return the Singleton Instance
-    //    return Instance;
-    //}
-    //private DalList() { }
-    public static IDal Instance { get; } = new DalList();
+    private static readonly Lazy<DalList> _instance = new Lazy<DalList>(() => new DalList());
+
+    public static IDal Instance => _instance.Value;
+
     private DalList() { }
-    public ITask Task => new TaskImplementation();
 
-    public IEngineer Engineer => new EngineerImplementation();
+    private readonly Lazy<ITask> _task = new Lazy<ITask>(() => new TaskImplementation());
+    public ITask Task => _task.Value;
 
-    public IDependency Dependency => new DependencyImplementation();
+    private readonly Lazy<IEngineer> _engineer = new Lazy<IEngineer>(() => new EngineerImplementation());
+    public IEngineer Engineer => _engineer.Value;
 
-    public IClock Clock => new ClockImplementation();
-    public IUser User => new UserImplementation();
+    private readonly Lazy<IDependency> _dependency = new Lazy<IDependency>(() => new DependencyImplementation());
+    public IDependency Dependency => _dependency.Value;
 
-    public IHelp Help => new HelpImplementation();
+    private readonly Lazy<IClock> _clock = new Lazy<IClock>(() => new ClockImplementation());
+    public IClock Clock => _clock.Value;
+
+    private readonly Lazy<IUser> _user = new Lazy<IUser>(() => new UserImplementation());
+    public IUser User => _user.Value;
+
+    private readonly Lazy<IHelp> _help = new Lazy<IHelp>(() => new HelpImplementation());
+    public IHelp Help => _help.Value;
 }

@@ -231,6 +231,12 @@ internal class TaskImplementation : ITask
         List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
         return taskInLists;
     }
+    public List<BO.TaskInList> findDependenciesId(int id)
+    {
+        IEnumerable<DO.Task?> newList = from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask == id select _dal.Task.Read(doDependency.dependsOnTask ?? 0);
+        List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
+        return taskInLists;
+    }
 
     /// <summary>
     /// A method that finds the status of the project

@@ -203,8 +203,8 @@ internal class Intilization
             Random rand = new Random();
             do
             {
-                _dependentTask = new Random().Next(1000, 1010);
-                _dependsOnTask = new Random().Next(1000, 1020);
+                _dependentTask = new Random().Next(1010, 1020);
+                _dependsOnTask = new Random().Next(1000/*1000*/, 1010);
 
             } while (_dependsOnTask == _dependentTask || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependentTask && t.dependentTask == _dependsOnTask).Count() != 0 || s_dal!.Dependency.ReadAll(t => t.dependsOnTask == _dependsOnTask && t.dependentTask == _dependentTask).Count() != 0);
             Dependency newDependency = new Dependency(0, _dependentTask, _dependsOnTask, true);

@@ -26,7 +26,7 @@
             <Label  Grid.Column="0" Content="Select complexity" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
             <ComboBox SelectedValue="{Binding status, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource TaskInListCollectionKey}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SelectStatus"/>
         </Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="2"  HorizontalAlignment="Center" Height="NaN" Width="100" Click="clickOpenTaskWindowForCreate" />
+        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1"  HorizontalAlignment="Center" Height="NaN" Width="100" Click="clickOpenTaskWindowForCreate" Margin="0,551,0,0" Grid.RowSpan="2" />
         <ListView  BorderThickness="5" Padding="0" Grid.Row="1" Background="White" FontFamily="Consolas" FontSize="13" Foreground="Black" BorderBrush="DarkSlateGray"  ItemsSource="{Binding TaskList}" MouseDoubleClick="clickOpenTaskWindowForUptade" Height="560" Grid.RowSpan="2" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>

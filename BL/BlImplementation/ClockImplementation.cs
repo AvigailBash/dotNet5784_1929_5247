@@ -43,7 +43,7 @@ internal class ClockImplementation : IClock
     public BO.StatusOfProject statusForProject()
     {
         bool flag = true;
-        if (GetStartOfProject() == null) 
+        if (GetStartOfProject == null) 
         {
             return BO.StatusOfProject.Start;
         }
@@ -61,6 +61,22 @@ internal class ClockImplementation : IClock
                 return BO.StatusOfProject.Middle;
             }
         }
+        if(GetEndOfProject!= null)
+        {
+            flag = true;
+            foreach (DO.Task ta in _dal.Task.ReadAll())
+            {
+                if (ta.startDate == null)
+                {
+                    flag = false;
+                }
+            }
+            if (!flag)
+            {
+                return BO.StatusOfProject.Middle;
+            }
+        }
+        
         return BO.StatusOfProject.End;
     }
 

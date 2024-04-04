@@ -13,8 +13,11 @@
         <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
         <local:ConvertDaTteTimeToIsEnabled x:Key="ConvertDaTteTimeToIsEnabledK"/>
         <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />
+        <local:TaskDelayedToRowBackgroundConverter x:Key="TaskDelayedToRowBackgroundConverter"/>
         <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
         <local:EngineerConverter x:Key="EngineerConverterKey"/>
+      
+       
 
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
@@ -51,6 +54,16 @@
             <Setter Property="BorderBrush" Value="{StaticResource MyButtonBrush}" />
             <Setter Property="BorderThickness" Value="5" />
         </Style>
+        <!--<Style x:Key="myTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Margin" Value="300, 0,0,0" />
+            <Setter Property="BorderBrush" Value="{StaticResource MyTextBoxBrush}" />
+            <Setter Property="BorderThickness" Value="3" />
+        </Style>-->
         <Style x:Key="myTextBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />
@@ -60,6 +73,23 @@
             <Setter Property="Margin" Value="300, 0,0,0" />
             <Setter Property="BorderBrush" Value="{StaticResource MyTextBoxBrush}" />
             <Setter Property="BorderThickness" Value="3" />
+
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="myComboBoxBoxStyle" TargetType="ComboBox">
             <Setter Property="FontSize" Value="13" />
