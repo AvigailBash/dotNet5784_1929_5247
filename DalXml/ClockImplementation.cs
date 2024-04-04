@@ -25,7 +25,7 @@ internal class ClockImplementation : IClock
     /// Getting the project start date by extracting it from an XML file
     /// </summary>
     /// <returns></returns>
-    public DateTime GetStartOfProject()
+    public DateTime? GetStartOfProject()
     {
         XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml).Element("startProject")!;
         if (clockRoot.Value == "")
@@ -40,18 +40,10 @@ internal class ClockImplementation : IClock
     /// </summary>
     /// <param name="endOfProject"> Change the project start date by extracting from the XML file, changing and saving back to the file </param>
     /// <returns></returns>
-    //public DateTime? SetEndOfProject(DateTime endOfProject)
-    //{
-    //    XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml);
-    //    clockRoot.Element("endProject")!.Value = endOfProject.ToString();
-    //    XMLTools.SaveListToXMLElement(clockRoot, s_clock_xml);
-    //    return endOfProject;
-    //}
-
     public DateTime? SetEndOfProject(DateTime? endOfProject)
     {
         XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml);
-        clockRoot.Element("endProject")!.Value = endOfProject.ToString();
+        clockRoot.Element("endProject").Value = endOfProject.ToString();
         XMLTools.SaveListToXMLElement(clockRoot, s_clock_xml);
         return endOfProject;
     }
@@ -61,19 +53,21 @@ internal class ClockImplementation : IClock
     /// </summary>
     /// <param name="startOfProject"> Change the project start date by extracting from the XML file, changing and saving back to the file </param>
     /// <returns></returns>
-    //public DateTime? SetStartOfProject(DateTime startOfProject)
-    //{
-    //    XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml);
-    //    clockRoot.Element("startProject")!.Value = startOfProject.ToString();
-    //    XMLTools.SaveListToXMLElement(clockRoot, s_clock_xml);
-    //    return startOfProject;
-    //}
-
     public DateTime? SetStartOfProject(DateTime? startOfProject)
     {
         XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml);
-        clockRoot.Element("startProject")!.Value = startOfProject.ToString();
+        clockRoot.Element("startProject").Value = startOfProject.ToString();
         XMLTools.SaveListToXMLElement(clockRoot, s_clock_xml);
         return startOfProject;
+    }
+
+    DateTime? IClock.GetStartOfProject()
+    {
+        XElement clockRoot = XMLTools.LoadListFromXMLElement(s_clock_xml).Element("startProject")!;
+        if (clockRoot.Value == "")
+        {
+            return null;
+        }
+        return DateTime.Parse(clockRoot.Value);
     }
 }

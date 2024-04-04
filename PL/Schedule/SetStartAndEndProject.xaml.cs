@@ -29,8 +29,8 @@ namespace PL.Schedule
 
 
 
-        public DateTime start { get; set; } = s_bl.clock;
-        public DateTime end { get; set; } = s_bl.clock;
+        public DateTime? start { get; set; } =  s_bl.Clock.GetStartOfProject();
+        public DateTime? end { get; set; } = s_bl.Clock.GetEndOfProject();
 
         private void SetDates(object sender, RoutedEventArgs e)
         {

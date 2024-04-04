@@ -20,21 +20,21 @@ internal class ClockImplementation : IClock
     /// Getting a start date for the project
     /// </summary>
     /// <returns></returns>
-    public DateTime GetStartOfProject()=> _dal.Clock.GetStartOfProject();
+    public DateTime? GetStartOfProject()=> _dal.Clock.GetStartOfProject();
 
     /// <summary>
     /// Changing the end date of the project
     /// </summary>
     /// <param name="endOfProject"> The end date </param>
     /// <returns></returns>
-    public DateTime? SetEndOfProject(DateTime endOfProject) => _dal.Clock.SetEndOfProject(endOfProject);
+    //public DateTime? SetEndOfProject(DateTime endOfProject) => _dal.Clock.SetEndOfProject(endOfProject);
 
     /// <summary>
     /// Changing the start date of the project
     /// </summary>
     /// <param name="startOfProject"> The start date </param>
     /// <returns></returns>
-    public DateTime? SetStartOfProject(DateTime startOfProject) => _dal.Clock.SetStartOfProject(startOfProject);
+    //public DateTime? SetStartOfProject(DateTime startOfProject) => _dal.Clock.SetStartOfProject(startOfProject);
 
     /// <summary>
     /// A method that calculates the status of the project - at which stage we are
@@ -43,7 +43,8 @@ internal class ClockImplementation : IClock
     public BO.StatusOfProject statusForProject()
     {
         bool flag = true;
-        if (GetStartOfProject == null) 
+        DateTime? date = _dal.Clock.GetStartOfProject();
+        if (date == null) 
         {
             return BO.StatusOfProject.Start;
         }
@@ -110,4 +111,7 @@ internal class ClockImplementation : IClock
         }
         return minDate;
     }
+
+    public DateTime? SetStartOfProject(DateTime? startOfProject) => _dal.Clock.SetStartOfProject(startOfProject);
+    public DateTime? SetEndOfProject(DateTime? endOfProject) => _dal.Clock.SetEndOfProject(endOfProject);
 }

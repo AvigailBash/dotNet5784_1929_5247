@@ -21,12 +21,12 @@ internal class HelpImplementation : IHelp
         Random random = new Random(); // Initialize a random number generator
         DateTime? maxDate = DateTime.MinValue;
         IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(item => item.dependencies.Count == 0 && item.schedualedDate == null);
-        if (tasks.Count() != 0)
-        {
-            DateTime minimumDate = s_bl.Clock.GetStartOfProject();
-            //DateTime maximumDate = s_bl.clock.AddDays(3);
-
-            TimeSpan require = TimeSpan.FromDays(5);
+            if (tasks.Count() != 0)
+            {
+                DateTime minimumDate = s_bl.Clock.GetStartOfProject() ?? DateTime.Now;
+                //DateTime maximumDate = s_bl.clock.AddDays(3);
+               
+            TimeSpan require= TimeSpan.FromDays(5);
             //IEnumerable<DO.Task> task = _dal.Task.ReadAll();
             int daysToAdd;
             foreach (BO.TaskInList boTaskInList in tasks)
