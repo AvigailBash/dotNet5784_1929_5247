@@ -147,16 +147,27 @@ internal class EngineerImplementation :BlApi.IEngineer
                 doEngineer = doEngineer with { password = engineer.password, name = engineer.name, email = engineer.email, cost = engineer.cost, isActive = engineer.isActive, level = (DO.Engineerlevel)engineer.level! };
                 if(engineer.task!=null)
                 {
+                    if (_clock.statusForProject() == BO.StatusOfProject.Start)
+                    {
+                        throw new BO.Exceptions.BlCannotUpdateThisTaskException("The project is in the start stage");
+                    }
                     DO.Task doNewTask = _dal.Task.Read(engineer.task!.id)!;
+                    if(doNewTask.startDate!= null)
+                    {
+                        throw new BO.Exceptions.BlCannotUpdateThisTaskException("This engineer already started a task and he needs to complete it first");
+                    }
                     if ((BO.Engineerlevel)doNewTask.coplexity > engineer.level)
                     {
-                        throw new BO.Exceptions.BlIncorrectInputException($"Engineer ot this level can not work on this task");
+                        throw new BO.Exceptions.BlIncorrectInputException($"Engineer with this level can not work on this task");
                     }
                     doNewTask = doNewTask with { engineerId = engineer.id };
                     _dal.Task.Update(doNewTask);
-                    DO.Task doTask = _dal.Task.Read(boEngineer!.task!.id)!;
-                    doTask = doTask with { engineerId = null };
-                    _dal.Task.Update(doTask);
+                    if(boEngineer.task!= null)
+                    {
+                        DO.Task doTask = _dal.Task.Read(boEngineer!.task!.id)!;
+                        doTask = doTask with { engineerId = null };
+                        _dal.Task.Update(doTask);
+                    }
                 }
                 _dal.Engineer.Update(doEngineer);
             }

@@ -13,7 +13,9 @@
         <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
         <local:ConvertDaTteTimeToIsEnabled x:Key="ConvertDaTteTimeToIsEnabledK"/>
         <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />
-       
+        <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
+        <local:EngineerConverter x:Key="EngineerConverterKey"/>
+
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />

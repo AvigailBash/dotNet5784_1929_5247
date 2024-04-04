@@ -7,7 +7,7 @@ public interface IClock
     /// </summary>
     /// <param name="startOfProject"> The start date </param>
     /// <returns></returns>
-    public DateTime? SetStartOfProject(DateTime startOfProject);
+    public DateTime? SetStartOfProject(DateTime? startOfProject);
 
     /// <summary>
     /// Getting a start date for the project
@@ -20,7 +20,7 @@ public interface IClock
     /// </summary>
     /// <param name="endOfProject"> The end date </param>
     /// <returns></returns>
-    public DateTime? SetEndOfProject(DateTime endOfProject);
+    public DateTime? SetEndOfProject(DateTime? endOfProject);
 
 
     /// <summary>

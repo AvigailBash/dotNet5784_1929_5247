@@ -10,6 +10,6 @@ internal static class Config
     internal static int NextDependencyId { get => XMLTools.GetAndIncreaseNextId(s_data_config_xml, "NextDependencyId"); }
     public static void resetTaskId(bool flag) => XMLTools.ResetId(s_data_config_xml, "NextTaskId",flag,"Task");
     public static void resetDependencyId(bool flag) => XMLTools.ResetId(s_data_config_xml, "NextDependencyId",flag,"Dependency");
-    internal static DateTime startProject = DateTime.Now;
+    internal static DateTime? startProject = DateTime.Now;
     internal static DateTime? endProject = null;
 }

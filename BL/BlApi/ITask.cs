@@ -72,4 +72,5 @@ public interface ITask
     public void FindTheMinimumDate(BO.Task boTask);
     public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null);
     public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe();
+    public BO.TaskInEngineer ReadInTaskInEngineerFormat(int id);
 }

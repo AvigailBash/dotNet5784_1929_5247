@@ -28,12 +28,21 @@ namespace PL.Engineer
             if (Id == 0)
             {
                 Engineer = new BO.Engineer();
+                Task = new BO.Task();
             }
             else
             {
                 try
                 {
                     Engineer = s_bl.Engineer.Read(Id)!;
+                    if(Engineer.task==null)
+                    {
+                        Engineer.task = new BO.TaskInEngineer();
+                    }
+                    else
+                    {
+                        Engineer.task = s_bl.Task.ReadInTaskInEngineerFormat(Engineer.task.id);
+                    }
                 }
                 catch (Exception ex) { Console.WriteLine(ex); }
 
@@ -60,7 +69,19 @@ namespace PL.Engineer
         // Using a DependencyProperty as the backing store for TaskInLists.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty taskInListsProperty =
             DependencyProperty.Register(nameof(TaskInLists), typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
-       
+
+
+        public BO.Task Task
+        {
+            get { return (BO.Task)GetValue(TaskProperty); }
+            set { SetValue(TaskProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Task.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TaskProperty =
+            DependencyProperty.Register("Task", typeof(BO.Task), typeof(EngineerWindow), new PropertyMetadata(null));
+
+
 
         private void clickForUpdateOrAdd(object sender, RoutedEventArgs e)
         {

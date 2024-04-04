@@ -225,6 +225,8 @@ internal class Intilization
         deleteAll();
         Config.resetDependencyId(false);
         Config.resetTaskId(false);
+        s_dal.Clock.SetStartOfProject(null);
+        s_dal.Clock.SetEndOfProject(null);
         createEngineer();
         createDependency();
         createTasks();
@@ -236,7 +238,8 @@ internal class Intilization
         deleteAll();
         Config.resetDependencyId(true);
         Config.resetTaskId(true);
-
+        s_dal.Clock.SetStartOfProject(null);
+        s_dal.Clock.SetEndOfProject(null);
     }
 
 }
