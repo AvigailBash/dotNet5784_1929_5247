@@ -62,8 +62,13 @@
         <Button Style="{StaticResource myButtonStyle}" Content="view dependencies" HorizontalAlignment="Left" Margin="201,558,0,0" VerticalAlignment="Top" Width="120" Click="ClickForViewDependencies"/>
         <Button  Content="{Binding id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="443,558,0,0" VerticalAlignment="Top" Click="Button_Click" />
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="202,417,0,0" TextWrapping="Wrap" Text="{Binding engineer.id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="130" Margin="646,545,0,0" VerticalAlignment="Top" Width="128"/>
-        <Label Content="Complete" HorizontalAlignment="Left" Margin="54,562,0,0" VerticalAlignment="Top" Height="38" Width="72"/>
-
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="130" Margin="646,545,0,0"  VerticalAlignment="Top" Width="128"/>
+        <!--<Label Content="Complete" HorizontalAlignment="Left" Margin="54,562,0,0" VerticalAlignment="Top" Visibility="{Binding completeDate, Converter={StaticResource DateTimeToVisibilityConverter}}" Height="38"  Width="69"/>-->
+        <Label Content="Complete" FontSize="70" Foreground="red" HorizontalAlignment="Left" Margin="211,96,0,0" VerticalAlignment="Top" 
+       Visibility="{Binding completeDate, Converter={StaticResource DateTimeToVisibilityConverter}}" Height="110" Width="443">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-30" />
+            </Label.LayoutTransform>
+        </Label>
     </Grid>
 </Window>

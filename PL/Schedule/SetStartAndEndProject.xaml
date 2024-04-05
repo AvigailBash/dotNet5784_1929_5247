@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="SetStartAndEndProject" Height="400" Width="600"
          DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+          BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Icon="\Image\icons8-computer-60.png">
 
     <Grid>

@@ -17,6 +17,7 @@
         <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
         <local:EngineerConverter x:Key="EngineerConverterKey"/>
         <local:EngineerNameConverter x:Key="EngineerNameConverter" />
+        <local:DateTimeToVisibilityConverter x:Key="DateTimeToVisibilityConverter"/>
 
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />
@@ -104,7 +105,7 @@
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Height" Value="35" />
+            <Setter Property="Height" Value="40" />
             <Setter Property="Width" Value="100" />
             <Setter Property="Background" Value="White" />
             <Setter Property="BorderBrush" Value="{StaticResource MyButtonBrush}" />

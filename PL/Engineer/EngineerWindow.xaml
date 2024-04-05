@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="EngineerWindow" Height="583" Width="495"
         DataContext="{Binding Engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}"
+          BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Icon="\Image\icons8-computer-60.png">
 
     <Window.Resources>

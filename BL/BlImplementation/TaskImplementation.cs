@@ -216,8 +216,8 @@ internal class TaskImplementation : ITask
             }
             if (task.completeDate != null)
             {
-                //if (task.startDate == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without start date"); }
-                //if (task.engineer == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without engineer"); }
+                if (task.startDate == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without start date"); }
+                if (task.engineer == null) { throw new BO.Exceptions.BlCannotUpdateThisTaskException("Can't update the complete date without engineer"); }
                 BO.Engineer boEngineer = s_bl.Engineer.Read(task.engineer.id);
                 boEngineer.task = null;
                 id = null;
@@ -407,6 +407,8 @@ internal class TaskImplementation : ITask
 
         return task;
     }
+
+   
 
 }
 

@@ -5,36 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.TaskInList"
         mc:Ignorable="d"
-        Title="TaskInListWindow" Height="640" Width="800"
+        Title="TaskInListWindow" Height="706" Width="800"
          DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+          BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Icon="\Image\icons8-computer-60.png">
 
     <!--Extrnal Grid-->
-    <Grid Height="624" VerticalAlignment="Top">
+    <Grid Height="629" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid HorizontalAlignment="Stretch"  Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Label  Grid.Column="0" Content="Select complexity" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
-            <ComboBox SelectedValue="{Binding status, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource TaskInListCollectionKey}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="SelectStatus"/>
+            <ComboBox Style="{StaticResource myComboBoxBoxStyle}" SelectedValue="{Binding status, Mode=TwoWay}" Background="White" ItemsSource="{Binding Source={StaticResource TaskInListCollectionKey}}" SelectionChanged="SelectStatus" Margin="143,12,103,10"/>
         </Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1"  HorizontalAlignment="Center" Height="NaN" Width="100" Click="clickOpenTaskWindowForCreate" Margin="0,551,0,0" Grid.RowSpan="2" />
-        <ListView  BorderThickness="5" Padding="0" Grid.Row="1" Background="White" FontFamily="Consolas" FontSize="13" Foreground="Black" BorderBrush="DarkSlateGray"  ItemsSource="{Binding TaskList}" MouseDoubleClick="clickOpenTaskWindowForUptade" Height="560" Grid.RowSpan="2" VerticalAlignment="Top">
+        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1"  HorizontalAlignment="Center" Height="NaN" Width="800" Click="clickOpenTaskWindowForCreate" Margin="0,549,0,-61" Grid.RowSpan="2" />
+        <ListView  BorderThickness="5" Padding="0"  FontFamily="Consolas" FontSize="13" Foreground="Black" BorderBrush="DarkSlateGray"  ItemsSource="{Binding TaskList}" MouseDoubleClick="clickOpenTaskWindowForUptade" Height="613" VerticalAlignment="Top" Margin="0,35,0,0" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Task" HorizontalAlignment="Left" Margin="59,9,0,0" Grid.Row="2" Click="Button_Click"/>
+        <Button Content="Task" HorizontalAlignment="Left" Margin="8,61,0,-52" Grid.Row="2" Click="Button_Click"/>
 
     </Grid>
 </Window>

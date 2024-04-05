@@ -58,6 +58,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+          BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Title="GanttWindow" SizeToContent="WidthAndHeight">
 
     <Window.Resources>
@@ -109,21 +110,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="dataGrid" Initialized="DataGrid_Initialized_1" Grid.Row="0" Style="{StaticResource DataGridStyle}"/>
+        <DataGrid x:Name="dataGrid"  Initialized="DataGrid_Initialized_1" Grid.Row="0" Style="{StaticResource DataGridStyle}"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10">
             <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
-                <Rectangle Fill="LightPink" Width="20" Height="20" Margin="0,0,5,0"/>
+                <Rectangle Fill="LightGray" Width="20" Height="20" Margin="0,0,5,0"/>
                 <TextBlock Text="None" FontSize="14" Foreground="#333"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
-                <Rectangle Fill="LightBlue" Width="20" Height="20" Margin="0,0,5,0"/>
+                <Rectangle Fill="{StaticResource MyButtonBrush}" Width="20" Height="20" Margin="0,0,5,0"/>
                 <TextBlock Text="Scheduled" FontSize="14" Foreground="#333"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Rectangle Fill="LightGray" Width="20" Height="20" Margin="0,0,5,0"/>
+                <Rectangle Fill="#EFB71A" Width="20" Height="20" Margin="0,0,5,0"/>
                 <TextBlock Text="Done" FontSize="14" Foreground="#333"/>
             </StackPanel>
         </StackPanel>

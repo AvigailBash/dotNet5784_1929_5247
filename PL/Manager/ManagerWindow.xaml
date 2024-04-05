@@ -3,25 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         xmlns:local="clr-namespace:PL.Manager"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="450" Width="800"
+        Title="ManagerWindow" Height="424" Width="800"
         Icon="\Image\icons8-computer-60.png">
 
 
 
 
-    <Grid>
-        <Button Style="{StaticResource myButtonStyle}" Content="Engineer List" HorizontalAlignment="Left" Margin="49,296,0,0" VerticalAlignment="Top" Click="ClickForEngineerList"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="TaskInList" HorizontalAlignment="Left" Margin="49,187,0,0" VerticalAlignment="Top" Click="ClickForTaskInList"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Add Task" HorizontalAlignment="Left" Margin="49,245,0,0" VerticalAlignment="Top" Click="ClickForAddTask"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Reset" HorizontalAlignment="Left" Margin="613,188,0,0" VerticalAlignment="Top" RenderTransformOrigin="8.126,-5.497"  Click="ClickForReset"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Set Dates" HorizontalAlignment="Left" Margin="613,38,0,0" VerticalAlignment="Top"  Click="ClickForSetStartAndEndDates"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Automatic Schedual" HorizontalAlignment="Left" Margin="613,138,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale" />
-        <Button Style="{StaticResource myButtonStyle}" Content="Gant" HorizontalAlignment="Left" Margin="49,356,0,0" VerticalAlignment="Top" Click="ClickForOpenGant"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Set scheduale null" HorizontalAlignment="Left" Margin="613,92,0,0" VerticalAlignment="Top" Click="SetSchedualeToNull" />
-        <Button Style="{StaticResource myButtonStyle}" Content="Intilization" HorizontalAlignment="Left" Margin="49,128,0,0" VerticalAlignment="Top" Click="ClickForIntilization"/>
-        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="146" Margin="592,314,0,0" VerticalAlignment="Top" Width="181"/>
+    <Grid Margin="0,0,0,-12">
+        <Button Style="{StaticResource myButtonStyle}" Content="Engineer List" HorizontalAlignment="Left" Margin="49,262,0,0" VerticalAlignment="Top" Click="ClickForEngineerList"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="TaskInList" HorizontalAlignment="Left" Margin="49,160,0,0" VerticalAlignment="Top" Click="ClickForTaskInList"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Add Task" HorizontalAlignment="Left" Margin="49,211,0,0" VerticalAlignment="Top" Click="ClickForAddTask"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Reset" HorizontalAlignment="Left" Margin="270,320,0,0" VerticalAlignment="Top" RenderTransformOrigin="8.126,-5.497"  Click="ClickForReset"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Set Dates" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Center"  Click="ClickForSetStartAndEndDates"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Automatic Schedual" HorizontalAlignment="Left" Margin="270,270,0,0" VerticalAlignment="Top" Click="ClickForAutomaticScheduale" />
+        <Button Style="{StaticResource myButtonStyle}" Content="Gant" HorizontalAlignment="Left" Margin="49,322,0,0" VerticalAlignment="Top" Click="ClickForOpenGant"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Set scheduale null" HorizontalAlignment="Left" Margin="270,224,0,0" VerticalAlignment="Top" Click="SetSchedualeToNull" />
+        <Button Style="{StaticResource myButtonStyle}" Content="Intilization" HorizontalAlignment="Left" Margin="49,102,0,0" VerticalAlignment="Top" Click="ClickForIntilization"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="164" Margin="498,227,0,0" VerticalAlignment="Top" Width="274"/>
 
     </Grid>
 </Window>

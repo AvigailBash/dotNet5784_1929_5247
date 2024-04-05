@@ -70,6 +70,10 @@ namespace PL.Manager
 
         private void ClickForOpenGant(object sender, RoutedEventArgs e)
         {
+            IEnumerable<BO.TaskInList>? taskList = s_bl.Task.ReadAll(t => t.schedualedDate == null);
+            if (taskList != null)
+                MessageBox.Show(" Before open the gantt you have to use the automatic schedule");
+            else
             new GanttWindow().Show();
         }
 

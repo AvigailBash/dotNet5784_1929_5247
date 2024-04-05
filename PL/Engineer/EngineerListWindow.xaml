@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
         Title="EngineerListWindow" Height="660" Width="800"
+         BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}"  
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Icon="\Image\icons8-computer-60.png">
 
@@ -19,19 +20,20 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid HorizontalAlignment="Stretch" Height="auto"  Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label  Grid.Column="0" Content="Engineer experience" HorizontalAlignment="Left" Margin="19,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
-            <ComboBox Style="{StaticResource myComboBoxBoxStyle}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay}" SelectionChanged="SelectEngineerLevelInCombobox" Margin="200,10,60,13"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Margin="241,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+            <Label Style="{StaticResource myLabelStyle}" Grid.Column="0" Content="Engineer experience" HorizontalAlignment="Left" Margin="13,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.553,0.382"/>
+            <ComboBox Style="{StaticResource myComboBoxBoxStyle}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay}" SelectionChanged="SelectEngineerLevelInCombobox" Margin="160,14,100,9"/>
+            <TextBox Style="{StaticResource myTextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="244,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+            <Label Grid.Column="1" Style="{StaticResource myLabelStyle}" Content="Search by name" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="132,0,0,0"/>
 
         </Grid>
 
-        <ListView x:Name="click" Margin="5,5,0,0" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="clickOpenEngineerWindowForUptade" >
+        <ListView x:Name="click" FontFamily="Consolas" FontSize="13" Foreground="Black" ItemsSource="{Binding EngineerList}" MouseDoubleClick="clickOpenEngineerWindowForUptade" Height="568" Margin="0,46,0,0" Grid.RowSpan="2" VerticalAlignment="Top" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -39,7 +41,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1" HorizontalAlignment="Center" Height="50" Width="100" Click="clickOpenEngineerWindowForCreate" Margin="0,531,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1" HorizontalAlignment="Left" Height="NaN" Width="800" Click="clickOpenEngineerWindowForCreate" Margin="0,536,0,-14" Grid.RowSpan="2"/>
 
 
     </Grid>

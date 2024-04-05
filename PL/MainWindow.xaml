@@ -11,7 +11,7 @@
         Icon="\Image\icons8-computer-60.png">
 
 
-    <Grid Margin="0,0,-10,-8">
+    <Grid  Margin="0,0,-10,-8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -50,7 +50,7 @@ VerticalAlignment="Top" Margin="208,244,0,0" Height="67" Width="330">
         <Button Style="{StaticResource mySmallButtonStyle}" Content="NextHour" HorizontalAlignment="Left" Margin="255,317,0,0" VerticalAlignment="Top" Click="AddHourClick" Height="35" Width="100"/>
         <Button  Style="{StaticResource mySmallButtonStyle}" Content="NextYear" HorizontalAlignment="Left" Margin="364,317,0,0" VerticalAlignment="Top" Click="AddYearClick" Height="35" Width="100"/>
         <Button Style="{StaticResource myButtonStyle}" Content="Sign in" HorizontalAlignment="Left" Margin="482,603,0,0" VerticalAlignment="Top" Click="ClickForEnter" Height="34" Width="160"/>
-        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="186" Margin="58,452,0,0" VerticalAlignment="Top" Width="389"/>
+        <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="244" Margin="0,473,0,0" VerticalAlignment="Top" Width="447"/>
         <Rectangle HorizontalAlignment="Left" Height="170" Margin="105,209,0,0" StrokeThickness="5" Stroke="Black" VerticalAlignment="Top" Width="504"/>
     </Grid>
 </Window>
