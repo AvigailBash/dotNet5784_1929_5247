@@ -16,6 +16,21 @@
     <isActive>true</isActive>
   </Task>
   <Task>
+    <id>1001</id>
+    <createdAtDate>2024-04-06T22:45:53.7273415+03:00</createdAtDate>
+    <alias>design</alias>
+    <description>design the project</description>
+    <isMilestone>true</isMilestone>
+    <schedualedDate>2024-04-12T00:00:00</schedualedDate>
+    <requiredEffortTime>P5D</requiredEffortTime>
+    <deadlineDate xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
     <id>1002</id>
     <createdAtDate>2024-04-06T23:38:15.8929501+03:00</createdAtDate>
     <alias>write</alias>

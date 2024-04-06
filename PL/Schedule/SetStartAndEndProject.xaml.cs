@@ -44,5 +44,14 @@ namespace PL.Schedule
             }
             catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        private void SetDetsToBeNullClick(object sender, RoutedEventArgs e)
+        {
+            DateTime? d;
+           d= s_bl.Clock.SetStartOfProject(null);
+           d=s_bl.Clock.SetEndOfProject(null);
+            start = s_bl.Clock.GetStartOfProject(); 
+            end = s_bl.Clock.GetEndOfProject();
+        }
     }
 }

@@ -10,13 +10,14 @@
           BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Icon="\Image\icons8-computer-60.png">
 
-    <Grid>
+    <Grid Margin="0,0,0,-36">
         <Label Content="Set start of project" HorizontalAlignment="Left" Margin="41,50,0,0" Style="{StaticResource myLabelStyle}" VerticalAlignment="Top" />
         <Label Content="Set end of project" HorizontalAlignment="Left" Margin="41,119,0,0"  Style="{StaticResource myLabelStyle}" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding start}" HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding end}" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="41,323,0,0" Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="SetDates"/>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="41,313,0,0" Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="SetDates"/>
         <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="117" Margin="314,241,0,0" VerticalAlignment="Top" Width="254"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Set dates to be null" HorizontalAlignment="Left" Margin="400,82,0,0" VerticalAlignment="Top" Click="SetDetsToBeNullClick"/>
 
     </Grid>
 </Window>

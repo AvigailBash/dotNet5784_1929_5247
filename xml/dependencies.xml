@@ -68,8 +68,8 @@
   </dependency>
   <dependency>
     <id>1011</id>
-    <dependentTask>1018</dependentTask>
-    <dependsOnTask>1005</dependsOnTask>
+    <dependentTask>1014</dependentTask>
+    <dependsOnTask>1001</dependsOnTask>
     <isActive>true</isActive>
   </dependency>
   <dependency>

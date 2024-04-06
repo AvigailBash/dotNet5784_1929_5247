@@ -61,8 +61,14 @@ namespace PL.Manager
         {
             try
             {
-                s_bl.Help.AutomaticScheduale();
-                MessageBox.Show("success");
+                if (s_bl.Clock.GetStartOfProject() == null)
+                    MessageBox.Show("Set dates for the project before using automatic schedule");
+                else
+                {
+                    s_bl.Help.AutomaticScheduale();
+                    MessageBox.Show("success");
+                }
+               
             }
             catch(Exception ex)
             {  MessageBox.Show(ex.Message); }
@@ -71,7 +77,7 @@ namespace PL.Manager
         private void ClickForOpenGant(object sender, RoutedEventArgs e)
         {
             IEnumerable<BO.TaskInList>? taskList = s_bl.Task.ReadAll(t => t.schedualedDate == null);
-            if (taskList != null)
+            if (taskList.Count()!=0)
                 MessageBox.Show(" Before open the gantt you have to use the automatic schedule");
             else
             new GanttWindow().Show();

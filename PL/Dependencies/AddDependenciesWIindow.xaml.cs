@@ -23,7 +23,7 @@ namespace PL.Dependencies
         public AddDependenciesWIindow(int id)
         {
             InitializeComponent();
-            TaskList= s_bl?.Task.ReadAll()!;
+            TaskList= s_bl?.Task.ReadAll(t=>t.id!=id)!.OrderBy(t=>t.id);
             task = s_bl?.Task.Read(id)!;
            
         }

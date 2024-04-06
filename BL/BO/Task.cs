@@ -9,7 +9,7 @@ namespace BO;
 
 public class Task
 {
-    private IClock _clock = new ClockImplementation();
+    //private IClock _clock = new ClockImplementation();
     public int id { get; init; }
     public string? alias { get; set; }
     public bool isMilestone { get; set; }

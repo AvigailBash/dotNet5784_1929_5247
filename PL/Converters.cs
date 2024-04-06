@@ -208,3 +208,21 @@ public class EngineerNameConverter : IMultiValueConverter
 }
 
 
+public class ProjectStatusToButtonIsEnabledConverter : IValueConverter
+{
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (s_bl.Clock.statusForProject()==BO.StatusOfProject.Start)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
