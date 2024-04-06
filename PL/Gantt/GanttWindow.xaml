@@ -123,6 +123,11 @@
                 <TextBlock Text="Scheduled" FontSize="14" Foreground="#333"/>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
+                <Rectangle Fill="LightYellow" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBlock Text="On Track" FontSize="14" Foreground="#333"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal">
                 <Rectangle Fill="#EFB71A" Width="20" Height="20" Margin="0,0,5,0"/>
                 <TextBlock Text="Done" FontSize="14" Foreground="#333"/>
