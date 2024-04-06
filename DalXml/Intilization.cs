@@ -33,14 +33,9 @@ internal class Intilization
             "User Interface (UI) Design","Backend Developmen","Integration Testing","Security Implementation","Documentation","Version Control","User Acceptance Testing"
         };
         string? _description = null;
-        IEnumerable<DO.Engineer> engineers = s_dal!.Engineer.ReadAll();
         int[] arr = new int[5];
         int i = 0;
         DO.Engineerlevel level;
-        foreach (DO.Engineer engineer in engineers)
-        {
-            arr[i++] = engineer.id;
-        }
         i = 0;
         foreach (var _alias in aliasNames)
         {
@@ -107,6 +102,28 @@ internal class Intilization
                     _description = "User Acceptance Testing";
                     break;
             }
+            switch (i)
+            {
+                case 0:
+                    level = Engineerlevel.Beginner;
+                    break;
+                case 1:
+                    level = Engineerlevel.AdvancedBeginner;
+                    break;
+                case 2:
+                    level = Engineerlevel.Intermediate;
+                    break;
+                case 3:
+                    level = Engineerlevel.Advanced;
+                    break;
+                case 4:
+                    level = Engineerlevel.Expert;
+                    break;
+                default:
+                    level = Engineerlevel.Beginner;
+                    break;
+            }
+            i = (i + 1) % 3;
             DateTime? _schedualedDate = null;
             DateTime _createdAtDate = s_dal.Clock.GetStartOfProject()?? DateTime.Now;
             DateTime? _startDate = null;
@@ -123,12 +140,9 @@ internal class Intilization
 
             DateTime? _completeDate = null, _deadlineDate = null;
             bool _isActive = true;
-            int engineerId = arr[i];
-            i = (i + 1) % 5;
-            level = s_dal.Engineer.Read(engineerId)!.level!.Value;
             _deadlineDate = null;
             _requiredEffortTime = null;
-            DO.Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, /*engineerId*/ null, level, true);
+            DO.Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null,  null, level, true);
             s_dal!.Task.Create(newTask);
 
         }
@@ -143,7 +157,7 @@ internal class Intilization
 
         string[] names =
         {
-            "Noa Levi","Moshe Choen","Yael Levi","Maor Tal","Dan Bash"
+            "Noa Levi","Moshe Choen","Yael Levi","Maor Tal","Dan Bash", "Adi Becher", "Sharon Yaniv", "Michali Rubin", "Naama Levin", "Hadas Ahroni", "Moti Oren", "Ben Mizrachi", "Avishai Dor", "Netanel Alush", "Efraim Zadok", "Adina Barazani", "Yael Shamai", "Sarit Teler", "Ayala Sitbon", "Rut Polak", "Varda Lerner", "Yosef Hadad", "Meir Halevi"
         };
         int i = 0;
         foreach (string name in names)
@@ -183,10 +197,14 @@ internal class Intilization
             }
             double _cost = new Random().Next(10000, 20000);
             bool _isActive = true;
-            Engineer newEngineer = new Engineer(_id, password, name, "engineer12@gmail.com", level, _cost, _isActive);
+            Engineer newEngineer = new Engineer(_id, password, name, $"{name}@gmail.com", level, _cost, _isActive);
             s_dal!.Engineer.Create(newEngineer);
-            i++;
+            i = (i + 1) % 5;
         }
+        Engineer newEn = new Engineer(326291929, 123456, "Avigail Bash", "Avigail@gmail.com", Engineerlevel.Expert, 40000, true);
+        Engineer newEn2 = new Engineer(326335247, 654321, "Ester Drey", "Ester@gmail.com", Engineerlevel.Expert, 40000, true);
+        s_dal!.Engineer.Create(newEn);
+        s_dal!.Engineer.Create(newEn2);
     }
 
     /// <summary>

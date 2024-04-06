@@ -23,6 +23,8 @@
         <Button Style="{StaticResource myButtonStyle}" Content="Set scheduale null" HorizontalAlignment="Left" Margin="270,224,0,0" VerticalAlignment="Top" Click="SetSchedualeToNull" />
         <Button Style="{StaticResource myButtonStyle}" Content="Intilization" HorizontalAlignment="Left" Margin="49,102,0,0" VerticalAlignment="Top" Click="ClickForIntilization"/>
         <Image Source="\Image\picture.jpg" HorizontalAlignment="Left" Height="164" Margin="498,227,0,0" VerticalAlignment="Top" Width="274"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Set start date" HorizontalAlignment="Left" Margin="270,138,0,0" VerticalAlignment="Top" Click="SetStartDates"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Set null fo start date" HorizontalAlignment="Left" Margin="270,98,0,0" VerticalAlignment="Top" Click="SetNullForStartDate"/>
 
     </Grid>
 </Window>

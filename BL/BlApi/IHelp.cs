@@ -8,5 +8,7 @@ public interface IHelp
     public void reset();
 
     public void AutomaticScheduale();
+    public void SetForNotStartDates();
+    public void SetStartDates();
     public void SetNullInScheduale();
 }

@@ -1,6 +1,4 @@
 ﻿using BlApi;
-using BO;
-using DO;
 using System;
 using System.Security.Cryptography;
 
@@ -82,6 +80,36 @@ internal class HelpImplementation : IHelp
         }
     }
 
+    public void SetStartDates()
+    {
+        IEnumerable<BO.TaskInList> tasksList = s_bl.Task.ReadAll(e => e.engineer == null);
+        foreach(BO.TaskInList ta in tasksList)
+        {
+            BO.Task t = s_bl.Task.Read(ta.id);
+            BO.Engineer en = s_bl.Engineer.ReadAll(e => e.task == null && e.level >= t.coplexity).FirstOrDefault();
+            BO.EngineerInTask engineerInTask = new BO.EngineerInTask() { id = en.id, name = en.name };
+            t.engineer = engineerInTask;
+            s_bl.Task.Update(t);
+        }
+        IEnumerable<BO.TaskInList> tasks = s_bl.Task.ReadAll(t => t.startDate == null);
+        foreach (BO.TaskInList task in tasks)
+        {
+            BO.Task newTask = s_bl.Task.Read(task.id)!;
+            BO.Task taskForUpdate = new BO.Task() { id=newTask.id, alias= newTask.alias, description= newTask.description, createdAtDate=newTask.createdAtDate, deadlineDate=newTask.deadlineDate, forecastDate=newTask.forecastDate, deliverables=newTask.deliverables, requiredEffortTime=newTask.requiredEffortTime, schedualedDate=newTask.schedualedDate, startDate=newTask.schedualedDate, completeDate=newTask.completeDate, coplexity=newTask.coplexity, dependencies=newTask.dependencies, engineer=newTask.engineer, isActive=newTask.isActive, isMilestone=newTask.isMilestone, remarks=newTask.remarks, status=newTask.status };
+            s_bl.Task.Update(taskForUpdate);
+        }
+    }
+
+    public void SetForNotStartDates()
+    {
+        IEnumerable<BO.TaskInList>? tasks = s_bl.Task.ReadAll(t => t.startDate != null);
+        foreach (BO.TaskInList task in tasks)
+        {
+            BO.Task newTask = s_bl.Task.Read(task.id)!;
+            BO.Task taskForUpdate = new BO.Task() { id = newTask.id, alias = newTask.alias, description = newTask.description, createdAtDate = newTask.createdAtDate, deadlineDate = newTask.deadlineDate, forecastDate = newTask.forecastDate, deliverables = newTask.deliverables, requiredEffortTime = newTask.requiredEffortTime, schedualedDate = newTask.schedualedDate, startDate = null, completeDate = newTask.completeDate, coplexity = newTask.coplexity, dependencies = newTask.dependencies, engineer = newTask.engineer, isActive = newTask.isActive, isMilestone = newTask.isMilestone, remarks = newTask.remarks, status = newTask.status };
+            s_bl.Task.Update(taskForUpdate);
+        }
+    }
     public void SetNullInScheduale()
     {
         IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();
@@ -93,20 +121,5 @@ internal class HelpImplementation : IHelp
                 _dal.Task.Update(doTask with { schedualedDate = null });
             }
         }
-
-        //IEnumerable<BO.TaskInList> task = s_bl.Task.ReadAll();
-        //if (tasks.Count() != 0)
-        //{
-        //    BO.Task newTask;
-        //    foreach (BO.TaskInList boTask in task)
-        //    {
-        //        newTask = s_bl.Task.Read(boTask.id);
-        //        if(newTask != null)
-        //        {
-        //            s_bl.Task.Update(newTask  with { schedualedDate = null, forecastDate = null });
-
-        //        }
-        //    }
-        //}
     }
 }
