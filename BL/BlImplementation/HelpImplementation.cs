@@ -106,7 +106,7 @@ internal class HelpImplementation : IHelp
         foreach (BO.TaskInList task in tasks)
         {
             BO.Task newTask = s_bl.Task.Read(task.id)!;
-            BO.Task taskForUpdate = new BO.Task() { id = newTask.id, alias = newTask.alias, description = newTask.description, createdAtDate = newTask.createdAtDate, deadlineDate = newTask.deadlineDate, forecastDate = newTask.forecastDate, deliverables = newTask.deliverables, requiredEffortTime = newTask.requiredEffortTime, schedualedDate = newTask.schedualedDate, startDate = null, completeDate = newTask.completeDate, coplexity = newTask.coplexity, dependencies = newTask.dependencies, engineer = newTask.engineer, isActive = newTask.isActive, isMilestone = newTask.isMilestone, remarks = newTask.remarks, status = newTask.status };
+            BO.Task taskForUpdate = new BO.Task() { id = newTask.id, alias = newTask.alias, description = newTask.description, createdAtDate = newTask.createdAtDate, deadlineDate = newTask.deadlineDate, forecastDate = newTask.forecastDate, deliverables = newTask.deliverables, requiredEffortTime = newTask.requiredEffortTime, schedualedDate = newTask.schedualedDate, startDate = null, completeDate = newTask.completeDate, coplexity = newTask.coplexity, dependencies = newTask.dependencies, engineer = null, isActive = newTask.isActive, isMilestone = newTask.isMilestone, remarks = newTask.remarks, status = newTask.status };
             s_bl.Task.Update(taskForUpdate);
         }
     }

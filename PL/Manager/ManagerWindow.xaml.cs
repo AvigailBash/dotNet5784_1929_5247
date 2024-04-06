@@ -109,15 +109,5 @@ namespace PL.Manager
             }
            catch(Exception ex) {  MessageBox.Show(ex.Message); }
         }
-
-        private void SetNullForStartDate(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                s_bl.Help.SetForNotStartDates();
-                MessageBox.Show("success");
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
     }
 }
