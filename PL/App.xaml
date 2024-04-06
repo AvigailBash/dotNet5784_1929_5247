@@ -18,6 +18,7 @@
         <local:EngineerConverter x:Key="EngineerConverterKey"/>
         <local:EngineerNameConverter x:Key="EngineerNameConverter" />
         <local:DateTimeToVisibilityConverter x:Key="DateTimeToVisibilityConverter"/>
+        <local:ProjectStatusToButtonIsEnabledConverter x:Key="ProjectStatusToButtonIsEnabledConverterKey"/>
 
         <Style x:Key="myLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="13" />

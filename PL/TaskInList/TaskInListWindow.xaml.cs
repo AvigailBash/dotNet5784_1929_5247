@@ -28,7 +28,7 @@ namespace PL.TaskInList
         {
             InitializeComponent();
             if(!f)
-            TaskList = s_bl?.Task.ReadAll()!;
+            TaskList = s_bl?.Task.ReadAll()!.OrderBy(t=>t.id)!;
             else
                 TaskList = s_bl?.Task.ReadAll(t=>t.engineer==null)!;
         }
@@ -58,7 +58,7 @@ namespace PL.TaskInList
         private void clickOpenTaskWindowForCreate(object sender, RoutedEventArgs e)
         {
             new TaskWindow().ShowDialog();
-            TaskList = s_bl?.Task.ReadAll()!;
+            TaskList = s_bl?.Task.ReadAll()!.OrderBy(t => t.id)!;
 
         }
 
@@ -66,8 +66,8 @@ namespace PL.TaskInList
         {
             BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
             new TaskWindow(en!.id).ShowDialog();
-            TaskList = s_bl?.Task.ReadAll()!;
-            
+            TaskList = s_bl?.Task.ReadAll()!.OrderBy(t => t.id)!;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

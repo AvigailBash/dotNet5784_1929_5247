@@ -187,7 +187,7 @@ namespace BlTest
                 Console.WriteLine("Press the alias");
                 string Alias = Console.ReadLine()!;
 
-                BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer(idTask, Alias);
+                BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer() { id = idTask,alias=Alias };
 
                 if (num == 2)
                 {

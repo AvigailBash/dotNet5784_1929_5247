@@ -14,7 +14,7 @@ internal class Intilization
     /// <summary>
     /// A method that deletes the objects that were added and restarts when you choose this in the program
     /// </summary>
-    private static void deleteAll()
+    private static void deleteAllTheData()
     {
 
         s_dal!.Engineer.deleteAll();
@@ -222,7 +222,7 @@ internal class Intilization
     {
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         s_dal = DalApi.Factory.Get;
-        deleteAll();
+        deleteAllTheData();
         Config.resetDependencyId(false);
         Config.resetTaskId(false);
         s_dal.Clock.SetStartOfProject(null);
@@ -235,7 +235,7 @@ internal class Intilization
 
     public static void reset()
     {
-        deleteAll();
+        deleteAllTheData();
         Config.resetDependencyId(true);
         Config.resetTaskId(true);
         s_dal.Clock.SetStartOfProject(null);

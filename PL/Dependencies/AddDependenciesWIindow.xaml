@@ -9,7 +9,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
           BorderThickness="10" BorderBrush="{StaticResource MyButtonBrush}" 
         Icon="\Image\icons8-computer-60.png">
-    <Grid Margin="0,0,6,13" RenderTransformOrigin="0.5,0.5">
+    <Grid Margin="0,0,6,-16" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
