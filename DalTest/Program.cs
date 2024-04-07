@@ -11,8 +11,6 @@ namespace DalTest
     internal class Program
     {
         static readonly IDal s_dal = Factory.Get;
-     //  static readonly IDal s_dal = new DalList();
-        //static readonly IDal s_dal = new DalXml();
 
         /// <summary>
         /// Receiving data and sending it to a method that creates a new task or update the task
@@ -39,8 +37,6 @@ namespace DalTest
                 remarks = Console.ReadLine();
                 Console.WriteLine("Press a schedualed Date");
                 schedualedDate = DateTime.Parse(Console.ReadLine());
-                Console.WriteLine("Press a deadline Date");
-                deadlineDate = DateTime.Parse(Console.ReadLine());
                 Console.WriteLine("Press a created At Date");
                 createdAtDate = DateTime.Parse(Console.ReadLine());
                 Console.WriteLine("Press a start Date");
@@ -51,8 +47,6 @@ namespace DalTest
                 requiredEffortTime = TimeSpan.Parse(Console.ReadLine());
                 Console.WriteLine("Press if it active true or false");
                 bool isActive = bool.Parse(Console.ReadLine());
-                Console.WriteLine("Press if there is a milestone true or false");
-                bool isMileStone = bool.Parse(Console.ReadLine());
                 if (num == 2)
                 {
                     if (alias == null)
@@ -79,10 +73,6 @@ namespace DalTest
                     {
                         requiredEffortTime = temp.requiredEffortTime;
                     }
-                    if(deadlineDate == null)
-                    {
-                        deadlineDate = temp.deadlineDate;
-                    }
                     if (createdAtDate == null)
                     {
                         createdAtDate = temp.createdAtDate;
@@ -96,7 +86,7 @@ namespace DalTest
                         completeDate = temp.completeDate;
                     }
                 }
-                DO.Task t = new DO.Task(id, createdAtDate, alias, description, isMileStone, schedualedDate, requiredEffortTime, deadlineDate, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
+                DO.Task t = new DO.Task(id, createdAtDate, alias, description, schedualedDate, requiredEffortTime, startDate, completeDate, deliverables, remarks, 655498745, DO.Engineerlevel.Advanced, isActive);
                 if (num == 1)
                     s_dal.Task!.Create(t);
                 else
@@ -238,10 +228,8 @@ namespace DalTest
                                                 Console.WriteLine($"ID: {task.id}");
                                                 Console.WriteLine($"Alias: {task.alias}");
                                                 Console.WriteLine($"Description: {task.description}");
-                                                Console.WriteLine($"Is Milestone: {task.isMilestone}");
                                                 Console.WriteLine($"Scheduled Date:  {task.schedualedDate}");
                                                 Console.WriteLine($"Required Effort Time: {task.requiredEffortTime}");
-                                                Console.WriteLine($"Deadline Date: {task.deadlineDate}");
                                                 Console.WriteLine($"Created At Date: {task.createdAtDate}");
                                                 Console.WriteLine($"Start Date: {task.startDate}");
                                                 Console.WriteLine($"Complete Date: {task.completeDate}");
@@ -277,10 +265,8 @@ namespace DalTest
                                                     Console.WriteLine($"ID: {ta.id}");
                                                     Console.WriteLine($"Alias: {ta.alias}");
                                                     Console.WriteLine($"Description: {ta.description}");
-                                                    Console.WriteLine($"Is Milestone: {ta.isMilestone}");
                                                     Console.WriteLine($"Scheduled Date: {ta.schedualedDate}");
                                                     Console.WriteLine($"Required Effort Time: {ta.requiredEffortTime}");
-                                                    Console.WriteLine($"Deadline Date: {ta.deadlineDate}");
                                                     Console.WriteLine($"Created At Date: {ta.createdAtDate}");
                                                     Console.WriteLine($"Start Date: {ta.startDate}");
                                                     Console.WriteLine($"Complete Date: {ta.completeDate}");
@@ -470,7 +456,6 @@ namespace DalTest
 
                                         // Print all dependencies
                                         case options.ReadAll:
-                                            //List<DO.Dependency>? dependencies = s_dal.dependency!.ReadAll();
                                             IEnumerable<DO.Dependency>? dependencies = s_dal.Dependency!.ReadAll();
                                             if (dependencies != null)
                                             {

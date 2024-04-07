@@ -10,5 +10,4 @@ public interface IHelp
     public void AutomaticScheduale();
     public void SetForNotStartDates();
     public void SetStartDates();
-    public void SetNullInScheduale();
 }

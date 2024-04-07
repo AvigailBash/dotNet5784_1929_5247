@@ -13,7 +13,6 @@ internal class EngineerImplementation :BlApi.IEngineer
     private DalApi.IDal _dal = DalApi.Factory.Get;
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     private BlApi.IClock _clock = new ClockImplementation();
-    // BO.StatusOfProject status;
 
     /// <summary>
     /// A method that creates a new engineer
@@ -178,13 +177,6 @@ internal class EngineerImplementation :BlApi.IEngineer
         }
     }
 
-    //public IEnumerable<BO.Engineer> groupByLevel()
-    //{
-    //    IEnumerable<BO.Engineer> en = ReadAll();
-    //    var group = from e in en where e.level == BO.Engineerlevel.Beginner orderby e.id group e.id by e.name![0] into newGroup select newGroup;
-    //    return group;
-    //}
-
     /// <summary>
     /// A method that checks the integrity of the email
     /// </summary>
@@ -200,6 +192,11 @@ internal class EngineerImplementation :BlApi.IEngineer
         return Regex.IsMatch(email, pattern);
     }
 
+    /// <summary>
+    /// A method that receives an ID card, reads the engineer and converts it to Engineer In Task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public BO.EngineerInTask? ReadInTaskInEngineerFormat(int id)
     {
         DO.Engineer doEnginner = _dal.Engineer.Read(id)!;
@@ -207,6 +204,14 @@ internal class EngineerImplementation :BlApi.IEngineer
         return engineerInTask;
     }
 
+    /// <summary>
+    /// A method that receives an ID and password and checks if the engineer exists and if this is his password
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.Exceptions.BlDoesNotExistException"></exception>
+    /// <exception cref="BO.Exceptions.BlWrongPasswordException"></exception>
     public BO.TaskInEngineer? ReadForPassword(int id, int password)
     {
         BO.Engineer en = Read(id)!;
@@ -220,6 +225,12 @@ internal class EngineerImplementation :BlApi.IEngineer
         }
         return en.task;
     }
+
+    /// <summary>
+    /// A method that receives the ID and checks what task this engineer is doing and returns his name and ID
+    /// </summary>
+    /// <param name="boEngineer"></param>
+    /// <returns></returns>
     private BO.TaskInEngineer? FindTask(DO.Engineer boEngineer)
     {
         DO.Task doTask = _dal.Task.Read(t => (t?.engineerId == boEngineer.id));
@@ -231,7 +242,7 @@ internal class EngineerImplementation :BlApi.IEngineer
 
     public IEnumerable< BO.EngineerInTask> ReadInTaskInEngineerFormatWithFilter(int id)
     {
-       IEnumerable< BO.Engineer> boEnginnerlist = s_bl.Engineer.ReadAll(e=>e.task==null||e.task.id==id);
+        IEnumerable<BO.Engineer> boEnginnerlist = s_bl.Engineer.ReadAll(e => e.task == null || e.task.id == id);
         IEnumerable<BO.EngineerInTask> newList = from engineerInList in boEnginnerlist select new BO.EngineerInTask() { id = engineerInList.id,name = engineerInList.name };
         return newList;
     }

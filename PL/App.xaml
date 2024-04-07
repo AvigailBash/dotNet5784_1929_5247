@@ -15,8 +15,6 @@
         <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />
         <local:TaskDelayedToRowBackgroundConverter x:Key="TaskDelayedToRowBackgroundConverter"/>
         <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
-        <local:EngineerConverter x:Key="EngineerConverterKey"/>
-        <local:EngineerNameConverter x:Key="EngineerNameConverter" />
         <local:DateTimeToVisibilityConverter x:Key="DateTimeToVisibilityConverter"/>
         <local:ProjectStatusToButtonIsEnabledConverter x:Key="ProjectStatusToButtonIsEnabledConverterKey"/>
 

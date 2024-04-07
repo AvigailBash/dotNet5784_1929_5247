@@ -127,7 +127,7 @@ public static class Initialization
             level = s_dal.Engineer.Read(engineerId)!.level!.Value;
             _deadlineDate = null;
             _requiredEffortTime = null;
-            Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null, null, level, true);
+            Task newTask = new(0, _createdAtDate, _alias, _description, _schedualedDate, _requiredEffortTime, _startDate, _completeDate, null, null, null, level, true);
             s_dal!.Task.Create(newTask);
 
         }

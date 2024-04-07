@@ -16,6 +16,7 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     private IClock _clock = new ClockImplementation();
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
     /// <summary>
     /// A method that creates a new task
     /// </summary>
@@ -45,7 +46,7 @@ internal class TaskImplementation : ITask
             boTask.engineer.id = boTask.engineer.id;
         }
         DO.Task doTask = new DO.Task(boTask.id, boTask.createdAtDate, boTask.alias, boTask.description,
-            boTask.isMilestone, boTask.schedualedDate, boTask.requiredEffortTime, boTask.deadlineDate,
+            boTask.schedualedDate, boTask.requiredEffortTime,
             boTask.startDate, boTask.completeDate, boTask.deliverables, boTask.remarks, boTask.engineer?.id,
             (DO.Engineerlevel?)boTask.coplexity, boTask.isActive);
         try
@@ -93,10 +94,8 @@ internal class TaskImplementation : ITask
             id = Id,
             alias = doTask.alias,
             description = doTask.description,
-            isMilestone = doTask.isMilestone,
             schedualedDate = doTask.schedualedDate,
             requiredEffortTime = doTask.requiredEffortTime,
-            deadlineDate = doTask.deadlineDate,
             createdAtDate = doTask.createdAtDate,
             startDate = doTask.startDate,
             completeDate = doTask.completeDate,
@@ -124,10 +123,8 @@ internal class TaskImplementation : ITask
                        id = doTask.id,
                        alias = doTask.alias,
                        description = doTask.description,
-                       isMilestone = doTask.isMilestone,
                        schedualedDate = doTask.schedualedDate,
                        requiredEffortTime = doTask.requiredEffortTime,
-                       deadlineDate = doTask.deadlineDate,
                        createdAtDate = doTask.createdAtDate,
                        startDate = doTask.startDate,
                        completeDate = doTask.completeDate,
@@ -223,7 +220,7 @@ internal class TaskImplementation : ITask
                 id = null;
                 s_bl.Engineer.Update(boEngineer);
             }
-            doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description, isMilestone=task.isMilestone, schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, deadlineDate=task.deadlineDate, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
+            doTask = new DO.Task() { id=task.id, createdAtDate=task.createdAtDate, alias=task.alias, description=task.description,  schedualedDate=task.schedualedDate, requiredEffortTime=task.requiredEffortTime, startDate=task.startDate, completeDate=task.completeDate, deliverables=task.deliverables, remarks=task.remarks, engineerId=id, coplexity=(DO.Engineerlevel)task.coplexity!, isActive=task.isActive};
             _dal.Task.Update(doTask);
         }
         catch (DO.DalAlreadyExistsException ex)
@@ -261,6 +258,12 @@ internal class TaskImplementation : ITask
         List<BO.TaskInList> taskInLists = (from DO.Task t in newList select new BO.TaskInList { id = t.id, description = t.description, alias = t.alias, status = findStatus(t) }).ToList();
         return taskInLists;
     }
+
+    /// <summary>
+    /// A method that finds which tasks the current task depends on and return the ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public List<BO.TaskInList> findDependenciesId(int id)
     {
         IEnumerable<DO.Task?> newList = from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask == id select _dal.Task.Read(doDependency.dependsOnTask ?? 0);
@@ -300,6 +303,11 @@ internal class TaskImplementation : ITask
         return engineerInTask;
     }
 
+    /// <summary>
+    /// A method that receives an ID number, finds the task and returns it of type Task In Engineer
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public BO.TaskInEngineer ReadInTaskInEngineerFormat(int id)
     {
         DO.Task doTask = _dal.Task.Read(id)!;
@@ -307,6 +315,11 @@ internal class TaskImplementation : ITask
         return taskInEngineer;
     }
 
+    /// <summary>
+    /// A method that finds which tasks the current task depends on
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
     public List<BO.TaskInList> findDependencies(BO.Task task)
     {
         IEnumerable<DO.Task?> newList = from DO.Dependency doDependency in _dal.Dependency.ReadAll() where doDependency.dependentTask == task.id select _dal.Task.Read(doDependency.dependsOnTask ?? 0);
@@ -314,6 +327,11 @@ internal class TaskImplementation : ITask
         return taskInLists;
     }
 
+    /// <summary>
+    /// A method that converts all tasks to the Task In List type
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns></returns>
     public IEnumerable<BO.TaskInList> convertFromTaskToTaskInList(IEnumerable<BO.Task> task)
     {
         IEnumerable<BO.TaskInList> t = from BO.Task temp in task
@@ -327,21 +345,30 @@ internal class TaskImplementation : ITask
         return t;
     }
 
-
+    /// <summary>
+    /// A method that accepts a tag and adds another dependency to that task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="taskInList"></param>
     public void AddDependencies(int id,BO.TaskInList taskInList)
     {
-
         BO.Task temp = Read(id)!;
         temp.dependencies!.Add(taskInList);
         Update(temp);
     }
 
+    /// <summary>
+    /// A method that receives a tag and deletes a dependency for that task
+    /// </summary>
+    /// <param name="boTask"></param>
+    /// <param name="taskInList"></param>
     public void RemoveDependencies(BO.Task boTask, BO.TaskInList taskInList)
     {
         DO.Dependency temp = new DO.Dependency(0,boTask.id, taskInList.id,true);
         DO.Dependency temp2 = _dal.Dependency.Read(t => t.dependsOnTask == taskInList.id && t.dependentTask == boTask.id&&t.isActive==true);
         _dal.Dependency.Delete(temp2.id);
     }
+
 
     public void FindTheMinimumDate(BO.Task boTask)
     {
@@ -383,10 +410,8 @@ internal class TaskImplementation : ITask
                        id = doTask.id,
                        alias = doTask.alias,
                        description = doTask.description,
-                       isMilestone = doTask.isMilestone,
                        schedualedDate = doTask.schedualedDate,
                        requiredEffortTime = doTask.requiredEffortTime,
-                       deadlineDate = doTask.deadlineDate,
                        createdAtDate = doTask.createdAtDate,
                        startDate = doTask.startDate,
                        completeDate = doTask.completeDate,

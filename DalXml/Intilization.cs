@@ -16,7 +16,6 @@ internal class Intilization
     /// </summary>
     private static void deleteAllTheData()
     {
-
         s_dal!.Engineer.deleteAll();
         s_dal!.Dependency.deleteAll();
         s_dal!.Task.deleteAll();
@@ -142,7 +141,7 @@ internal class Intilization
             bool _isActive = true;
             _deadlineDate = null;
             _requiredEffortTime = null;
-            DO.Task newTask = new(0, _createdAtDate, _alias, _description, true, _schedualedDate, _requiredEffortTime, _deadlineDate, _startDate, _completeDate, null, null,  null, level, true);
+            DO.Task newTask = new(0, _createdAtDate, _alias, _description, _schedualedDate, _requiredEffortTime, _startDate, _completeDate, null, null,  null, level, true);
             s_dal!.Task.Create(newTask);
 
         }
@@ -238,7 +237,6 @@ internal class Intilization
     /// <exception cref="NullReferenceException"></exception>
     public static void Do()
     {
-        //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!");
         s_dal = DalApi.Factory.Get;
         deleteAllTheData();
         Config.resetDependencyId(false);
@@ -253,6 +251,7 @@ internal class Intilization
 
     public static void reset()
     {
+        s_dal = Factory.Get;
         deleteAllTheData();
         Config.resetDependencyId(true);
         Config.resetTaskId(true);

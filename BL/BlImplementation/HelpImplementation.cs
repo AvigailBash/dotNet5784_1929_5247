@@ -9,11 +9,20 @@ internal class HelpImplementation : IHelp
     private DalApi.IDal _dal = DalApi.Factory.Get;
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
+    /// <summary>
+    /// method to initialize the data
+    /// </summary>
     public void init() => _dal.Help.init();
 
-
+    /// <summary>
+    /// A method to reset the data
+    /// </summary>
     public void reset() => _dal.Help.reset();
 
+    /// <summary>
+    /// A method that creates an estimated start date for all tasks
+    /// </summary>
+    /// <exception cref="BO.Exceptions.BlCannotCreateTheScheduleException"></exception>
     public void AutomaticScheduale()
     {
         Random random = new Random(); // Initialize a random number generator
@@ -80,6 +89,9 @@ internal class HelpImplementation : IHelp
         }
     }
 
+    /// <summary>
+    /// A method that creates a start date for all tasks
+    /// </summary>
     public void SetStartDates()
     {
         IEnumerable<BO.TaskInList> tasksList = s_bl.Task.ReadAll(e => e.engineer == null);
@@ -95,21 +107,14 @@ internal class HelpImplementation : IHelp
         foreach (BO.TaskInList task in tasks)
         {
             BO.Task newTask = s_bl.Task.Read(task.id)!;
-            BO.Task taskForUpdate = new BO.Task() { id=newTask.id, alias= newTask.alias, description= newTask.description, createdAtDate=newTask.createdAtDate, deadlineDate=newTask.deadlineDate, forecastDate=newTask.forecastDate, deliverables=newTask.deliverables, requiredEffortTime=newTask.requiredEffortTime, schedualedDate=newTask.schedualedDate, startDate=newTask.schedualedDate, completeDate=newTask.completeDate, coplexity=newTask.coplexity, dependencies=newTask.dependencies, engineer=newTask.engineer, isActive=newTask.isActive, isMilestone=newTask.isMilestone, remarks=newTask.remarks, status=newTask.status };
+            BO.Task taskForUpdate = new BO.Task() { id=newTask.id, alias= newTask.alias, description= newTask.description, createdAtDate=newTask.createdAtDate, forecastDate=newTask.forecastDate, deliverables=newTask.deliverables, requiredEffortTime=newTask.requiredEffortTime, schedualedDate=newTask.schedualedDate, startDate=newTask.schedualedDate, completeDate=newTask.completeDate, coplexity=newTask.coplexity, dependencies=newTask.dependencies, engineer=newTask.engineer, isActive=newTask.isActive, remarks=newTask.remarks, status=newTask.status };
             s_bl.Task.Update(taskForUpdate);
         }
     }
 
-    public void SetForNotStartDates()
-    {
-        IEnumerable<BO.TaskInList>? tasks = s_bl.Task.ReadAll(t => t.startDate != null);
-        foreach (BO.TaskInList task in tasks)
-        {
-            BO.Task newTask = s_bl.Task.Read(task.id)!;
-            BO.Task taskForUpdate = new BO.Task() { id = newTask.id, alias = newTask.alias, description = newTask.description, createdAtDate = newTask.createdAtDate, deadlineDate = newTask.deadlineDate, forecastDate = newTask.forecastDate, deliverables = newTask.deliverables, requiredEffortTime = newTask.requiredEffortTime, schedualedDate = newTask.schedualedDate, startDate = null, completeDate = newTask.completeDate, coplexity = newTask.coplexity, dependencies = newTask.dependencies, engineer = null, isActive = newTask.isActive, isMilestone = newTask.isMilestone, remarks = newTask.remarks, status = newTask.status };
-            s_bl.Task.Update(taskForUpdate);
-        }
-    }
+    /// <summary>
+    /// A method that returns all estimated start dates to be null
+    /// </summary>
     public void SetNullInScheduale()
     {
         IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();

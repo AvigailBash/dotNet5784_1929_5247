@@ -36,7 +36,7 @@ internal class TaskImplementation: ITask
         {
             throw new DalDoesNotExistException($"Task with ID={id} not exists");
         }
-        DO.Task temp = new(t.id, t.createdAtDate, t.alias, t.description, t.isMilestone, t.schedualedDate, t.requiredEffortTime, t.deadlineDate, t.startDate, t.completeDate, t.deliverables, t.remarks, t.engineerId, t.coplexity, false);
+        DO.Task temp = new(t.id, t.createdAtDate, t.alias, t.description, t.schedualedDate, t.requiredEffortTime, t.startDate, t.completeDate, t.deliverables, t.remarks, t.engineerId, t.coplexity, false);
         tasks.Remove(t);
         tasks.Add(temp);
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
