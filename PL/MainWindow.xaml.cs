@@ -44,12 +44,7 @@ namespace PL
             DependencyProperty.Register("CurrentTime", typeof(DateTime), typeof(MainWindow), new PropertyMetadata(null));
 
 
-
-        //Click to enter the program as an manager
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new ManagerWindow().Show();
-        }
+        
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

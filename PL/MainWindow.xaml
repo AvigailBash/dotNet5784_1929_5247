@@ -15,7 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="Manager" HorizontalAlignment="Left" Margin="25,36,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="20"/>
         <TextBlock Name="lblStyled" Text="{Binding CurrentTime ,Mode=TwoWay}" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left"
 VerticalAlignment="Top" Margin="208,244,0,0" Height="67" Width="330">
             <TextBlock.Style>
