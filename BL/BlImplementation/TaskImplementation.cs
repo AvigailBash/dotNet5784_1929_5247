@@ -369,7 +369,10 @@ internal class TaskImplementation : ITask
         _dal.Dependency.Delete(temp2.id);
     }
 
-
+    /// <summary>
+    /// A method that finds the minimum date to determine the estimated start date
+    /// </summary>
+    /// <param name="boTask"></param>
     public void FindTheMinimumDate(BO.Task boTask)
     {
         DateTime? minimum = s_bl.clock;
@@ -378,26 +381,20 @@ internal class TaskImplementation : ITask
         s_bl.Task.Update(boTask);
     }
 
+
     public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe()
     {
         IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();
-        // ודא שהקלט תקין
         if (tasks == null)
         {
             throw new ArgumentNullException(nameof(tasks));
         }
-
-        // קבלת משימות עם id חוקי
         var filteredTasks = tasks.Where(task => task?.id != null);
-
-        // קיבוץ המשימות לפי id
         IEnumerable<BO.TaskInList> groupedTasks = filteredTasks.GroupBy(task => task.id).Select(group => new BO.TaskInList
         {
             id = group.Key
         });
             
-
-        // החזרת אוסף הקבוצות
         return groupedTasks;
     }
 
