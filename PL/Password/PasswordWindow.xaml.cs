@@ -41,6 +41,11 @@ namespace PL.Password
         public static readonly DependencyProperty UserProperty =
             DependencyProperty.Register("User", typeof(BO.User), typeof(PasswordWindow), new PropertyMetadata(null));
 
+        /// <summary>
+        /// A button to log in as an administrator or engineer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForEnter(object sender, RoutedEventArgs e)
         {
             if (User.Id == 123456789 && User.Password == 1234)
@@ -63,7 +68,5 @@ namespace PL.Password
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
-
-       
     }
 }

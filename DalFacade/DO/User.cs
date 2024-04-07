@@ -7,5 +7,5 @@ public record User
     bool isActive
 )
 {
-    //public User() : this(0) { }
+    public User() : this(0, 0, false) { }
 }

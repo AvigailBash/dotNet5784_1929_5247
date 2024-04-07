@@ -41,7 +41,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1" HorizontalAlignment="Left" Height="NaN" Width="800" Click="clickOpenEngineerWindowForCreate" Margin="0,536,0,-14" Grid.RowSpan="2"/>
+        <Button Style="{StaticResource myButtonStyle}" Content="Add" Grid.Row="1" HorizontalAlignment="Left" Height="56" Width="800" Click="clickOpenEngineerWindowForCreate" Margin="0,536,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
 
 
     </Grid>

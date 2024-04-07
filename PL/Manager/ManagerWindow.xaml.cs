@@ -29,33 +29,63 @@ namespace PL.Manager
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Button to open the list of engineers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForEngineerList(object sender, RoutedEventArgs e)
         {
 
             new EngineerListWindow().Show();
         }
 
+        /// <summary>
+        /// Button to open the list of tasks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForTaskInList(object sender, RoutedEventArgs e)
         {
             new TaskInListWindow().Show();
         }
 
+        /// <summary>
+        /// Button to open adding a new task
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForAddTask(object sender, RoutedEventArgs e)
         {
             new TaskWindow().Show();
         }
 
+        /// <summary>
+        /// Data reset button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForReset(object sender, RoutedEventArgs e)
         {
             s_bl.Help.reset();
             MessageBox.Show("The reset was completed successfully");
         }
 
+        /// <summary>
+        /// A button to select start and end dates for the project
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForSetStartAndEndDates(object sender, RoutedEventArgs e)
         {
             new SetStartAndEndProject().ShowDialog();
         }
 
+        /// <summary>
+        /// A button to set an automatic schedule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForAutomaticScheduale(object sender, RoutedEventArgs e)
         {
             try
@@ -73,6 +103,11 @@ namespace PL.Manager
             {  MessageBox.Show(ex.Message); }
         }
 
+        /// <summary>
+        /// Button to open the Gantt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForOpenGant(object sender, RoutedEventArgs e)
         {
             IEnumerable<BO.TaskInList>? taskList = s_bl.Task.ReadAll(t => t.schedualedDate == null);
@@ -82,12 +117,22 @@ namespace PL.Manager
             new GanttWindow().Show();
         }
 
+        /// <summary>
+        /// A button to return all dates from the estimated start to null
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetSchedualeToNull(object sender, RoutedEventArgs e)
         {
             s_bl.Help.SetNullInScheduale();
             MessageBox.Show("success");
         }
 
+        /// <summary>
+        /// button to initialize the data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForIntilization(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Do you want to do Initialization?", "Initialization", MessageBoxButton.YesNo /*MessageBoxImage.Question*/);
@@ -99,6 +144,11 @@ namespace PL.Manager
             }
         }
 
+        /// <summary>
+        /// A button to set start dates for all tasks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetStartDates(object sender, RoutedEventArgs e)
         {
             try 

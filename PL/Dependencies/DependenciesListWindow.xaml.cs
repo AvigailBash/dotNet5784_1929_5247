@@ -37,11 +37,6 @@ namespace PL.Dependencies
 
         }
 
-
-
-
-
-
         public BO.Task task
         {
             get { return (BO.Task)GetValue(taskProperty); }
@@ -51,9 +46,6 @@ namespace PL.Dependencies
         // Using a DependencyProperty as the backing store for task.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty taskProperty =
             DependencyProperty.Register("task", typeof(BO.Task), typeof(DependenciesListWindow), new PropertyMetadata(null));
-
-
-
 
         public IEnumerable<BO.TaskInList> Dependencies
         {
@@ -65,12 +57,22 @@ namespace PL.Dependencies
         public static readonly DependencyProperty DependenciesProperty =
             DependencyProperty.Register("Dependencies", typeof(IEnumerable<BO.TaskInList>), typeof(DependenciesListWindow), new PropertyMetadata(null));
 
+        /// <summary>
+        /// A method that displays all dependencies
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
             if (en != null) {s_bl.Task.RemoveDependencies(task,en); } 
         }
 
+        /// <summary>
+        /// Deleting the dependency from the list of the task's dependencies
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForDeleteDependency(object sender, RoutedEventArgs e)
         {
           this.Close();

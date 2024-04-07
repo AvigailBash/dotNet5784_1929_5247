@@ -381,7 +381,11 @@ internal class TaskImplementation : ITask
         s_bl.Task.Update(boTask);
     }
 
-
+    /// <summary>
+    /// A method that returns all tasks filtered by date
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public IEnumerable<BO.TaskInList> GetTasksGroupedByTaskIdSafe()
     {
         IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();
@@ -394,11 +398,14 @@ internal class TaskImplementation : ITask
         {
             id = group.Key
         });
-            
         return groupedTasks;
     }
 
-
+    /// <summary>
+    /// A method that accepts a task and returns it of type task
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public IEnumerable<BO.Task> ReadFullTask(Func<BO.Task, bool>? filter = null)
     {
         var task = from DO.Task doTask in _dal.Task.ReadAll()
@@ -429,9 +436,6 @@ internal class TaskImplementation : ITask
 
         return task;
     }
-
-   
-
 }
 
 

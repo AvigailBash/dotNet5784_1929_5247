@@ -60,17 +60,6 @@ namespace PL.Engineer
         public static readonly DependencyProperty EngineerProperty =
             DependencyProperty.Register(nameof(Engineer), typeof(BO.Engineer), typeof(EngineerWindow));
 
-        //public IEnumerable<BO.TaskInList> TaskInLists
-        //{
-        //    get { return (IEnumerable<BO.TaskInList>)GetValue(taskInListsProperty); }
-        //    set { SetValue(taskInListsProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for TaskInLists.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty taskInListsProperty =
-        //    DependencyProperty.Register(nameof(TaskInLists), typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
-
-
         public BO.Task Task
         {
             get { return (BO.Task)GetValue(TaskProperty); }
@@ -81,8 +70,11 @@ namespace PL.Engineer
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("Task", typeof(BO.Task), typeof(EngineerWindow), new PropertyMetadata(null));
 
-
-
+        /// <summary>
+        /// Clicking on the button to add a new engineer or update details on an existing engineer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clickForUpdateOrAdd(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -111,7 +103,5 @@ namespace PL.Engineer
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); this.Close(); };
         }
-
-       
     }
 }
