@@ -26,6 +26,7 @@
             <Setter Property="Width" Value="160" />
             <Setter Property="Margin" Value="300, 0,0,0" />
         </Style>
+        
         <Style x:Key="myDatePickerStyle" TargetType="DatePicker">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />
@@ -35,13 +36,12 @@
             <Setter Property="Margin" Value="300,0,0,0" />
             <Setter Property="BorderBrush" Value="{StaticResource MyButtonBrush}" />
             <Setter Property="BorderThickness" Value="5" />
-            <!--<Setter Property="DisplayDate" Value="" />-->
         </Style>
+        
         <Style x:Key="myButtonStyle" TargetType="Button">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="White" />
-                    <!--<Setter Property="TextDecorations" Value="Underline" />-->
                 </Trigger>
             </Style.Triggers>
             <Setter Property="FontSize" Value="13" />
@@ -53,16 +53,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource MyButtonBrush}" />
             <Setter Property="BorderThickness" Value="5" />
         </Style>
-        <!--<Style x:Key="myTextBoxStyle" TargetType="TextBox">
-            <Setter Property="FontSize" Value="13" />
-            <Setter Property="FontFamily" Value="Consolas" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Width" Value="120" />
-            <Setter Property="Margin" Value="300, 0,0,0" />
-            <Setter Property="BorderBrush" Value="{StaticResource MyTextBoxBrush}" />
-            <Setter Property="BorderThickness" Value="3" />
-        </Style>-->
+      
         <Style x:Key="myTextBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="FontFamily" Value="Consolas" />

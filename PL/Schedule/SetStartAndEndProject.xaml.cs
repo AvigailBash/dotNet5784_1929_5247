@@ -27,11 +27,14 @@ namespace PL.Schedule
             
         }
 
-
-
         public DateTime? start { get; set; } =  s_bl.Clock.GetStartOfProject();
         public DateTime? end { get; set; } = s_bl.Clock.GetEndOfProject();
 
+        /// <summary>
+        /// A button to set start and end dates for the project
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetDates(object sender, RoutedEventArgs e)
         {
             try
@@ -45,6 +48,11 @@ namespace PL.Schedule
             catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
+        /// <summary>
+        /// Returning start and end dates for the project to null
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SetDetsToBeNullClick(object sender, RoutedEventArgs e)
         {
             DateTime? d;

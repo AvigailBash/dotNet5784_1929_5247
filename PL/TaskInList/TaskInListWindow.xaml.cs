@@ -33,8 +33,6 @@ namespace PL.TaskInList
                 TaskList = s_bl?.Task.ReadAll(t=>t.engineer==null)!;
         }
 
-
-
         public IEnumerable<BO.TaskInList> TaskList
         {
             get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
@@ -47,29 +45,45 @@ namespace PL.TaskInList
             
         public BO.Status status { get; set; } = BO.Status.None;
 
+        /// <summary>
+        /// Displaying the tasks according to the selected status
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectStatus(object sender, SelectionChangedEventArgs e)
         {
             TaskList = (status == BO.Status.None) ?
             s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => item.status == status)!;
-
-
         }
 
+        /// <summary>
+        /// Button to open the window for adding a new task
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clickOpenTaskWindowForCreate(object sender, RoutedEventArgs e)
         {
             new TaskWindow().ShowDialog();
             TaskList = s_bl?.Task.ReadAll()!.OrderBy(t => t.id)!;
-
         }
 
+        /// <summary>
+        /// Button to open the task update window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clickOpenTaskWindowForUptade(object sender, MouseButtonEventArgs e)
         {
             BO.TaskInList? en = (sender as ListView)?.SelectedItem as BO.TaskInList;
             new TaskWindow(en!.id).ShowDialog();
             TaskList = s_bl?.Task.ReadAll()!.OrderBy(t => t.id)!;
-
         }
 
+        /// <summary>
+        /// Filter tasks by ID number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TaskList = s_bl.Task.GetTasksGroupedByTaskIdSafe();

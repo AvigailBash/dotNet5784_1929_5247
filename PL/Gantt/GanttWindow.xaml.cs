@@ -37,7 +37,11 @@ namespace PL.Gantt
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(GanttWindow), new PropertyMetadata(null));
 
-
+        /// <summary>
+        /// Initialization of titles in the starting line according to the dates of the project
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGrid_Initialized_1(object sender, EventArgs e)
         {
             DataGrid? dataGrid = sender as DataGrid;
@@ -46,6 +50,7 @@ namespace PL.Gantt
 
             if (dataGrid != null)
             {
+                //Define columns for task ID, alias, and dependencies
                 dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Task Id", Binding = new Binding("[0]") });
                 dataTable.Columns.Add("Task Id", typeof(int));
 

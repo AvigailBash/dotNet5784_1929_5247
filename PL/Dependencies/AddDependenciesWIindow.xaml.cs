@@ -28,8 +28,6 @@ namespace PL.Dependencies
            
         }
 
-
-
         public BO.Task task
         {
             get { return (BO.Task)GetValue(taskProperty); }
@@ -52,12 +50,22 @@ namespace PL.Dependencies
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(AddDependenciesWIindow), new PropertyMetadata(null));
 
+        /// <summary>
+        /// Adding the dependency to the task's dependency list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickForAddDependencies(object sender, RoutedEventArgs e)
         {
 
             this.Close();
         }
 
+        /// <summary>
+        /// Displays the list of all dependencies
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.TaskInList? en = (sender as ListBox)?.SelectedItem as BO.TaskInList;

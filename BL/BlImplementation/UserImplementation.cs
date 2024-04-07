@@ -7,6 +7,14 @@ namespace BlImplementation;
 internal class UserImplementation : BlApi.IUser
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
+
+    /// <summary>
+    /// A method that creates a new user
+    /// </summary>
+    /// <param name="boUser"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.Exceptions.BlIncorrectInputException"></exception>
+    /// <exception cref="BO.Exceptions.BlAlreadyExistsException"></exception>
     public int Create(BO.User boUser)
     {
         if (boUser.Id <= 0 || boUser.Password <= 0)
@@ -24,6 +32,12 @@ internal class UserImplementation : BlApi.IUser
         }
     }
 
+    /// <summary>
+    /// A method that deletes a user
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="BO.Exceptions.BlCannotDeleteThisEngineerException"></exception>
+    /// <exception cref="BO.Exceptions.BlDoesNotExistException"></exception>
     public void Delete(int id)
     {
         BO.User? boEngineer = Read(id);
@@ -42,6 +56,11 @@ internal class UserImplementation : BlApi.IUser
         }
     }
 
+    /// <summary>
+    /// A method that receives an ID and returns the user
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public BO.User? Read(int id)
     {
         DO.User? doUser = _dal.User.Read(id);
@@ -57,6 +76,11 @@ internal class UserImplementation : BlApi.IUser
         };
     }
 
+    /// <summary>
+    /// A method that calls all users
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public IEnumerable<BO.User> ReadAll(Func<BO.User, bool>? filter = null)
     {
         var users = from DO.User doUser in _dal.User.ReadAll()
@@ -74,6 +98,12 @@ internal class UserImplementation : BlApi.IUser
         return users;
     }
 
+    /// <summary>
+    /// A method that updates the user
+    /// </summary>
+    /// <param name="user"></param>
+    /// <exception cref="BO.Exceptions.BlIncorrectInputException"></exception>
+    /// <exception cref="BO.Exceptions.BlDoesNotExistException"></exception>
     public void Update(BO.User user)
     {
         DO.User? doUser = _dal.User.Read(user.Id);
