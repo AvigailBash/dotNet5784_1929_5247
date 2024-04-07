@@ -32,7 +32,7 @@ namespace PL
 
 
 
-
+        //dependency property for the clock
         public DateTime CurrentTime
         {
             get { return (DateTime)GetValue(CurrentTimeProperty); }
@@ -45,23 +45,7 @@ namespace PL
 
 
 
-        private void GoToEngineerWiew(object sender, RoutedEventArgs e)
-        {
-            new EngineerListWindow().Show();
-
-        }
-
-        private void DoInitialization(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Do you want to do Initialization?", "Initialization", MessageBoxButton.YesNo /*MessageBoxImage.Question*/);
-            // Check the user's response
-            if (result == MessageBoxResult.Yes)
-            {
-                s_bl.Help.init();
-               
-            }
-        }
-
+        //Click to enter the program as an manager
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new ManagerWindow().Show();
@@ -82,11 +66,13 @@ namespace PL
             s_bl.clockForwardDay();
         }
 
+        //click for add hour to the clock
         private void AddHourClick(object sender, RoutedEventArgs e)
         {
             s_bl.clockForwardHour();
         }
 
+        //click for add year to the clock
         private void AddYearClick(object sender, RoutedEventArgs e)
         {
             s_bl.clockForwardYear();
@@ -97,11 +83,13 @@ namespace PL
             CurrentTime = s_bl.clock;
         }
 
+        //Click For Reset the Clock
         private void ClickForResetClock(object sender, RoutedEventArgs e)
         {
             s_bl.clockInit();
         }
 
+        //Click for sign in 
         private void ClickForEnter(object sender, RoutedEventArgs e)
         {
             new PasswordWindow().ShowDialog();

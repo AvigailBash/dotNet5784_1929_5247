@@ -9,7 +9,7 @@ using System.Windows.Media.TextFormatting;
 using System.Windows;
 
 namespace PL;
-
+//Converter for task that is late to be painted red
 class DataGridRowBackGrounfConverter : IValueConverter
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -29,6 +29,7 @@ class DataGridRowBackGrounfConverter : IValueConverter
     }
 }
 
+//Converter for the text on the button: update/add
 class ConvertIdToContent : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -43,6 +44,7 @@ class ConvertIdToContent : IValueConverter
     }
 }
 
+//Convert Id To IsEnabled
 class ConvertIdToIsEnabled : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -70,7 +72,7 @@ class ConvertTextToUserId : IValueConverter
 
 }
 
-
+//converter for opening the Gantt that depends on the scheduale date
 class ConvertDaTteTimeToIsEnabled : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -85,23 +87,7 @@ class ConvertDaTteTimeToIsEnabled : IValueConverter
 
 }
 
-class ConvertStatusToIsColor : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (((BO.Status)value) == BO.Status.Scheduled) { return Colors.BlueViolet; }
-        if (((BO.Status)value) == BO.Status.Done) { return Colors.Red; }
-        if (((BO.Status)value) == BO.Status.None) { return Colors.Green; }
-        return Colors.White;
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-
-}
-
+////Converter for coloring the squares in the table by status
 
 public class StatusToColorConverter : IValueConverter
 {
@@ -132,6 +118,8 @@ public class StatusToColorConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+//Converter for task that is late to be painted red
 public class TaskDelayedToRowBackgroundConverter : IValueConverter
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -158,11 +146,12 @@ public class TaskDelayedToRowBackgroundConverter : IValueConverter
     }
 }
 
+
 public class DateTimeToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        // בדיקה האם הערך המתקבל הוא תאריך ריק
+        
         if (value == null || (DateTime)value == DateTime.MinValue)
         {
             return Visibility.Collapsed;
@@ -175,13 +164,13 @@ public class DateTimeToVisibilityConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        // המרת חזרה אינה נדרשת, נחזיר את הערך המקורי
+       
         return value;
     }
 }
 
 
-
+//Converter for the possibility of adding dependencies depending on the status of the project
 public class ProjectStatusToButtonIsEnabledConverter : IValueConverter
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();

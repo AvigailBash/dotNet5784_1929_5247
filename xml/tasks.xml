@@ -1,2 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Task>
+    <id>1000</id>
+    <createdAtDate>2024-04-07T12:53:28.358744+03:00</createdAtDate>
+    <alias>planning</alias>
+    <description>planning the event</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1001</id>
+    <createdAtDate>2024-04-07T12:53:28.3605923+03:00</createdAtDate>
+    <alias>design</alias>
+    <description>design the project</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1002</id>
+    <createdAtDate>2024-04-07T12:53:28.3620052+03:00</createdAtDate>
+    <alias>write</alias>
+    <description>write the project code</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1003</id>
+    <createdAtDate>2024-04-07T12:53:28.3639763+03:00</createdAtDate>
+    <alias>check</alias>
+    <description>search for errors in the project</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1004</id>
+    <createdAtDate>2024-04-07T12:53:28.3660812+03:00</createdAtDate>
+    <alias>correction</alias>
+    <description>correction errors in the project</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1005</id>
+    <createdAtDate>2024-04-07T12:53:28.3679497+03:00</createdAtDate>
+    <alias>update</alias>
+    <description>update the project</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1006</id>
+    <createdAtDate>2024-04-07T12:53:28.36993+03:00</createdAtDate>
+    <alias>upgrades</alias>
+    <description>upgrades the code</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1007</id>
+    <createdAtDate>2024-04-07T12:53:28.3711949+03:00</createdAtDate>
+    <alias>budget</alias>
+    <description>how much money you have</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1008</id>
+    <createdAtDate>2024-04-07T12:53:28.3726458+03:00</createdAtDate>
+    <alias>Requirements Gathering</alias>
+    <description>Collect and document the functional and non-functional requirements of the software</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1009</id>
+    <createdAtDate>2024-04-07T12:53:28.373861+03:00</createdAtDate>
+    <alias>System Architecture Design</alias>
+    <description>Design the overall structure and architecture of the software system</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1010</id>
+    <createdAtDate>2024-04-07T12:53:28.3750734+03:00</createdAtDate>
+    <alias>Database Design</alias>
+    <description>Plan and create the database schema, considering data storage, retrieval, and relationships</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1011</id>
+    <createdAtDate>2024-04-07T12:53:28.3765459+03:00</createdAtDate>
+    <alias>Technology Stack Selection</alias>
+    <description>Choose the appropriate programming languages, frameworks, libraries, and tools for the project</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1012</id>
+    <createdAtDate>2024-04-07T12:53:28.3777735+03:00</createdAtDate>
+    <alias>Code Planning and Organization</alias>
+    <description>Define coding conventions, project structure, and overall organization of the source code</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1013</id>
+    <createdAtDate>2024-04-07T12:53:28.3792867+03:00</createdAtDate>
+    <alias>User Interface (UI) Design</alias>
+    <description>Create wireframes or mockups to design the user interface and user experience</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1014</id>
+    <createdAtDate>2024-04-07T12:53:28.3807653+03:00</createdAtDate>
+    <alias>Backend Developmen</alias>
+    <description>Implement the server-side logic, business rules, and data processing</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1015</id>
+    <createdAtDate>2024-04-07T12:53:28.382225+03:00</createdAtDate>
+    <alias>Integration Testing</alias>
+    <description>Test the interaction between different modules and components to ensure seamless integration</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1016</id>
+    <createdAtDate>2024-04-07T12:53:28.3835392+03:00</createdAtDate>
+    <alias>Security Implementation</alias>
+    <description>Incorporate security measures to protect against potential vulnerabilities and attacks</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1017</id>
+    <createdAtDate>2024-04-07T12:53:28.3856171+03:00</createdAtDate>
+    <alias>Documentation</alias>
+    <description>Generate comprehensive documentation, including code comments, user manuals, and technical documentation</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Intermediate</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1018</id>
+    <createdAtDate>2024-04-07T12:53:28.3871877+03:00</createdAtDate>
+    <alias>Version Control</alias>
+    <description>Set up and manage version control systems (e.g., Git) to track changes and collaborate effectively</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>Beginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+  <Task>
+    <id>1019</id>
+    <createdAtDate>2024-04-07T12:53:28.3887997+03:00</createdAtDate>
+    <alias>User Acceptance Testing</alias>
+    <description>User Acceptance Testing</description>
+    <schedualedDate xsi:nil="true" />
+    <requiredEffortTime xsi:nil="true" />
+    <startDate xsi:nil="true" />
+    <completeDate xsi:nil="true" />
+    <engineerId xsi:nil="true" />
+    <coplexity>AdvancedBeginner</coplexity>
+    <isActive>true</isActive>
+  </Task>
+</ArrayOfTask>

@@ -43,7 +43,7 @@ namespace PL.Password
 
         private void ClickForEnter(object sender, RoutedEventArgs e)
         {
-            if (User.Id == 1234 && User.Password == 1234)
+            if (User.Id == 123456789 && User.Password == 1234)
             {
                 new ManagerWindow().Show();
                 this.Close();

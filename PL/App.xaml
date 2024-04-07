@@ -12,7 +12,6 @@
         <local:ConvertIdToIsEnabled x:Key="ConvertIdToIsEnabledKey"/>
         <local:ConvertTextToUserId x:Key="ConvertTextToUserIdKey"/>
         <local:ConvertDaTteTimeToIsEnabled x:Key="ConvertDaTteTimeToIsEnabledK"/>
-        <local:ConvertStatusToIsColor x:Key="StatusToColorConverter" />
         <local:TaskDelayedToRowBackgroundConverter x:Key="TaskDelayedToRowBackgroundConverter"/>
         <local:DataGridRowBackGrounfConverter x:Key="DataGridRowBackGrounfConverter" />
         <local:DateTimeToVisibilityConverter x:Key="DateTimeToVisibilityConverter"/>

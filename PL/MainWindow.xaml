@@ -15,8 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Style="{StaticResource myButtonStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="25,74,0,0" VerticalAlignment="Top"  Click="GoToEngineerWiew" Height="34" Width="160"/>
-        <Button Style="{StaticResource myButtonStyle}" Content="Initialization" HorizontalAlignment="Left" Margin="25,114,0,0" VerticalAlignment="Top"  Click="DoInitialization" Height="34" Width="160"/>
         <Button Content="Manager" HorizontalAlignment="Left" Margin="25,36,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="20"/>
         <TextBlock Name="lblStyled" Text="{Binding CurrentTime ,Mode=TwoWay}" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left"
 VerticalAlignment="Top" Margin="208,244,0,0" Height="67" Width="330">

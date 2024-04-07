@@ -18,22 +18,21 @@
         <Label  Style="{StaticResource myLabelStyle}" Content="Schedualed date" HorizontalAlignment="Left" Margin="443,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.042,-5.688"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Start date" HorizontalAlignment="Left" Margin="443,148,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Forecast" HorizontalAlignment="Left" Margin="443,211,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Deadline date" HorizontalAlignment="Left" Margin="443,276,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Complete date" HorizontalAlignment="Left" Margin="443,345,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Complete date" HorizontalAlignment="Left" Margin="443,276,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Required effort time" HorizontalAlignment="Left" Margin="20,361,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Deliverables" HorizontalAlignment="Left" Margin="20,244,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Remarks" HorizontalAlignment="Left" Margin="20,308,0,0" VerticalAlignment="Top"/>
         <Label  Style="{StaticResource myLabelStyle}" Content="Engineer" HorizontalAlignment="Left" Margin="20,413,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Complexity" HorizontalAlignment="Left" Margin="443,403,0,0" VerticalAlignment="Top"/>
-        <Label  Style="{StaticResource myLabelStyle}" Content="Active" HorizontalAlignment="Left" Margin="452,469,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Complexity" HorizontalAlignment="Left" Margin="443,335,0,0" VerticalAlignment="Top"/>
+        <Label  Style="{StaticResource myLabelStyle}" Content="Active" HorizontalAlignment="Left" Margin="452,401,0,0" VerticalAlignment="Top"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="201,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,74,0,0" TextWrapping="Wrap" Text="{Binding alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,133,0,0" TextWrapping="Wrap" Text="{Binding description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,252,0,0" TextWrapping="Wrap" Text="{Binding deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" HorizontalAlignment="Left" Margin="201,312,0,0" TextWrapping="Wrap" Text="{Binding remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
 
-        <CheckBox  IsChecked="{Binding isActive}" BorderBrush="Gray" Name="cbSample" BorderThickness="3" Content="" HorizontalAlignment="Left" Margin="634,474,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="704,474,0,97" FontSize="18" Width="148">
+        <CheckBox  IsChecked="{Binding isActive}" BorderBrush="Gray" Name="cbSample" BorderThickness="3" Content="" HorizontalAlignment="Left" Margin="634,406,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="704,406,0,165" FontSize="18" Width="148">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="Text" Value="No" />
@@ -51,11 +50,10 @@
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding createdAtDate}" HorizontalAlignment="Left" Margin="634,26,0,0" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding schedualedDate}" HorizontalAlignment="Left" Margin="634,82,0,0" VerticalAlignment="Top"/>
         <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding forecastDate}" HorizontalAlignment="Left" Margin="634,211,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding deadlineDate}" HorizontalAlignment="Left" Margin="634,274,0,0" VerticalAlignment="Top"/>
-        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding completeDate}" HorizontalAlignment="Left" Margin="634,343,0,0" VerticalAlignment="Top"/>
+        <DatePicker Style="{StaticResource myDatePickerStyle}" SelectedDate="{Binding completeDate}" HorizontalAlignment="Left" Margin="634,274,0,0" VerticalAlignment="Top"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding requiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,364,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding engineer.name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="202,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Style="{StaticResource myComboBoxBoxStyle}"  SelectedValue="{Binding coplexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" HorizontalAlignment="Left" Margin="634,407,0,0" VerticalAlignment="Top"  >
+        <ComboBox Style="{StaticResource myComboBoxBoxStyle}"  SelectedValue="{Binding coplexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerCollectionKey}}" HorizontalAlignment="Left" Margin="634,339,0,0" VerticalAlignment="Top"  >
         </ComboBox>
         <TextBox Style="{StaticResource myTextBoxStyle}" Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" VerticalAlignment="Top" IsEnabled="False" Margin="201,190,479,0"/>
         <Button Style="{StaticResource myButtonStyle}" IsEnabled="{Binding isActive, Converter={StaticResource ProjectStatusToButtonIsEnabledConverterKey}}" Content="add dependencies" HorizontalAlignment="Left" Margin="201,510,0,0" VerticalAlignment="Top" Width="121" Click="ClickForAddDependencies"/>

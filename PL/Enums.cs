@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace PL;
 /// <summary>
-/// 
+/// Enums class
 /// </summary>
+
+//enum for EngineerCollection
 internal class EngineerCollection : IEnumerable
 {
     static readonly IEnumerable<BO.Engineerlevel> s_enums =
@@ -17,6 +19,8 @@ internal class EngineerCollection : IEnumerable
     public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
 }
 
+
+//enum for TaskInList
 internal class TaskInListCollection : IEnumerable
 {
     static readonly IEnumerable<BO.Status> s_enums =
